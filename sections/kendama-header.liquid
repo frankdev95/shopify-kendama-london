@@ -13,7 +13,7 @@
     {% if section.settings.menu != blank %}
         <nav class="">
             <ul>
-                {% for link in sections.settings.menu.links %}
+                {% for link in section.settings.menu.links %}
                     <li>
                         <a href="{{ link.url }}">
                             <span>{{ link.title }}</span>
@@ -50,12 +50,6 @@
             "id": "menu",
             "default": "main-menu",
             "label": "Menu"
-        }
-    ],
-    "presets": [
-        {
-            "category": "Header-Kendama",
-            "name":"Custom Header"
         }
     ]
 }
