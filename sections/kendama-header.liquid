@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="{{ 'component-kendama-menu.css' | asset_url}}" >
+
+
+<header class="header">
+    <a href="{{ routes.root_url }}" class="header__link">
+        {% if section.settings.logo != blank %}
+            {% assign image_size =  section.settings.logo_width | append: 'x' %}
+            <img src="{{ section.settings.logo | img_url: image_size }}" alt="{{ section.settings.logo.alt | default: shop.name | escape}}">
+        {% else %}
+            <span>{{ shop.name }}</span>
+        {% endif %}
+    </a>
+    {% if section.settings.menu != blank %}
+        <nav class="">
+            <ul>
+                {% for link in sections.settings.menu.links %}
+                    <li>
+                        <a href="{{ link.url }}">
+                            <span>{{ link.title }}</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    {% endif %}
+</header>
+
+
+{% schema %}
+{
+    "name": "t:sections.header.name",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Logo image"
+        },
+        {
+            "type": "range",
+            "id": "logo_width",
+            "min": 50,
+            "max": 250,
+            "step": 10,
+            "default": 100,
+            "unit": "px",
+            "label": "Custom logo width"
+        },
+        {
+            "type": "link_list",
+            "id": "menu",
+            "default": "main-menu",
+            "label": "Menu"
+        }
+    ],
+    "presets": [
+        {
+            "category": "Header-Kendama",
+            "name":"Custom Header"
+        }
+    ]
+}
+{% endschema %}
