@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="{{ 'component-kendama-menu.css' | asset_url}}" >
 
-
+<{% if section.settings.fixed_header %}fixed-header{% else %}div{% endif %} class="header__wrapper" >
 <header class="header">
-    <a href="{{ routes.root_url }}" class="header__link">
+    <a href="{{ routes.root_url }}" class="header__logo-link">
         {% if section.settings.logo != blank %}
             {% assign image_size =  section.settings.logo_width | append: 'x' %}
             <img src="{{ section.settings.logo | img_url: image_size }}" alt="{{ section.settings.logo.alt | default: shop.name | escape}}">
@@ -11,12 +11,12 @@
         {% endif %}
     </a>
     {% if section.settings.menu != blank %}
-        <nav class="">
-            <ul>
+        <nav class="nav">
+            <ul class="nav__list">
                 {% for link in section.settings.menu.links %}
-                    <li>
-                        <a href="{{ link.url }}">
-                            <span>{{ link.title }}</span>
+                    <li class="nav__item {% if link.current %} nav__item-active {% endif %}">
+                        <a class="nav__link" href="{{ link.url }}">
+                            <span>{{ link.title | escape }}</span>
                         </a>
                     </li>
                 {% endfor %}
@@ -24,11 +24,69 @@
         </nav>
     {% endif %}
 </header>
+</{% if section.settings.fixed_header %}fixed-header{% else %}div{% endif %}> 
 
+{% javascript %}
+    class FixedHeader extends HTMLElement {
+        constructor() {
+            super();
+            this.isFixed = false;
+        }
+
+        connectedCallback() {
+            this.header = document.getElementById('shopify-section-kendama-header');
+            this.headerBounds = {};
+
+            this.onScrollHandler = this.onScroll.bind(this);
+
+            window.addEventListener('scroll', this.onScrollHandler, false);
+
+            this.createObserver();
+        }
+
+        disconnectedCallback() {
+            window.removeEventListener('scroll', this.onScrollHandler);
+        }
+
+        createObserver() {
+            let observer = new IntersectionObserver((entries, observer) => {
+                this.headerBounds = entries[0].intersectionRect;
+                observer.disconnect();
+            });
+
+            observer.observe(this.header);
+        }
+
+        onScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if(scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom && !this.isFixed) {
+                requestAnimationFrame(this.fix.bind(this));
+                this.isFixed = true;
+            } else if(scrollTop < this.currentScrollTop && scrollTop <= this.headerBounds.top && this.isFixed) {
+                requestAnimationFrame(this.reset.bind(this));
+                this.isFixed = false;
+            }
+
+            this.currentScrollTop = scrollTop;
+        }
+
+        fix() {
+            this.header.classList.add('header-fixed');
+        }
+
+        reset() {
+            this.header.classList.remove('header-fixed');
+        }
+
+    }
+
+    customElements.define('fixed-header', FixedHeader);
+{% endjavascript %}
 
 {% schema %}
 {
-    "name": "t:sections.header.name",
+    "name": "header",
     "settings": [
         {
             "type": "image_picker",
@@ -50,6 +108,13 @@
             "id": "menu",
             "default": "main-menu",
             "label": "Menu"
+        },
+        {
+            "type": "checkbox",
+            "id": "fixed_header",
+            "default": true,
+            "label": "Toggle fixed header",
+            "info": "Enable this checkbox to allow a fixed header on scroll"
         }
     ]
 }

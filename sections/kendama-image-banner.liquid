@@ -1,0 +1,106 @@
+{{ 'component-kendama-image-banner.css' | asset_url | stylesheet_tag}}
+
+<div class="hero">
+    {% if section.settings.image != blank %}
+        <img class="hero__image" src="{{ section.settings.image | img_url : '1600x900' }}" alt="">
+    {% else %}
+        {{ 'lifestyle-1' | placeholder_svg_tag }}
+    {% endif %}
+    <div class="hero__content">
+        <h1><i>{{ section.settings.title }}</i></h1>
+        {% for block in section.blocks %}
+            {% case block.type %}
+                {% when 'text' %}
+                    <div class="hero__text" {{ block.shopify_attributes }}>
+                        <span>{{ block.settings.text }}</span>
+                    </div>
+                {% when 'button' %}
+                    {% if block.settings.button_label != blank %}
+                        <div class="hero__button" {{ block.shopify_attributes }}>
+                            {% style %}
+                                .hero__button {
+                                    border-width: {{ block.settings.border_width | append: 'px'}}
+                                }
+                            {% endstyle %}
+                            <a {% if block.settings.button_link != blank %} href="{{ block.settings.button_link }}" {% else %} aria-disabled="true" {% endif %}>{{ block.settings.button_label }}</a>
+                        </div>
+                    {% endif %}
+            {% endcase %}
+        {% endfor %}
+    </div>  
+</div>
+
+{% schema %}
+{
+    "name": "Image banner",
+    "settings": [
+        {   
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Try New Things"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "text",
+            "name": "Text",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "text",
+                    "label": "Description"
+                }
+            ]
+        },
+        {
+            "type": "button",
+            "name": "Button",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "button_label",
+                    "default": "Shop Kendamas",
+                    "label": "Button label",
+                    "info": "Leave the label blank to hide the button"
+                },
+                {
+                    "type": "url",
+                    "id": "button_link",
+                    "label": "Button link"
+                },
+                {
+                    "type": "range",
+                    "id": "border_width",
+                    "min": 1,
+                    "max": 8,
+                    "step": 1,
+                    "unit": "px",
+                    "label": "Border size",
+                    "default": 3
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name":"Image banner",
+            "blocks": [
+                {
+                    "type": "text"
+                },
+                {
+                    "type": "button"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

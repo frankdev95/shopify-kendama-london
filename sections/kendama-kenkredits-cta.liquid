@@ -1,0 +1,35 @@
+{{ 'component-kendama-kenkredits-cta.css' | asset_url | stylesheet_tag}}
+
+<div class="kenkredits">
+    {% if section.settings.icon %}
+        <img src="{{ section.settings.icon | img_url: 'small'}}" alt="">
+    {% endif %}
+    <h1>{{ section.settings.title }}</h1>
+    {% if section.settings.icon %}
+        <img src="{{ section.settings.icon | img_url: 'small'}}" alt="">
+    {% endif %}
+</div>
+
+{% schema %}
+{
+    "name": "Kenkredits CTA",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Save money with kenkredits"
+        },
+        {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "Icon"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Kenkredits CTA"
+        }
+    ]
+}
+{% endschema %}
