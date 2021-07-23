@@ -13,13 +13,13 @@
                 {% for block in section.blocks %}
                     {% case block.type %}
                         {% when 'slide' %}
-                                <div class="slideshow__slide" {{ block.shopify_attributes }}>
+                            <div class="slideshow__slide" {{ block.shopify_attributes }}>
                                 {% if block.settings.image != blank %}
                                     {{ block.settings.image | img_url: 'medium' | img_tag}}
                                 {% else %}
-                                    {{ 'image' | placeholder_svg_tag: 'slide__placeholder' }}   
+                                    {{ 'image' | placeholder_svg_tag: 'slide__placeholder' }}
                                 {% endif %}
-                            
+
                             </div>
                     {% endcase %}
                 {% endfor %}
@@ -35,147 +35,154 @@
 </div>
 
 {% javascript %}
-    class Slideshow extends HTMLElement {
-        constructor() {
-            super();
-        }
-        
-        connectedCallback() {
 
-            this.slideshow = this.querySelector(".slideshow");
-            this.slideshowSlides = this.querySelector(".slideshow__slides");
-            this.slides = this.querySelectorAll(".slideshow__slide");
+class Slideshow extends HTMLElement {
+    constructor() {
+        super();
+    }
 
-            this.arrows = this.querySelectorAll(".slideshow__arrow");
-            this.arrowLeft = this.querySelector(".slideshow__arrow--left");
-            this.arrowRight = this.querySelector(".slideshow__arrow--right");
+    connectedCallback() {
 
-            if(this.slides[0]) {
-                console.log(this.slides);
-                
-                this.slideWidth = parseInt(this.slideshow.getAttribute('slide_width'));
+        this.slideshow = this.querySelector(".slideshow");
+        this.slideshowSlides = this.querySelector(".slideshow__slides");
+        this.slides = this.querySelectorAll(".slideshow__slide");
 
-                for(let i = 0; i < this.slides.length; i++) {
-                    this.slides[i].style.width = this.slideWidth + "px";
-                }
+        this.arrows = this.querySelectorAll(".slideshow__arrow");
+        this.arrowLeft = this.querySelector(".slideshow__arrow--left");
+        this.arrowRight = this.querySelector(".slideshow__arrow--right");
 
-                this.slideMargin = parseInt(this.slideshow.getAttribute('margin_width'));
-    
-                this.totalMargin = this.slideMargin * (this.slides.length - 1);
-    
-                this.containerBounds = window.innerWidth / 100 * 90;
-                this.totalSlidesWidth = (this.slideWidth * this.slides.length) + this.totalMargin;
-    
-                this.placeSlides();
+        if (this.slides[0]) {
+
+            this.slideWidth = parseInt(this.slideshow.getAttribute('slide_width'));
+            this.slideMargin = parseInt(this.slideshow.getAttribute('margin_width'));
+            this.slideshowWidth = parseInt(this.slideshow.getAttribute("slideshow_width"));
+
+            for (let i = 0; i < this.slides.length; i++) {
+                this.slides[i].style.width = this.slideWidth + "px";
             }
-         
+
+            this.totalMargin = this.slideMargin * (this.slides.length - 1);
+
+            this.containerBounds = window.innerWidth / 100 * 80;
+            this.totalSlidesWidth = (this.slideWidth * this.slides.length) + this.totalMargin;
+
+            this.placeSlides();
         }
-        
 
-        placeSlides() {
-            if(this.totalSlidesWidth <= this.containerBounds) {
-                this.slideshow.style.width = this.totalSlidesWidth + "px";
+    }
 
-                for(let i = 0; i < this.arrows.length; i++) {
-                    this.arrows[i].style.display = "none";
-                 }
+    placeSlides() {
+        if (this.totalSlidesWidth <= this.containerBounds) {
+            this.slideshow.style.width = this.totalSlidesWidth + "px";
 
-                 this.slideshowSlides.style.height = this.slides[0].clientHeight + "px";
+            for (let i = 0; i < this.arrows.length; i++) {
+                this.arrows[i].style.display = "none";
+            }
 
-            } else {
-                this.isEventListeners = true;
+            this.slideshowSlides.style.height = this.slides[0].clientHeight + "px";
 
-                this.slidesAmount = Math.floor(this.containerBounds / (this.slideWidth + this.slideMargin));
-        
-                if(this.slidesAmount > 1) { 
-                    if(this.slidesAmount % 2 === 0) {
-                        this.slidesAmount--;
-                        
-                        if(this.slidesAmount === 1) {
-                            this.slideshow.style.width = this.slideWidth + "px";
-                        } else {
-                            this.slideshow.style.width = this.slidesAmount * this.slideWidth + (this.slidesAmount - 1) * this.slideMargin + "px";
-                        }
+        } else {
+            this.isEventListeners = true;
+
+            this.slidesAmount = Math.floor(this.containerBounds / (this.slideWidth + this.slideMargin));
+
+            if (this.slidesAmount > 1) {
+                if (this.slidesAmount % 2 === 0) {
+                    this.slidesAmount --;
+
+                    if (this.slidesAmount === 1) {
+                        this.slideshow.style.width = this.slideWidth + "px";
                     } else {
                         this.slideshow.style.width = this.slidesAmount * this.slideWidth + (this.slidesAmount - 1) * this.slideMargin + "px";
                     }
                 } else {
-                    console.log("less than 1");
-                    this.slideshow.style.width = this.slideWidth + "px";
+                    this.slideshow.style.width = this.slidesAmount * this.slideWidth + (this.slidesAmount - 1) * this.slideMargin + "px";
                 }
-
-                let counter = 0;
-
-                for(let i = 1; i <= this.slidesAmount; i++) {
-                    counter += i;
-                }
-
-                this.activeIndex = counter / this.slidesAmount - 1;
-                this.slidePosition = this.activeIndex;
-
-                this.slides[this.activeIndex].classList.add('slide--active')
-
-                this.slideshowSlides.style.height = this.slides[this.activeIndex].clientHeight + 150 + "px";
-                console.log(this.slideshowSlides);
-
-                this.arrowLeft.addEventListener('click', this.moveSlideLeft.bind(this));
-                this.arrowRight.addEventListener('click', this.moveSlideRight.bind(this));
+            } else {
+                console.log("less than 1");
+                this.slideshow.style.width = this.slideWidth + "px";
             }
 
-            for(let i = 0; i < this.slides.length; i++) {
-                this.slides[i].style.left = (i * this.slideWidth) + (i * this.slideMargin) + "px";
+            let counter = 0;
+
+            for (let i = 1; i <= this.slidesAmount; i++) {
+                counter += i;
             }
-        }
-        
-        disconectCallback() {
-            if(this.isEventListeners) {
-                this.arrowLeft.removeEventListener('click', this.moveSlideLeft.bind(this));
-                this.arrowRight.removeEventListener('click', this.moveSlideRight.bind(this));
-            }
+
+            this.activeIndex = counter / this.slidesAmount - 1;
+            this.slidePosition = this.activeIndex;
+
+            this.slides[this.activeIndex].classList.add('slide--active')
+
+            this.slideshowSlides.style.height = this.slides[this.activeIndex].clientHeight + 150 + "px";
+            console.log(this.slideshowSlides);
+
+            this.arrowLeft.addEventListener('click', this.moveSlideLeft.bind(this));
+            this.arrowRight.addEventListener('click', this.moveSlideRight.bind(this));
         }
 
-        moveSlideLeft() {
-            if(this.slidePosition === this.slides.length - 1) this.arrowRight.style.display = "initial";
-
-            if(this.slidePosition > 0) {
-
-                this.slides[this.activeIndex].classList.remove("slide--active");
-                this.activeIndex--;
-                this.slides[this.activeIndex].classList.add("slide--active");
-
-                for(let i = 0; i < this.slides.length; i++) {
-                    this.slides[i].style.left = (parseInt(this.slides[i].style.left)) + this.slideWidth + this.slideMargin + "px";
-                }
-                this.slidePosition--;
-
-                if(this.slidePosition === 0) this.arrowLeft.style.display = "none";
-                
-            }
-
-        }
-
-        moveSlideRight() {
-            if(this.slidePosition === 0) this.arrowLeft.style.display = "initial";
-
-            if(this.slidePosition < this.slides.length - 1) {
-                
-                this.slides[this.activeIndex].classList.remove("slide--active");
-                this.activeIndex++;
-                this.slides[this.activeIndex].classList.add("slide--active");
-
-
-                for(let i = 0; i < this.slides.length; i++) {
-                    this.slides[i].style.left = (parseInt(this.slides[i].style.left) - this.slideWidth - this.slideMargin) + "px";
-                }
-                this.slidePosition++;
-                
-                if(this.slidePosition === this.slides.length - 1) this.arrowRight.style.display = "none";
-                
-            }
+        for (let i = 0; i < this.slides.length; i++) {
+            this.slides[i].style.left = (i * this.slideWidth) + (i * this.slideMargin) + "px";
         }
     }
 
-    customElements.define('slide-show', Slideshow)
+    disconectCallback() {
+        if (this.isEventListeners) {
+            this.arrowLeft.removeEventListener('click', this.moveSlideLeft.bind(this));
+            this.arrowRight.removeEventListener('click', this.moveSlideRight.bind(this));
+        }
+    }
+
+    moveSlideLeft() {
+        if (this.slidePosition === this.slides.length - 1) 
+            this.arrowRight.style.display = "initial";
+        
+
+        if (this.slidePosition > 0) {
+
+            this.slides[this.activeIndex].classList.remove("slide--active");
+            this.activeIndex --;
+            this.slides[this.activeIndex].classList.add("slide--active");
+
+            for (let i = 0; i < this.slides.length; i++) {
+                this.slides[i].style.left = (parseInt(this.slides[i].style.left)) + this.slideWidth + this.slideMargin + "px";
+            }
+            this.slidePosition --;
+
+            if (this.slidePosition === 0) 
+                this.arrowLeft.style.display = "none";
+            
+
+        }
+
+    }
+
+    moveSlideRight() {
+        if (this.slidePosition === 0) 
+            this.arrowLeft.style.display = "initial";
+        
+
+        if (this.slidePosition < this.slides.length - 1) {
+
+            this.slides[this.activeIndex].classList.remove("slide--active");
+            this.activeIndex ++;
+            this.slides[this.activeIndex].classList.add("slide--active");
+
+            for (let i = 0; i < this.slides.length; i++) {
+                this.slides[i].style.left = (parseInt(this.slides[i].style.left) - this.slideWidth - this.slideMargin) + "px";
+            }
+            this.slidePosition ++;
+
+            if (this.slidePosition === this.slides.length - 1) 
+                this.arrowRight.style.display = "none";
+            
+
+        }
+    }
+}
+
+customElements.define('slide-show', Slideshow)
+
 {% endjavascript %}
 
 {% schema %}
@@ -197,7 +204,7 @@
             "type": "range",
             "id": "slide_width",
             "label": "Slide width",
-            "info": "Use this to control the slide image width",
+            "info": "Control the slide image width",
             "default": 300,
             "min": 50,
             "max": 500,
@@ -208,7 +215,7 @@
             "type": "range",
             "id": "slide_margin",
             "label": "Slide margin",
-            "info": "Use this to control the spacing between slides",
+            "info": "Control the spacing between slides",
             "default": 20,
             "min": 0,
             "max": 150,

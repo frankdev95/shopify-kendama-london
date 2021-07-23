@@ -55,3 +55,8 @@
         background-position: 20000px 0;
     }
 }
+
+:root {
+    --primary-red: #ba2b20;
+    --primary-green: #4cd3a1;
+}

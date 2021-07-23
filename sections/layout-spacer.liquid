@@ -1,1 +1,33 @@
-<div></div>
+<div class="layout-spacer"></div>
+
+{% style %}
+
+.shopify-section.spacer {
+        height: {{section.settings.height | append: 'px'}}
+    }
+
+{% endstyle %}
+
+{% schema %}
+{
+    "name": "Layout Spacer",
+    "class": "spacer",
+    "settings": [
+        {
+            "type": "range",
+            "id": "height",
+            "label": "Height",
+            "unit": "px",
+            "min": 5,
+            "max": 200,
+            "step": 5,
+            "default": 20
+        }
+    ],
+    "presets": [
+        {
+            "name": "Layout Spacer"
+        }
+    ]
+}
+{% endschema %}

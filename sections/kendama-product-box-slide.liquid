@@ -1,0 +1,40 @@
+<div class="product-box">
+    <div class="product-box__top">  
+        <script>console.log({{ collections | json }})</script>
+    </div>
+    <div class="product-box__bottom">
+        <div class="product-box__thumbnail">
+            <img src="" alt="">
+        </div>
+        <div class="product-box-thumbnail"></div>
+        <div class="product-box-thumbnail"></div>
+        <div class="product-box-thumbnail"></div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Product Box",
+    "settings": [
+        {
+            "type": "collection",
+            "id": "featured_collection",
+            "label": "Collection"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Featured Collection"   
+        }
+    ]
+}
+{% endschema %}
+
+{% javascript %}
+    class ProductBox extends HTMLElement {
+        constructor() {
+
+        }
+    }    
+
+{% endjavascript %}

@@ -24,7 +24,8 @@
 }
 
 
-.image-with-text__image img {
+.image-with-text__image img,
+.image-with-text__image svg {
     object-fit: cover;
     width: 100%;
 }
@@ -57,4 +58,15 @@
 
 .image-with-text__content p {
     width: 50rem;
+}
+
+.image-with-text__button {
+    background-color: var(--primary-green);
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px 3px #ddd;
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    padding: .8rem 3.5rem; 
+    margin: 1.3rem 0; 
 }

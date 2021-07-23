@@ -5,19 +5,19 @@
         <div class="image-with-text__col-1 {{ section.settings.image_align }}">
             <div class="image-with-text__image {% if section.settings.image_full_width %} full-width {% endif %} ">
                 {% if section.settings.main_image != blank %}
-                {% assign image_size = section.settings.image_size | append: 'x' %}
-                    <img src="{{ section.settings.main_image | img_url: image_size }}" alt="" >
+                    {% assign image_size = section.settings.image_size | append: 'x' %}
+                    <img src="{{ section.settings.main_image | img_url: image_size }}" alt="">
                 {% else %}
                     {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
                 {% endif %}
             </div>
         </div>
-       
-       
+
+
         <div class="image-with-text__content {{ section.settings.text_align }}">
             <h1>{{ section.settings.heading }}</h1>
             {{ section.settings.description }}
-            <a href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>    
+            <a class="image-with-text__button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
         </div>
     </div>
 </div>
@@ -36,104 +36,105 @@
             "type": "richtext",
             "id": "description",
             "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
-            "label": "Description"
-        },
-        {
-            "type": "text",
-            "id": "button_label",
-            "default": "Click Here",
-            "label": "Button Label"
-        },
-        {
-            "type": "url",
-            "id": "button_link",
-            "label": "Button link"
-        },
-        {
-            "type": "image_picker",
-            "id": "main_image",
-            "label": "Main Image"
-        },
-        {
-            "type": "checkbox",
-            "id": "image_full_width",
-            "label": "Image full width",
-            "info": "Check this to make the image stretch to the full width of the column."
-        },
-        {
-            "type": "select",
-            "id": "layout",
-            "options": [
-                {
-                    "value": "image_first",
-                    "label": "Image first"
-                },
-                {
-                    "value": "text_first",
-                    "label": "Text first"
-                }
-            ],
-            "default": "image_first",
-            "label": "Desktop layout",
-            "info": "Choose the order of the image and text"
-        },
-        {
-            "type": "select",
-            "id": "text_align",
-            "options": [
-                {
-                    "value": "center",
-                    "label": "Centre aligned" 
-                },
-                {
-                    "value": "left",
-                    "label": "Left aligned"
-                }, 
-                {
-                    "value": "right",
-                    "label": "Right aligned"
-                }
-            ],
-            "default": "center",
-            "label": "Text alignment",
-            "info": "Choose how you would like the text to align"
-        },
-        {
-            "type": "select",
-            "id": "image_align",
-            "options": [
-                {
-                    "value": "center",
-                    "label": "Center aligned" 
-                },
-                {
-                    "value": "left",
-                    "label": "Left aligned"
-                }, 
-                {
-                    "value": "right",
-                    "label": "Right aligned"
-                }
-            ],
-            "default": "left",
-            "label": "Image alignment",
-            "info": "Choose how you would like the image to align"
-        },
-        {
-            "type": "range",
-            "id": "image_size",
-            "min": 50,
-            "max": 1000,
-            "step": 10,
-            "unit": "px",
-            "label": "Image Size",
-            "default": 500
-        }
-    ],
-    "presets": [
-        {
-            "name": "Image with text custom"
-        }
-    ]
-}
+                        "label": "Description"
+                    },
+                    {
+                        "type": "text",
+                        "id": "button_label",
+                        "default": "Click Here",
+                        "label": "Button Label"
+                    },
+                    {
+                        "type": "url",
+                        "id": "button_link",
+                        "label": "Button link"
+                    },
+                    {
+                        "type": "image_picker",
+                        "id": "main_image",
+                        "label": "Main Image"
+                    },
+                    {
+                        "type": "checkbox",
+                        "id": "image_full_width",
+                        "label": "Image full width",
+                        "info": "Check this to make the image stretch to the full width of the column.",
+                        "default": true
+                    },
+                    {
+                        "type": "select",
+                        "id": "layout",
+                        "options": [
+                            {
+                                "value": "image_first",
+                                "label": "Image first"
+                            },
+                            {
+                                "value": "text_first",
+                                "label": "Text first"
+                            }
+                        ],
+                        "default": "image_first",
+                        "label": "Desktop layout",
+                        "info": "Choose the order of the image and text"
+                    },
+                    {
+                        "type": "select",
+                        "id": "text_align",
+                        "options": [
+                            {
+                                "value": "center",
+                                "label": "Centre aligned" 
+                            },
+                            {
+                                "value": "left",
+                                "label": "Left aligned"
+                            }, 
+                            {
+                                "value": "right",
+                                "label": "Right aligned"
+                            }
+                        ],
+                        "default": "center",
+                        "label": "Text alignment",
+                        "info": "Choose how you would like the text to align"
+                    },
+                    {
+                        "type": "select",
+                        "id": "image_align",
+                        "options": [
+                            {
+                                "value": "center",
+                                "label": "Center aligned" 
+                            },
+                            {
+                                "value": "left",
+                                "label": "Left aligned"
+                            }, 
+                            {
+                                "value": "right",
+                                "label": "Right aligned"
+                            }
+                        ],
+                        "default": "left",
+                        "label": "Image alignment",
+                        "info": "Choose how you would like the image to align"
+                    },
+                    {
+                        "type": "range",
+                        "id": "image_size",
+                        "min": 50,
+                        "max": 1000,
+                        "step": 10,
+                        "unit": "px",
+                        "label": "Image Size",
+                        "default": 500
+                    }
+                ],
+                "presets": [
+                    {
+                        "name": "Image with text custom"
+                    }
+                ]
+            }
 {% endschema %}

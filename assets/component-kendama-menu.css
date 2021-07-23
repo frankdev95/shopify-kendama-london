@@ -6,6 +6,7 @@
 
 .header__logo-link {
     line-height: 0;
+    margin-right: 4rem;
 }
 
 .nav__list {
