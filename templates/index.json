@@ -1,35 +1,30 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "1627038532ec4e01ad": {
+      "type": "kendama-image-banner",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "1627038532ec4e01ad-0": {
+          "type": "text",
           "settings": {
-            "heading": "Talk about your brand"
+            "text": ""
           }
         },
-        "button": {
-          "type": "buttons",
+        "1627038532ec4e01ad-1": {
+          "type": "button",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify:\/\/collections\/all",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "button_label": "Shop Kendamas",
+            "button_link": "",
+            "border_width": 3
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "1627038532ec4e01ad-0",
+        "1627038532ec4e01ad-1"
       ],
       "settings": {
-        "desktop_text_box_position": "flex-end",
-        "color_scheme": "background-1",
-        "stack_images_on_mobile": true,
-        "adapt_height_first_image": false
+        "title": "Try New Things",
+        "image": "shopify:\/\/shop_images\/GFN-Chris-June-Pro-Model-1600x900_1600x_b5bf7fa5-2226-4cf3-8355-56e7baeea434.jpg"
       }
     },
     "16270168092abfe318": {
@@ -101,7 +96,7 @@
         "7fa3742e-1b59-4882-a8f3-37cb12c0ed8b"
       ],
       "settings": {
-        "heading": "Section Heading",
+        "heading": "Kendama Brands",
         "arrow_icon": "shopify:\/\/shop_images\/next.png",
         "slide_width": 130,
         "slide_margin": 50
@@ -114,60 +109,12 @@
         "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
         "button_label": "Click Here",
         "button_link": "",
+        "main_image": "shopify:\/\/shop_images\/pexels-matheus-bertelli-2376999.jpg",
         "image_full_width": false,
         "layout": "image_first",
         "text_align": "center",
         "image_align": "left",
         "image_size": 500
-      }
-    },
-    "1627018333e44e6a7f": {
-      "type": "kendama-slideshow",
-      "blocks": {
-        "2c406caa-befd-488f-906e-1fe5afa262fc": {
-          "type": "slide",
-          "settings": {
-          }
-        },
-        "85e1ea39-6d62-43b6-9e28-e7b640e8ed48": {
-          "type": "slide",
-          "settings": {
-          }
-        },
-        "b669f4f6-ff26-40ac-9692-67d8270b7c18": {
-          "type": "slide",
-          "settings": {
-          }
-        },
-        "6966498c-2a60-4351-b68a-dafe2d5c8e14": {
-          "type": "slide",
-          "settings": {
-          }
-        },
-        "47422d6b-35c3-4ef8-9cac-3b39a19287a9": {
-          "type": "slide",
-          "settings": {
-          }
-        },
-        "d7b2ea10-5bc0-4b83-9e49-e99fc6f243f8": {
-          "type": "slide",
-          "settings": {
-          }
-        }
-      },
-      "block_order": [
-        "2c406caa-befd-488f-906e-1fe5afa262fc",
-        "85e1ea39-6d62-43b6-9e28-e7b640e8ed48",
-        "b669f4f6-ff26-40ac-9692-67d8270b7c18",
-        "6966498c-2a60-4351-b68a-dafe2d5c8e14",
-        "47422d6b-35c3-4ef8-9cac-3b39a19287a9",
-        "d7b2ea10-5bc0-4b83-9e49-e99fc6f243f8"
-      ],
-      "settings": {
-        "heading": "Section Heading",
-        "arrow_icon": "shopify:\/\/shop_images\/next.png",
-        "slide_width": 300,
-        "slide_margin": 45
       }
     },
     "16270385087d7f485a": {
@@ -178,11 +125,10 @@
     }
   },
   "order": [
-    "image_banner",
+    "1627038532ec4e01ad",
     "16270168092abfe318",
     "1627016842bb1fff4b",
     "1627016813d5a022ab",
-    "1627018333e44e6a7f",
     "16270385087d7f485a"
   ]
 }
