@@ -111,6 +111,16 @@
           "type": "slide",
           "settings": {
           }
+        },
+        "d7b2ea10-5bc0-4b83-9e49-e99fc6f243f8": {
+          "type": "slide",
+          "settings": {
+          }
+        },
+        "d69897a7-d57a-4c6a-adc5-cf7224549b61": {
+          "type": "slide",
+          "settings": {
+          }
         }
       },
       "block_order": [
@@ -118,7 +128,9 @@
         "85e1ea39-6d62-43b6-9e28-e7b640e8ed48",
         "b669f4f6-ff26-40ac-9692-67d8270b7c18",
         "6966498c-2a60-4351-b68a-dafe2d5c8e14",
-        "47422d6b-35c3-4ef8-9cac-3b39a19287a9"
+        "47422d6b-35c3-4ef8-9cac-3b39a19287a9",
+        "d7b2ea10-5bc0-4b83-9e49-e99fc6f243f8",
+        "d69897a7-d57a-4c6a-adc5-cf7224549b61"
       ],
       "settings": {
         "heading": "Section Heading",
