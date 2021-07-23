@@ -50,6 +50,7 @@
         "0c6eb21a-8a74-4e4a-b6c2-5348e26151b4": {
           "type": "slide",
           "settings": {
+            "image": "shopify:\/\/shop_images\/9.jpg"
           }
         },
         "f2301ab8-b383-45f6-b383-8b19b8f9f8a2": {
@@ -57,16 +58,51 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/5.jpg"
           }
+        },
+        "fa471409-79d9-4490-bf08-d2c073bb1b1f": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/8.jpg"
+          }
+        },
+        "4ee11de6-d3d6-4284-9100-53dffa8630f9": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/7.jpg"
+          }
+        },
+        "8d0723fd-c18b-4f00-8dc4-d9125c3eba24": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/6.jpg"
+          }
+        },
+        "7ee47c9b-9ed7-4ae1-9135-122133326d2d": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/4.jpg"
+          }
+        },
+        "7fa3742e-1b59-4882-a8f3-37cb12c0ed8b": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/3.jpg"
+          }
         }
       },
       "block_order": [
         "baaddef7-4f1d-4d57-9e89-bbcf13b683a1",
         "0c6eb21a-8a74-4e4a-b6c2-5348e26151b4",
-        "f2301ab8-b383-45f6-b383-8b19b8f9f8a2"
+        "f2301ab8-b383-45f6-b383-8b19b8f9f8a2",
+        "fa471409-79d9-4490-bf08-d2c073bb1b1f",
+        "4ee11de6-d3d6-4284-9100-53dffa8630f9",
+        "8d0723fd-c18b-4f00-8dc4-d9125c3eba24",
+        "7ee47c9b-9ed7-4ae1-9135-122133326d2d",
+        "7fa3742e-1b59-4882-a8f3-37cb12c0ed8b"
       ],
       "settings": {
         "heading": "Section Heading",
-        "slide_width": 300,
+        "slide_width": 130,
         "slide_margin": 20
       }
     },
@@ -132,6 +168,12 @@
         "slide_width": 300,
         "slide_margin": 45
       }
+    },
+    "16270385087d7f485a": {
+      "type": "kendama-product-box-slide",
+      "settings": {
+        "featured_collection": "kendama-collection"
+      }
     }
   },
   "order": [
@@ -139,6 +181,7 @@
     "16270168092abfe318",
     "1627016842bb1fff4b",
     "1627016813d5a022ab",
-    "1627018333e44e6a7f"
+    "1627018333e44e6a7f",
+    "16270385087d7f485a"
   ]
 }
