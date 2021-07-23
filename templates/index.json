@@ -1,12 +1,94 @@
 {
   "sections": {
-    "image-banner": {
-      "type": "kendama-image-banner",
+    "image_banner": {
+      "type": "image-banner",
       "blocks": {
         "heading": {
-          
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop all",
+            "button_link_1": "shopify:\/\/collections\/all",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
         }
-      } 
+      },
+      "block_order": [
+        "heading",
+        "button"
+      ],
+      "settings": {
+        "desktop_text_box_position": "flex-end",
+        "color_scheme": "background-1",
+        "stack_images_on_mobile": true,
+        "adapt_height_first_image": false
+      }
+    },
+    "16270168092abfe318": {
+      "type": "kendama-kenkredits-cta",
+      "settings": {
+        "title": "Save money with kenkredits"
+      }
+    },
+    "1627016842bb1fff4b": {
+      "type": "kendama-slideshow",
+      "blocks": {
+        "baaddef7-4f1d-4d57-9e89-bbcf13b683a1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/11.jpg"
+          }
+        },
+        "0c6eb21a-8a74-4e4a-b6c2-5348e26151b4": {
+          "type": "slide",
+          "settings": {
+          }
+        },
+        "f2301ab8-b383-45f6-b383-8b19b8f9f8a2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/5.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "baaddef7-4f1d-4d57-9e89-bbcf13b683a1",
+        "0c6eb21a-8a74-4e4a-b6c2-5348e26151b4",
+        "f2301ab8-b383-45f6-b383-8b19b8f9f8a2"
+      ],
+      "settings": {
+        "heading": "Section Heading",
+        "slide_width": 300,
+        "slide_margin": 20
+      }
+    },
+    "1627016813d5a022ab": {
+      "type": "kendama-image-with-text",
+      "settings": {
+        "heading": "New",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
+        "button_label": "Click Here",
+        "button_link": "",
+        "image_full_width": false,
+        "layout": "image_first",
+        "text_align": "center",
+        "image_align": "left",
+        "image_size": 500
+      }
     }
-  }
+  },
+  "order": [
+    "image_banner",
+    "16270168092abfe318",
+    "1627016842bb1fff4b",
+    "1627016813d5a022ab"
+  ]
 }
