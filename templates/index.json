@@ -102,8 +102,9 @@
       ],
       "settings": {
         "heading": "Section Heading",
+        "arrow_icon": "shopify:\/\/shop_images\/next.png",
         "slide_width": 130,
-        "slide_margin": 20
+        "slide_margin": 50
       }
     },
     "1627016813d5a022ab": {
