@@ -1,0 +1,25 @@
+<div class="banner">
+    <div class="banner__container">
+        <h1>{{ section.settings.header }}</h1>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Featured Products",
+    "settings": [
+        {
+            "type": "text",
+            "id": "header",
+            "label": "Title",
+            "default": "Enter information of interest"
+        },
+        {
+            "type": "checkbox",
+            "id": "animation",
+            "label": "Enable animation"
+        }
+    ]
+
+}
+{% endschema %}

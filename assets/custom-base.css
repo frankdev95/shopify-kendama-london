@@ -1,0 +1,57 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col-2 > *{
+    flex-basis: 100%;
+}
+
+.margin-vertical-sm {
+    margin: 2rem 0;
+}
+
+.margin-vertical-md {
+    margin: 4rem 0;
+}
+
+.margin-vertical-lg {
+    margin: 6rem 0;
+}
+
+.margin-vertical-xl {
+    margin: 8rem 0;
+}
+
+.text-align--center {
+    text-align: center;
+}
+
+.text-align--left {
+    text-align: left;
+}
+
+.text-align--right {
+    text-align: right;
+}
+
+@keyframes slide {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 20000px 0;
+    }
+}

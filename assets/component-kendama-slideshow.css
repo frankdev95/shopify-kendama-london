@@ -1,6 +1,6 @@
 .slideshow {
     width: 80%;
-    margin: 5rem auto;
+    margin: 1rem auto;
     display: flex;
     align-items: center;
     position: relative;
@@ -8,12 +8,14 @@
 
 .slideshow__header {
     text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 3rem;
 }
 
 .slideshow__arrow {
     position: absolute;
     cursor: pointer;
-    z-index: 10;
 }
 
 .slideshow__arrow img {

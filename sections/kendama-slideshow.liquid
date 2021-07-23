@@ -1,36 +1,38 @@
 {{ 'component-kendama-slideshow.css' | asset_url | stylesheet_tag}}
 
-<slide-show >
-    <h1 class="slideshow__header">{{ section.settings.heading | escape}}</h1>
-    <div class="slideshow" margin_width={{ section.settings.slide_margin }} slide_width={{ section.settings.slide_width }}>
-        <div class="slideshow__arrow slideshow__arrow--left">
-            {% if section.settings.arrow_icon != blank %}
-                {{ section.settings.arrow_icon | img_url: 'medium' | img_tag}}
-            {% endif %}
-        </div>
-        <div class="slideshow__slides">
-            {% for block in section.blocks %}
-                {% case block.type %}
-                    {% when 'slide' %}
-                        <div class="slideshow__slide" {{ block.shopify_attributes }}>
-                            {% if block.settings.image != blank %}
-                                {{ block.settings.image | img_url: 'medium' | img_tag}}
-                            {% else %}
-                                {{ 'image' | placeholder_svg_tag: 'slide__placeholder' }}   
-                            {% endif %}
-                        
-                        </div>
-                {% endcase %}
-            {% endfor %}
-        </div>
+<div class="margin-vertical-lg">
+    <slide-show>
+        <h1 class="slideshow__header">{{ section.settings.heading | escape}}</h1>
+        <div class="slideshow" margin_width={{ section.settings.slide_margin }} slide_width={{ section.settings.slide_width }}>
+            <div class="slideshow__arrow slideshow__arrow--left">
+                {% if section.settings.arrow_icon != blank %}
+                    {{ section.settings.arrow_icon | img_url: 'medium' | img_tag}}
+                {% endif %}
+            </div>
+            <div class="slideshow__slides">
+                {% for block in section.blocks %}
+                    {% case block.type %}
+                        {% when 'slide' %}
+                            <div class="slideshow__slide" {{ block.shopify_attributes }}>
+                                {% if block.settings.image != blank %}
+                                    {{ block.settings.image | img_url: 'medium' | img_tag}}
+                                {% else %}
+                                    {{ 'image' | placeholder_svg_tag: 'slide__placeholder' }}   
+                                {% endif %}
+                            
+                            </div>
+                    {% endcase %}
+                {% endfor %}
+            </div>
 
-        <div class="slideshow__arrow slideshow__arrow--right">
-            {% if section.settings.arrow_icon != blank %}
-                {{ section.settings.arrow_icon | img_url: 'medium' | img_tag}}
-            {% endif %}
+            <div class="slideshow__arrow slideshow__arrow--right">
+                {% if section.settings.arrow_icon != blank %}
+                    {{ section.settings.arrow_icon | img_url: 'medium' | img_tag}}
+                {% endif %}
+            </div>
         </div>
-    </div>
-</slide-show>
+    </slide-show>
+</div>
 
 {% style %}
     .slideshow__slide {
