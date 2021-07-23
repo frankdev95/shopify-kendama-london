@@ -116,19 +116,12 @@
         "image_align": "left",
         "image_size": 500
       }
-    },
-    "16270385087d7f485a": {
-      "type": "kendama-product-box-slide",
-      "settings": {
-        "featured_collection": "kendama-collection"
-      }
     }
   },
   "order": [
     "1627038532ec4e01ad",
     "16270168092abfe318",
     "1627016842bb1fff4b",
-    "1627016813d5a022ab",
-    "16270385087d7f485a"
+    "1627016813d5a022ab"
   ]
 }
