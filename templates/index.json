@@ -129,8 +129,8 @@
       "settings": {
         "heading": "Section Heading",
         "arrow_icon": "shopify:\/\/shop_images\/next.png",
-        "slide_width": 300,
-        "slide_margin": 20
+        "slide_width": 170,
+        "slide_margin": 45
       }
     }
   },
