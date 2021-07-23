@@ -13,7 +13,7 @@
                 {% for block in section.blocks %}
                     {% case block.type %}
                         {% when 'slide' %}
-                            <div class="slideshow__slide" {{ block.shopify_attributes }}>
+                                <div class="slideshow__slide" {{ block.shopify_attributes }}>
                                 {% if block.settings.image != blank %}
                                     {{ block.settings.image | img_url: 'medium' | img_tag}}
                                 {% else %}
@@ -34,13 +34,6 @@
     </slide-show>
 </div>
 
-{% style %}
-    .slideshow__slide {
-        width: {{ section.settings.slide_width | append: 'px'}};
-    }
-{% endstyle %}
-
-
 {% javascript %}
     class Slideshow extends HTMLElement {
         constructor() {
@@ -49,22 +42,33 @@
         
         connectedCallback() {
 
-            this.slideshow = document.querySelector(".slideshow");
-            this.slideshowSlides = document.querySelector(".slideshow__slides");
-            this.slides = document.querySelectorAll(".slideshow__slide");
-            this.arrows = document.querySelectorAll(".slideshow__arrow");
-            this.arrowLeft = document.querySelector(".slideshow__arrow--left");
-            this.arrowRight = document.querySelector(".slideshow__arrow--right");
+            this.slideshow = this.querySelector(".slideshow");
+            this.slideshowSlides = this.querySelector(".slideshow__slides");
+            this.slides = this.querySelectorAll(".slideshow__slide");
 
-            this.slideWidth = this.slides[0].clientWidth;
-            this.slideMargin = parseInt(this.slideshow.getAttribute('margin_width'));
+            this.arrows = this.querySelectorAll(".slideshow__arrow");
+            this.arrowLeft = this.querySelector(".slideshow__arrow--left");
+            this.arrowRight = this.querySelector(".slideshow__arrow--right");
 
-            this.totalMargin = this.slideMargin * (this.slides.length - 1);
+            if(this.slides[0]) {
+                console.log(this.slides);
+                
+                this.slideWidth = parseInt(this.slideshow.getAttribute('slide_width'));
 
-            this.containerBounds = window.innerWidth / 100 * 90;
-            this.totalSlidesWidth = (this.slideWidth * this.slides.length) + this.totalMargin;
+                for(let i = 0; i < this.slides.length; i++) {
+                    this.slides[i].style.width = this.slideWidth + "px";
+                }
 
-            this.placeSlides();
+                this.slideMargin = parseInt(this.slideshow.getAttribute('margin_width'));
+    
+                this.totalMargin = this.slideMargin * (this.slides.length - 1);
+    
+                this.containerBounds = window.innerWidth / 100 * 90;
+                this.totalSlidesWidth = (this.slideWidth * this.slides.length) + this.totalMargin;
+    
+                this.placeSlides();
+            }
+         
         }
         
 
@@ -75,6 +79,9 @@
                 for(let i = 0; i < this.arrows.length; i++) {
                     this.arrows[i].style.display = "none";
                  }
+
+                 this.slideshowSlides.style.height = this.slides[0].clientHeight + "px";
+
             } else {
                 this.isEventListeners = true;
 
@@ -109,6 +116,7 @@
                 this.slides[this.activeIndex].classList.add('slide--active')
 
                 this.slideshowSlides.style.height = this.slides[this.activeIndex].clientHeight + 150 + "px";
+                console.log(this.slideshowSlides);
 
                 this.arrowLeft.addEventListener('click', this.moveSlideLeft.bind(this));
                 this.arrowRight.addEventListener('click', this.moveSlideRight.bind(this));
