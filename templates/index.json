@@ -44,11 +44,25 @@
         "baaddef7-4f1d-4d57-9e89-bbcf13b683a1": {
           "type": "slide",
           "settings": {
+            "image": "shopify:\/\/shop_images\/11.jpg"
+          }
+        },
+        "0c6eb21a-8a74-4e4a-b6c2-5348e26151b4": {
+          "type": "slide",
+          "settings": {
+          }
+        },
+        "f2301ab8-b383-45f6-b383-8b19b8f9f8a2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/5.jpg"
           }
         }
       },
       "block_order": [
-        "baaddef7-4f1d-4d57-9e89-bbcf13b683a1"
+        "baaddef7-4f1d-4d57-9e89-bbcf13b683a1",
+        "0c6eb21a-8a74-4e4a-b6c2-5348e26151b4",
+        "f2301ab8-b383-45f6-b383-8b19b8f9f8a2"
       ],
       "settings": {
         "heading": "Section Heading",
