@@ -1,17 +1,26 @@
-<div class="product-box">
-    <div class="product-box__top">  
-        <script>console.log({{ collections | json }})</script>
-    </div>
-    <div class="product-box__bottom">
-        <div class="product-box__thumbnail">
-            <img src="" alt="">
-        </div>
-        <div class="product-box-thumbnail"></div>
-        <div class="product-box-thumbnail"></div>
-        <div class="product-box-thumbnail"></div>
-    </div>
-</div>
+{{ 'component-kendama-product-box-slide.css' | asset_url | stylesheet_tag}}
 
+<product-box>
+    <section class="product-box">
+        <div class="product-box__top">
+            {% for product in collections[section.settings.featured_collection].products %}
+                <a class="product-box__link{% if forloop.index > 1 %} absolute {% endif %}" href="{{ product.url }}">
+                    <div class="product-box__image">
+                        <img src="{{ product.featured_media.preview_image | img_url: 'large'}}" alt="{{ product.title }}">
+                    </div>
+                </a>
+            {% endfor %}  
+        </div>
+        <div class="product-box__bottom">
+            {% for product in collections[section.settings.featured_collection].products %}
+                <div class="product-box__thumbnail">
+                    <img src="{{ product.featured_media.preview_image | img_url: 'medium'}}" alt="{{ product.title }}">
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</product-box>
+<!--  -->
 {% schema %}
 {
     "name": "Product Box",
@@ -24,7 +33,7 @@
     ],
     "presets": [
         {
-            "name": "Featured Collection"   
+            "name": "Product Box"   
         }
     ]
 }
@@ -35,6 +44,11 @@
         constructor() {
 
         }
+
+        connectedCallback() {
+            this.slides = this.document.querySelectorAll(".")
+        }   
     }    
+    customElements.define('product-box', ProductBox)
 
 {% endjavascript %}
