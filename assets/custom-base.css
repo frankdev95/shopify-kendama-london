@@ -1,8 +1,17 @@
+:root {
+    --primary-red: #ba2b20;
+    --primary-green: #4cd3a1;
+}
+
 *,
 *::after,
 *::before {
     margin: 0;
     padding: 0;
+}
+
+p {
+    font-size: 1.8rem;
 }
 
 .container {
@@ -14,7 +23,7 @@
     display: flex;
 }
 
-.flex-col-2 > *{
+.flex-col-2 > * {
     flex-basis: 100%;
 }
 
@@ -34,6 +43,10 @@
     margin: 8rem 0;
 }
 
+h1.bold {
+    font-weight: 600;
+}
+
 .text-align--center {
     text-align: center;
 }
@@ -46,6 +59,15 @@
     text-align: right;
 }
 
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.section-description {
+    margin: 3rem auto 5rem;
+    width: 70%;
+}
+
 @keyframes slide {
     0% {
         background-position: 0 0;
@@ -56,7 +78,3 @@
     }
 }
 
-:root {
-    --primary-red: #ba2b20;
-    --primary-green: #4cd3a1;
-}

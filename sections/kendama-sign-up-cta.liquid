@@ -1,0 +1,63 @@
+{{ 'component-kendama-sign-up-cta.css' | asset_url | stylesheet_tag}}
+
+<section class="margin-vertical-lg sign-up-cta">
+    <div class="container">
+        <div class="sign-up-cta__background-container">
+            {% if section.settings.background %}
+                <img src="{{ section.settings.background | img_url: '1933x562'}}" alt="">
+            {% else %}
+                {{ 'lifestyle-2' | placeholder_svg_tag }}
+            {% endif %}
+            <div class="sign-up-cta__form-container">
+                <div>
+                    <h1>{{ section.settings.heading }}</h1>
+                    <form class="sign-up-cta__form" action="">
+                        <div class="form-field">
+                            <input type="email" required id="email" name="email" placeholder="EMAIL ADDRESS">
+                        </div>
+                        <button type="submit">{{ section.settings.button_label }}</button>
+                    </form> 
+                    <p>{{ section.settings.message }}</p>
+             </div>
+        </div>     
+        </div>
+    </div>
+</section>
+
+
+{% schema %}
+{
+    "name": "Sign up CTA",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Enter heading"
+        },
+        {
+            "type": "image_picker",
+            "id": "background",
+            "label": "Background image"
+        },
+        {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label",
+            "default": "Sign Up"
+        },
+        {
+            "type": "text",
+            "id": "message",
+            "label": "Message",
+            "default": "Unsubscribe to emails at any time",
+            "info": "Add an additional message to display extra information to the user"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Sign up CTA"
+        }
+    ]
+}
+{% endschema %}

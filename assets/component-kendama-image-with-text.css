@@ -5,6 +5,7 @@
 .image-with-text__col-1 {
     display: flex;
     align-items: center;
+    position: relative; 
 }
 
 .image-with-text__col-1.center {
@@ -28,6 +29,10 @@
 .image-with-text__image svg {
     object-fit: cover;
     width: 100%;
+}
+
+.image-with-text__image img.box-shadow {
+    box-shadow: -50px -50px;
 }
 
 .image-with-text__content {

@@ -1,10 +1,10 @@
 {{ 'component-kendama-kenkredits-cta.css' | asset_url | stylesheet_tag}}
 
-<div class="kenkredits">
+<div class="kenkredits" style="{% if section.settings.background %} background-color: {{ section.settings.background }}; {% endif %}">
     {% if section.settings.icon %}
         <img src="{{ section.settings.icon | img_url: 'small'}}" alt="">
     {% endif %}
-    <h1>{{ section.settings.title }}</h1>
+    <h1 style="{% if section.settings.background %} color: {{ section.settings.text_color }}; {% endif %}">{{ section.settings.title }}</h1>
     {% if section.settings.icon %}
         <img src="{{ section.settings.icon | img_url: 'small'}}" alt="">
     {% endif %}
@@ -12,23 +12,35 @@
 
 {% schema %}
 {
-    "name": "Kenkredits CTA",
+    "name": "CTA Banner",
     "settings": [
         {
             "type": "text",
             "id": "title",
             "label": "Title",
-            "default": "Save money with kenkredits"
+            "default": "CTA Banner"
         },
         {
             "type": "image_picker",
             "id": "icon",
             "label": "Icon"
+        },
+        {
+            "type": "color",
+            "id": "background",
+            "label": "Background color",
+            "default": "#ba2b20"
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "#fff"
         }
     ],
     "presets": [
         {
-            "name": "Kenkredits CTA"
+            "name": "CTA Banner"
         }
     ]
 }

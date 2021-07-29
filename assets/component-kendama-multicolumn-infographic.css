@@ -1,0 +1,21 @@
+.multicolumn-infographic .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.grid-item-main {
+    grid-row: 1 / -1;
+}  
+
+.grid-item-sub {
+    display: flex;
+    align-items: center;
+}
+
+.grid-item-sub img,
+.grid-item-sub svg {
+    width: 10rem;
+    height: 10rem;
+    margin-right: 1rem;
+}

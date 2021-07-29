@@ -1,0 +1,60 @@
+.sign-up-cta__background-container {
+    position: relative;
+}
+
+.sign-up-cta__background-container img,
+.sign-up-cta__background-container svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sign-up-cta__form-container {
+    color: white;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5%;
+}
+
+.sign-up-cta__form-container h1 {
+    color: white;
+    font-weight: 600;
+    font-size: 5rem;
+}
+
+.sign-up-cta__form {
+    margin: 4rem 0 1rem;
+    display: flex;
+}
+
+.sign-up-cta__form button {
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    width: 15rem;
+    font-size: 2rem;
+    font-weight: 200;
+}
+
+.form-field {
+    margin-right: 1.5rem;
+    outline: none;
+}
+
+.form-field input {
+    border-radius: 10px;
+    border: 1px solid transparent;
+    height: 5rem;
+    width: 40rem;
+    padding: 0 1rem;
+}
+
+.form-field input:focus,
+.form-field input:focus-visible,
+.form-field input:active {
+    border: 1px solid var(--primary-green);
+    outline: none;
+    box-shadow: none;
+}

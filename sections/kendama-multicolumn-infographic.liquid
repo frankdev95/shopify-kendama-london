@@ -1,0 +1,116 @@
+{{ 'component-kendama-multicolumn-infographic.css' | asset_url | stylesheet_tag}}
+
+
+<section class="multicolumn-infographic margin-vertical-lg">
+    <div class="container">
+        <div class="text-align--center">
+            <h1 class="margin-vertical-sm text-uppercase bold">{{ section.settings.heading }}</h1>
+            <div class="section-description">
+                {{ section.settings.description }}
+            </div>
+
+        </div>
+        <div class="grid-container">    
+            <div class="grid-item grid-item-main">
+                {% if section.settings.image %}
+                    <img src="{{ section.settings.image | img_url: 'large'}}" alt="">
+                {% else %}
+                    {{ 'image' | placeholder_svg_tag}}
+                {% endif %}
+            </div>
+            {% for block in section.blocks %}
+                {% case block.type %}
+                    {% when 'item' %}
+                        <div class="grid-item grid-item-sub">
+                            {% if block.settings.icon %}
+                                <img src="{{ block.settings.icon | img_url: 'medium'}}" alt="icon">
+                            {% else %}
+                                {{ 'image' | placeholder_svg_tag }}        
+                            {% endif %}
+                            <div>
+                                <h2>{{ block.settings.heading }}</h2>
+                                {{ block.settings.description }}
+                            </div>
+                        </div>
+                {% endcase %}
+            {% endfor %}
+    
+          
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Multicolumn infographic",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Enter heading"
+        },
+        {
+            "type": "richtext",
+            "id": "description",
+            "label": "Description",
+            "default": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, qui? Cupiditate fugiat itaque quo commodi, laboriosam placeat earum neque nesciunt autem, fuga alias suscipit non! Reprehenderit earum non eveniet, dolores sunt accusamus modi, officia nisi tempora ducimus alias, consectetur quas voluptatum odio aperiam fugit ullam eligendi vitae nemo vel. Placeat aliquid voluptas quasi accusamus voluptate eveniet ducimus rerum non, error asperiores nulla quas soluta a doloremque autem in sunt laborum aliquam optio eius est.</p>"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        }
+    ],
+    "blocks": [
+        {
+            "name": "Item",
+            "type": "item",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "icon",
+                    "label": "Icon"
+                },
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "label": "Heading",
+                    "default": "Enter heading"
+                },
+                {
+                    "type": "richtext",
+                    "id": "description",
+                    "label": "Description",
+                    "default": "<p>Lorem, ipsum dolor.</p>"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Multicolumn infographic",
+            "blocks": [
+                {
+                    "type": "item"
+                },
+                {
+                    "type": "item"
+                },
+                {
+                    "type": "item"
+                },
+                {
+                    "type": "item"
+                },
+                {
+                    "type": "item"
+                },
+                {
+                    "type": "item"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

@@ -2,7 +2,7 @@
 
 <div class="margin-vertical-lg">
     <slide-show>
-        <h1 class="slideshow__header">{{ section.settings.heading | escape}}</h1>
+        <h1 class="slideshow__header bold">{{ section.settings.heading | escape}}</h1>
         <div class="slideshow" margin_width={{ section.settings.slide_margin }} slide_width={{ section.settings.slide_width }}>
             <div class="slideshow__arrow slideshow__arrow--left">
                 {% if section.settings.arrow_icon != blank %}
@@ -79,7 +79,7 @@ class Slideshow extends HTMLElement {
                 this.arrows[i].style.display = "none";
             }
 
-            this.slideshowSlides.style.height = this.slides[0].clientHeight + "px";
+            this.slideshowSlides.style.height = this.slideWidth + "px";
 
         } else {
             this.isEventListeners = true;
@@ -112,10 +112,9 @@ class Slideshow extends HTMLElement {
             this.activeIndex = counter / this.slidesAmount - 1;
             this.slidePosition = this.activeIndex;
 
-            this.slides[this.activeIndex].classList.add('slide--active')
+            this.slides[this.activeIndex].classList.add('slide--active');
 
-            this.slideshowSlides.style.height = this.slides[this.activeIndex].clientHeight + 150 + "px";
-            console.log(this.slideshowSlides);
+            this.slideshowSlides.style.height = this.slideWidth + 150 + "px";
 
             this.arrowLeft.addEventListener('click', this.moveSlideLeft.bind(this));
             this.arrowRight.addEventListener('click', this.moveSlideRight.bind(this));

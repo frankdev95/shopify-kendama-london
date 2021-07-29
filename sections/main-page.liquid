@@ -15,13 +15,34 @@
 <noscript>{{ "component-rte.css" | asset_url | stylesheet_tag }}</noscript>
 
 <div class="page-width page-width--narrow">
-  <h1 class="main-page-title page-title h0">
-    {{ page.title | escape }}
-  </h1>
-  <div class="rte">
-    {{ page.content }}
+  <div class="main-page-title">
+    {% if section.settings.show_title %}
+      <h1 class="page-title">{{ page.title }}</h1>
+    {% endif %}
+  </div>
+  <div class="main-page-about">
+    {% if section.settings.show_content %}
+      {{ page.content }}
+    {% endif %}
   </div>
 </div>
 
-{% schema %} { "name": "t:sections.main-page.name", "tag": "section", "class":
-"spaced-section" } {% endschema %}
+{% schema %}
+{
+  "name": "Page Settings",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show page title",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_content",
+      "label": "Show page content",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

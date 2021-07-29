@@ -1,0 +1,26 @@
+.multicolumn-image h1 {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.multicolumn-image__columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.multicolumn-image__columns .column {
+    flex-basis: 33%;
+}
+
+@media only screen and (max-width: 900px) {
+    .multicolumn-image__columns .column {
+        flex-basis: 50%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .multicolumn-image__columns .column {
+        flex-basis: 100%;
+    }
+}

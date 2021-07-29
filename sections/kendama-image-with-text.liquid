@@ -1,26 +1,154 @@
 {{ 'component-kendama-image-with-text.css' | asset_url | stylesheet_tag}}
+{{ 'component-kendama-product-box-slide.css' | asset_url | stylesheet_tag}}
 
-<div class="image-with-text container">
-    <div class="image-with-text__container flex flex-col-2{% if section.settings.layout == 'text_first' %} image-with-text__container--reverse {% endif %}">
-        <div class="image-with-text__col-1 {{ section.settings.image_align }}">
-            <div class="image-with-text__image {% if section.settings.image_full_width %} full-width {% endif %} ">
-                {% if section.settings.main_image != blank %}
-                    {% assign image_size = section.settings.image_size | append: 'x' %}
-                    <img src="{{ section.settings.main_image | img_url: image_size }}" alt="">
-                {% else %}
-                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+<section class="image-with-text margin-vertical-lg">
+    <div class="container ">
+        <div class="image-with-text__container flex flex-col-2{% if section.settings.layout == 'text_first' %} image-with-text__container--reverse {% endif %}">
+            <div class="image-with-text__col-1 {{ section.settings.image_align }}">
+                <div class="image-with-text__image {% if section.settings.image_full_width %} full-width {% endif %} ">
+                    {% if section.settings.main_image != blank %}
+                        {% assign image_size = section.settings.image_size | append: 'x' %}
+                        <img class="{% if section.settings.show_box_shadow %} box-shadow {% endif %}" style="color: {{ section.settings.box_shadow_color }}" src="{{ section.settings.main_image | img_url: image_size }}" alt="">
+                    {% else %}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {% endif %}
+                </div>
+                {% if section.settings.show_product_box %}
+                    <product-box class="product-box">
+                        <div class="product-box__top">
+                            {% assign kendama_products = collections[section.settings.featured_collection].products %}
+                            {% if kendama_products[0] %}
+                                {% for product in collections[section.settings.featured_collection].products %}
+                                    <a class="product-box__link{% if forloop.index > 1 %} absolute {% else %} relative {% endif %}" href="{{ product.url }}">
+                                        <div class="product-box__image">
+                                            <img src="{{ product.featured_media.preview_image | img_url: 'large'}}" alt="{{ product.title }}">
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                                {% if kendama_products.size > 1 %}
+                                    {{ 'right.png' | file_url | img_tag: 'right arrow', 'arrow arrow-right'}}
+                                    {{ 'right.png' | file_url | img_tag: 'left arrow', 'arrow arrow-left'}}
+                                {% endif %}     
+                            {% else %}
+                            <a class="product-box__link" href="#">
+                                <div class="product-box__image">
+                                    {{ 'product-1' | placeholder_svg_tag: 'product-box__image--placeholder'}}
+                                </div>
+                            </a>
+                            {% endif %}
+                        </div>
+                        <div class="product-box__bottom">
+                            {% if collections[section.settings.featured_collection].products[0] %}
+                                {% for product in collections[section.settings.featured_collection].products %}
+                                    <div class="product-box__thumbnail" >
+                                        <img src="{{ product.featured_media.preview_image | img_url: 'medium'}}" alt="{{ product.title }}" index={{ forloop.index }}>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {% for i in (1..4) %}
+                                    <div class="product-box__thumbnail">
+                                        {{ 'product-1' | placeholder_svg_tag: 'product-box__image--placeholder'}}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </product-box>
                 {% endif %}
             </div>
-        </div>
-
-
-        <div class="image-with-text__content {{ section.settings.text_align }}">
-            <h1>{{ section.settings.heading }}</h1>
-            {{ section.settings.description }}
-            <a class="image-with-text__button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+            
+            <div class="image-with-text__content {{ section.settings.text_align }}">
+                {% assign heading_font_size = section.settings.heading_size | divided_by: 10.0 | append: 'rem' %}
+                <h1 class="margin-vertical-sm" style=" font-size: {{ heading_font_size }};">{{ section.settings.heading }}</h1>
+                {{ section.settings.description }}
+                {% if section.settings.show_button %}
+                    <a class="image-with-text__button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+                {% endif %}
+            
+            </div>
         </div>
     </div>
-</div>
+</section>
+
+{% javascript %}
+
+    class ProductBox extends HTMLElement {
+        constructor() {
+            super();
+        }
+
+        connectedCallback() {
+            this.slides = this.querySelectorAll('.product-box__link');
+            this.slideWidth = this.slides[0].clientWidth;
+            this.thumbnails = this.querySelectorAll('.product-box__thumbnail');
+
+            this.arrowLeft = this.querySelector('.arrow-left');
+            this.arrowRight = this.querySelector('.arrow-right');
+
+            this.arrowLeft.style.display = "none";
+
+            this.slidePosition = 0;
+            this.thumbnails[this.slidePosition].classList.add("active");
+
+            this.arrowLeft.addEventListener('click', this.moveSlide.bind(this, 1));
+            this.arrowRight.addEventListener('click', this.moveSlide.bind(this, -1));
+
+            for(let i = 0; i < this.thumbnails.length; i++) {
+                this.thumbnails[i].querySelector('img').addEventListener('click', this.moveThumbnail.bind(this));
+            }
+
+            this.placeSlides();
+        }
+
+        placeSlides() {
+            for(let i = 0; i < this.slides.length; i++) {
+                this.slides[i].style.left = this.slideWidth * i + "px";
+            }
+        }
+
+        moveSlide(numToMove) {  
+
+            for(let i = 0; i < this.slides.length; i++) {
+                this.slides[i].style.left = parseInt(this.slides[i].style.left) + (numToMove * this.slideWidth) + "px";
+            }
+
+            this.thumbnails[this.slidePosition].classList.remove('active');
+            this.slidePosition += (numToMove * -1);
+
+            if(this.slidePosition > 0) {
+                this.arrowLeft.style.display = "initial";
+            } else {
+                this.arrowLeft.style.display = "none";
+            }
+
+            if(this.slidePosition < this.slides.length -1) {
+                this.arrowRight.style.display = "initial"
+            } else {
+                this.arrowRight.style.display = "none"; 
+            }
+
+            this.thumbnails[this.slidePosition].classList.add('active');
+
+        }
+
+        moveThumbnail(event) {
+            const { target: el } = event;
+            const elIndex = parseInt(el.getAttribute('index')) - 1;
+
+            const numToMove = this.slidePosition - elIndex;
+            
+            this.moveSlide(numToMove);
+        }
+
+        changeActiveClass(direction) {
+            this.thumbnails[this.slidePosition].classList.remove('active');
+
+            direction === 'left' ? this.thumbnails[this.slidePosition - 1].classList.add('active') : this.thumbnails[this.slidePosition + 1].classList.add('active');
+        }
+    }    
+
+    customElements.define('product-box', ProductBox);
+
+{% endjavascript %}
 
 {% schema %}
 {
@@ -33,108 +161,149 @@
             "label": "Heading"
         },
         {
+            "type": "range",
+            "id": "heading_size",
+            "min": 12,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "Heading font size",
+            "default": 16
+        },
+        {
             "type": "richtext",
             "id": "description",
             "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
                         "label": "Description"
-                    },
-                    {
-                        "type": "text",
-                        "id": "button_label",
-                        "default": "Click Here",
-                        "label": "Button Label"
-                    },
-                    {
-                        "type": "url",
-                        "id": "button_link",
-                        "label": "Button link"
-                    },
-                    {
-                        "type": "image_picker",
-                        "id": "main_image",
-                        "label": "Main Image"
-                    },
-                    {
-                        "type": "checkbox",
-                        "id": "image_full_width",
-                        "label": "Image full width",
-                        "info": "Check this to make the image stretch to the full width of the column.",
-                        "default": true
-                    },
-                    {
-                        "type": "select",
-                        "id": "layout",
-                        "options": [
-                            {
-                                "value": "image_first",
-                                "label": "Image first"
-                            },
-                            {
-                                "value": "text_first",
-                                "label": "Text first"
-                            }
-                        ],
-                        "default": "image_first",
-                        "label": "Desktop layout",
-                        "info": "Choose the order of the image and text"
-                    },
-                    {
-                        "type": "select",
-                        "id": "text_align",
-                        "options": [
-                            {
-                                "value": "center",
-                                "label": "Centre aligned" 
-                            },
-                            {
-                                "value": "left",
-                                "label": "Left aligned"
-                            }, 
-                            {
-                                "value": "right",
-                                "label": "Right aligned"
-                            }
-                        ],
-                        "default": "center",
-                        "label": "Text alignment",
-                        "info": "Choose how you would like the text to align"
-                    },
-                    {
-                        "type": "select",
-                        "id": "image_align",
-                        "options": [
-                            {
-                                "value": "center",
-                                "label": "Center aligned" 
-                            },
-                            {
-                                "value": "left",
-                                "label": "Left aligned"
-                            }, 
-                            {
-                                "value": "right",
-                                "label": "Right aligned"
-                            }
-                        ],
-                        "default": "left",
-                        "label": "Image alignment",
-                        "info": "Choose how you would like the image to align"
-                    },
-                    {
-                        "type": "range",
-                        "id": "image_size",
-                        "min": 50,
-                        "max": 1000,
-                        "step": 10,
-                        "unit": "px",
-                        "label": "Image Size",
-                        "default": 500
-                    }
-                ],
-                "presets": [
-                    {
-                        "name": "Image with text custom"
-                    }
-                ]
-            }
+        },
+        {
+            "type": "image_picker",
+            "id": "main_image",
+            "label": "Main Image"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_box_shadow",
+            "label": "Image box shadow",
+            "default": false
+        },
+        {
+            "type": "color",
+            "id": "box_shadow_color",
+            "label": "Box shadow color",
+            "default": "#000"
+        },
+        {
+            "type": "text",
+            "id": "button_label",
+            "default": "Click Here",
+            "label": "Button Label"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_button",
+            "label": "Show Button",
+            "default": true,
+            "info": "Check if you would like a button link"
+        },
+        {
+            "type": "checkbox",
+            "id": "image_full_width",
+            "label": "Image full width",
+            "info": "Check this to make the image stretch to the full width of the column.",
+            "default": false
+        },
+        {
+            "type": "select",
+            "id": "layout",
+            "options": [
+                {
+                    "value": "image_first",
+                    "label": "Image first"
+                },
+                {
+                    "value": "text_first",
+                    "label": "Text first"
+                }
+            ],
+            "default": "image_first",
+            "label": "Desktop layout",
+            "info": "Choose the order of the image and text"
+        },
+        {
+            "type": "select",
+            "id": "text_align",
+            "options": [
+                {
+                    "value": "center",
+                    "label": "Centre aligned" 
+                },
+                {
+                    "value": "left",
+                    "label": "Left aligned"
+                }, 
+                {
+                    "value": "right",
+                    "label": "Right aligned"
+                }
+            ],
+            "default": "center",
+            "label": "Text alignment",
+            "info": "Choose how you would like the text to align"
+        },
+        {
+            "type": "select",
+            "id": "image_align",
+            "options": [
+                {
+                    "value": "center",
+                    "label": "Center aligned" 
+                },
+                {
+                    "value": "left",
+                    "label": "Left aligned"
+                }, 
+                {
+                    "value": "right",
+                    "label": "Right aligned"
+                }
+            ],
+            "default": "left",
+            "label": "Image alignment",
+            "info": "Choose how you would like the image to align"
+        },
+        {
+            "type": "range",
+            "id": "image_size",
+            "min": 50,
+            "max": 1000,
+            "step": 10,
+            "unit": "px",
+            "label": "Image Size",
+            "default": 500
+        },        
+        {
+            "type": "checkbox",
+            "id": "show_product_box",
+            "label": "Show product box",
+            "default": false
+        },
+        {
+            "type": "collection",
+            "id": "featured_collection",
+            "label": "Collection",
+            "info": "Select the collection you would like to show in the product box"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Image with text custom"
+        }
+    ]
+}
 {% endschema %}
