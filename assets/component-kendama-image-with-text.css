@@ -20,19 +20,33 @@
     justify-content: flex-end;
 }
 
-.image-with-text__image.full-width {
+.image-with-text__image {
     width: 100%;
+    height: 100%;
 }
 
+.image-with-text__image.circle {
+    width: 50rem;
+    height: 50rem;
+}
+
+.image-with-text__image.circle img {
+    border-radius: 50%;
+    height: 100%;
+}
 
 .image-with-text__image img,
 .image-with-text__image svg {
     object-fit: cover;
-    width: 100%;
 }
 
-.image-with-text__image img.box-shadow {
+.image-with-text__image img.box-shadow-one {
     box-shadow: -50px -50px;
+}
+
+
+.image-with-text__image img.box-shadow-two {
+    box-shadow: 15px 15px;
 }
 
 .image-with-text__content {
@@ -62,7 +76,7 @@
 }
 
 .image-with-text__content p {
-    width: 50rem;
+    width: 80%;
 }
 
 .image-with-text__button {

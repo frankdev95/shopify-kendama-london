@@ -27,6 +27,21 @@ p {
     flex-basis: 100%;
 }
 
+.flex-col-two-thirds .flex-item:first-child {
+ flex-basis: 33%;
+}
+
+.flex-col-two-thirds .flex-item:nth-child(2) {
+    flex-basis: 66%;
+}
+.flex-col-three-fifths .flex-item:nth-child(2) {
+    flex-grow: 1;
+}
+
+.flex-col-three-fifths .flex-item:first-child {
+    flex-basis: 40%;
+}
+
 .margin-vertical-sm {
     margin: 2rem 0;
 }

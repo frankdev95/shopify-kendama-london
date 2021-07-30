@@ -3,12 +3,19 @@
 
 <section class="image-with-text margin-vertical-lg">
     <div class="container ">
-        <div class="image-with-text__container flex flex-col-2{% if section.settings.layout == 'text_first' %} image-with-text__container--reverse {% endif %}">
-            <div class="image-with-text__col-1 {{ section.settings.image_align }}">
-                <div class="image-with-text__image {% if section.settings.image_full_width %} full-width {% endif %} ">
+        {% if section.settings.flow == "half" %}
+            {%- assign layout_class = 'flex-col-2' -%}
+        {% elsif section.settings.flow == 'two_thirds' %}
+            {%- assign layout_class = 'flex-col-two-thirds' -%}
+        {% else %}
+            {%- assign layout_class = 'flex-col-three-fifths' -%}
+        {% endif %}
+        {%- assign col_gap = section.settings.col_gap | divided_by: 10.0 | append: 'rem' -%}
+        <div class="image-with-text__container flex {% if section.settings.order == 'text_first' %} image-with-text__container--reverse {% endif %} {{ layout_class }}" style="gap: {{ col_gap }};">
+            <div class="image-with-text__col-1 flex-item {{ section.settings.image_align }}">
+                <div class="image-with-text__image {% if section.settings.image_full_width %} full-width {% endif %} {% if section.settings.image_full_height %} full-height {% endif %} {% if section.settings.image_shape == "circle" %} circle {% endif %} ">
                     {% if section.settings.main_image != blank %}
-                        {% assign image_size = section.settings.image_size | append: 'x' %}
-                        <img class="{% if section.settings.show_box_shadow %} box-shadow {% endif %}" style="color: {{ section.settings.box_shadow_color }}" src="{{ section.settings.main_image | img_url: image_size }}" alt="">
+                        <img class="{% if section.settings.show_box_shadow %}box-shadow-{{ section.settings.box_shadow_type }}{% endif %}" style="color: {{ section.settings.box_shadow_color }}; width: {{ section.settings.image_width }}%" src="{{ section.settings.main_image | img_url: '1000x' }}" alt="">
                     {% else %}
                         {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
                     {% endif %}
@@ -56,14 +63,13 @@
                 {% endif %}
             </div>
             
-            <div class="image-with-text__content {{ section.settings.text_align }}">
+            <div class="image-with-text__content flex-item {{ section.settings.text_align }}">
                 {% assign heading_font_size = section.settings.heading_size | divided_by: 10.0 | append: 'rem' %}
                 <h1 class="margin-vertical-sm" style=" font-size: {{ heading_font_size }};">{{ section.settings.heading }}</h1>
                 {{ section.settings.description }}
                 {% if section.settings.show_button %}
                     <a class="image-with-text__button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
                 {% endif %}
-            
             </div>
         </div>
     </div>
@@ -168,7 +174,7 @@
             "step": 1,
             "unit": "px",
             "label": "Heading font size",
-            "default": 16
+            "default": 32
         },
         {
             "type": "richtext",
@@ -182,6 +188,17 @@
             "label": "Main Image"
         },
         {
+            "type": "range",
+            "id": "image_width",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "unit": "%",
+            "label": "Image Size",
+            "default": 50,
+            "info": "Control the image size"
+        },    
+        {
             "type": "checkbox",
             "id": "show_box_shadow",
             "label": "Image box shadow",
@@ -192,6 +209,46 @@
             "id": "box_shadow_color",
             "label": "Box shadow color",
             "default": "#000"
+        },
+        {
+            "type": "select",
+            "id": "box_shadow_type",
+            "options": [
+                {
+                    "value": "one",
+                    "label": "Type one"
+                },
+                {
+                    "value": "two",
+                    "label": "Type two"
+                }
+            ],
+            "default": "one",
+            "label": "Box shadow type"
+        },
+        {
+            "type": "select",
+            "id": "image_shape",
+            "options": [
+                {
+                    "value": "rectangle",
+                    "label": "Rectangle"
+                },
+                {
+                    "value": "circle",
+                    "label": "Circle"
+                }
+            ],
+            "default": "rectangle",
+            "label": "Image shape",
+            "info": "Choose the shape of the image"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_button",
+            "label": "Show Button",
+            "default": true,
+            "info": "Check if you would like a button link"
         },
         {
             "type": "text",
@@ -205,22 +262,35 @@
             "label": "Button link"
         },
         {
-            "type": "checkbox",
-            "id": "show_button",
-            "label": "Show Button",
-            "default": true,
-            "info": "Check if you would like a button link"
+            "type": "select",
+            "id": "flow",
+            "options": [
+                {
+                    "value": "half",
+                    "label": "Half"
+                },
+                {
+                    "value": "two_thirds",
+                    "label": "Two thirds"
+                }
+            ],
+            "default": "half",
+            "label": "Column layout",
+            "info": "Choose the layout of the columns"
         },
         {
-            "type": "checkbox",
-            "id": "image_full_width",
-            "label": "Image full width",
-            "info": "Check this to make the image stretch to the full width of the column.",
-            "default": false
-        },
+            "type": "range",
+            "id": "col_gap",
+            "min": 0,
+            "max": 150,
+            "step": 5,
+            "unit": "px",
+            "label": "Column gap",
+            "default": 0
+        },        
         {
             "type": "select",
-            "id": "layout",
+            "id": "order",
             "options": [
                 {
                     "value": "image_first",
@@ -232,7 +302,7 @@
                 }
             ],
             "default": "image_first",
-            "label": "Desktop layout",
+            "label": "Desktop order",
             "info": "Choose the order of the image and text"
         },
         {
@@ -277,16 +347,6 @@
             "label": "Image alignment",
             "info": "Choose how you would like the image to align"
         },
-        {
-            "type": "range",
-            "id": "image_size",
-            "min": 50,
-            "max": 1000,
-            "step": 10,
-            "unit": "px",
-            "label": "Image Size",
-            "default": 500
-        },        
         {
             "type": "checkbox",
             "id": "show_product_box",
