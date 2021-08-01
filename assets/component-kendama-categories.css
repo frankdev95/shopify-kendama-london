@@ -1,0 +1,9 @@
+.categories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category {
+  flex-basis: 250px;
+}

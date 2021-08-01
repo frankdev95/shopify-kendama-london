@@ -1,25 +1,27 @@
 {{ 'component-kendama-multicolumn-image.css' | asset_url | stylesheet_tag}}
 
-<div class="multicolumn-image margin-vertical-lg">
-    <h1 class="bold">{{ section.settings.heading }}</h1>
-    <div class="multicolumn-image__columns">
-        {% for block in section.blocks %}
-            {% case block.type %}
-                {% when "column" %}
-                    <a class="column" href="{{ block.setting.image_link }}">
-                        <div>
-                            {% if block.setting.image != blank %}
-                                {{ block.settings.image | img_url: 'medium' | img_tag }}
+
+
+<section class="margin-vertical-lg">
+    <div class="multicolumn-image container">
+        <h1 class="margin-vertical-sm bold">{{ section.settings.heading }}</h1>
+        <div class="multicolumn-image__columns">
+            {% for block in section.blocks %}
+                {% case block.type %}
+                    {% when "column" %}
+                        <a class="column" href="{{ block.setting.image_link }}">
+                            {% if block.settings.image != blank %}
+                                {%- assign image_size = block.settings.image_size | append: '%' -%}
+                                <img src="{{ block.settings.image | img_url: 'large' }}" alt="image" style="width: {{ image_size }}" >
                             {% else %}
                                 {{ 'image' | placeholder_svg_tag: 'image-placeholder' }}
                             {% endif %}
-                            
-                        </div>
-                    </a>    
-            {% endcase %}
-        {% endfor %}
+                        </a>    
+                {% endcase %}
+            {% endfor %}
+        </div>
     </div>
-</div>
+</section>
 
 
 {% schema %}
@@ -42,6 +44,16 @@
                     "type": "image_picker",
                     "id": "image",
                     "label": "Image"
+                },
+                {
+                    "type": "range",
+                    "id": "image_size",
+                    "label": "Image size",
+                    "min": 5,
+                    "max": 100,
+                    "step": 5,
+                    "default": 60,
+                    "unit": "%"
                 },
                 {
                     "type": "url",
