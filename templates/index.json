@@ -35,7 +35,7 @@
         "icon": "shopify:\/\/shop_images\/Kendama_Assets-18.png",
         "image_size": 70,
         "background": "#ba2b20",
-        "text_color": "#fff"
+        "text_color": "#ffffff"
       }
     },
     "1627016842bb1fff4b": {
@@ -130,14 +130,14 @@
         "main_image": "shopify:\/\/shop_images\/pexels-matheus-bertelli-2376999.jpg",
         "image_width": 75,
         "show_box_shadow": false,
-        "box_shadow_color": "#000",
+        "box_shadow_color": "#000000",
         "box_shadow_type": "one",
         "image_shape": "rectangle",
         "show_button": true,
         "button_label": "Click Here",
         "button_link": "",
         "flow": "half",
-        "col_gap": 0,
+        "col_gap": 100,
         "order": "image_first",
         "text_align": "center",
         "image_align": "left",
@@ -154,7 +154,7 @@
         "main_image": "shopify:\/\/shop_images\/camilla-carvalho-JPTuOFurQrs-unsplash.jpg",
         "image_width": 75,
         "show_box_shadow": false,
-        "box_shadow_color": "#000",
+        "box_shadow_color": "#000000",
         "box_shadow_type": "one",
         "image_shape": "rectangle",
         "show_button": true,
@@ -226,7 +226,7 @@
         "title": "Growing our kendama forest",
         "icon": "shopify:\/\/shop_images\/Kendama_Assets-20.png",
         "image_size": 100,
-        "background": "#1A1B18",
+        "background": "#1a1b18",
         "text_color": "#4cd3a1"
       }
     },
