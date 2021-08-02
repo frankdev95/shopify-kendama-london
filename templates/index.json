@@ -144,12 +144,53 @@
         "show_product_box": true,
         "featured_collection": "kendama-collection"
       }
+    },
+    "16278968221845f5a7": {
+      "type": "kendama-image-with-text",
+      "settings": {
+        "heading": "New",
+        "heading_size": 32,
+        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
+        "main_image": "shopify:\/\/shop_images\/camilla-carvalho-JPTuOFurQrs-unsplash.jpg",
+        "image_width": 75,
+        "show_box_shadow": false,
+        "box_shadow_color": "#000",
+        "box_shadow_type": "one",
+        "image_shape": "rectangle",
+        "show_button": true,
+        "button_label": "Click Here",
+        "button_link": "",
+        "flow": "half",
+        "col_gap": 0,
+        "order": "text_first",
+        "text_align": "center",
+        "image_align": "left",
+        "show_product_box": true,
+        "featured_collection": "kendama-collection"
+      }
+    },
+    "16278968259d47cd9c": {
+      "type": "kendama-animated-banner",
+      "settings": {
+      }
+    },
+    "162789687426080ec3": {
+      "type": "kendama-featured-collection",
+      "settings": {
+        "heading": "Feature Collection",
+        "featured_collection": "kendama-collection",
+        "image_scatter": false,
+        "capitalize": true
+      }
     }
   },
   "order": [
     "1627038532ec4e01ad",
     "16270168092abfe318",
     "1627016842bb1fff4b",
-    "1627016813d5a022ab"
+    "1627016813d5a022ab",
+    "16278968221845f5a7",
+    "16278968259d47cd9c",
+    "162789687426080ec3"
   ]
 }
