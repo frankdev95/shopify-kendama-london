@@ -75,7 +75,8 @@
           "settings": {
             "heading": "Name",
             "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<\/p>",
-            "background": "#fff"
+            "image": "shopify:\/\/shop_images\/pexels-matheus-bertelli-2376999.jpg",
+            "background": "#ba2b20"
           }
         },
         "1d86817d-4a44-49d0-869e-163f872010a0": {
