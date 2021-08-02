@@ -167,12 +167,22 @@
         "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, qui? Cupiditate fugiat itaque quo commodi, laboriosam placeat earum neque nesciunt autem, fuga alias suscipit non! Reprehenderit earum non eveniet, dolores sunt accusamus modi, officia nisi tempora ducimus alias, consectetur quas voluptatum odio aperiam fugit ullam eligendi vitae nemo vel. Placeat aliquid voluptas quasi accusamus voluptate eveniet ducimus rerum non, error asperiores nulla quas soluta a doloremque autem in sunt laborum aliquam optio eius est.<\/p>",
         "image": "shopify:\/\/shop_images\/Kendama_Assets-09.png"
       }
+    },
+    "1627899446542749d2": {
+      "type": "kendama-sign-up-cta",
+      "settings": {
+        "heading": "Sign up to start earning Kenkredits!",
+        "background": "shopify:\/\/shop_images\/Kendama_Assets-16.png",
+        "button_label": "Sign Up",
+        "message": "Unsubscribe to emails at any time"
+      }
     }
   },
   "order": [
     "main",
     "1627898705b59c6407",
     "16278989763eaebff9",
-    "16278991960313b332"
+    "16278991960313b332",
+    "1627899446542749d2"
   ]
 }
