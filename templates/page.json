@@ -132,8 +132,9 @@
         "16278991960313b332-3": {
           "type": "item",
           "settings": {
-            "heading": "Enter heading",
-            "description": "<p>Lorem, ipsum dolor.<\/p>"
+            "icon": "shopify:\/\/shop_images\/Kendama_Assets-12.png",
+            "heading": "Sign up",
+            "description": "<p>200 KenKredits<\/p>"
           }
         },
         "16278991960313b332-4": {
