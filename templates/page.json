@@ -7,6 +7,12 @@
         "show_content": false
       }
     },
+    "16278995071b9f7ee3": {
+      "type": "layout-spacer",
+      "settings": {
+        "height": 20
+      }
+    },
     "1627898705b59c6407": {
       "type": "kendama-image-with-text",
       "settings": {
@@ -180,6 +186,7 @@
   },
   "order": [
     "main",
+    "16278995071b9f7ee3",
     "1627898705b59c6407",
     "16278989763eaebff9",
     "16278991960313b332",
