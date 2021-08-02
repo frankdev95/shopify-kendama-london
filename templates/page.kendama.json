@@ -16,8 +16,8 @@
     "16278996126e8e47c8": {
       "type": "kendama-image-with-text",
       "settings": {
-        "heading": "New",
-        "heading_size": 32,
+        "heading": "What is kendama",
+        "heading_size": 30,
         "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
         "main_image": "shopify:\/\/shop_images\/9uWZ522MZTERhGSgnqti6X89XVTTVRueS42nWx7Cn70.jpg",
         "image_width": 75,
@@ -25,13 +25,13 @@
         "box_shadow_color": "#ba2b20",
         "box_shadow_type": "one",
         "image_shape": "rectangle",
-        "show_button": true,
+        "show_button": false,
         "button_label": "Click Here",
         "button_link": "",
         "flow": "half",
-        "col_gap": 0,
+        "col_gap": 50,
         "order": "image_first",
-        "text_align": "center",
+        "text_align": "left",
         "image_align": "right",
         "show_product_box": false,
         "featured_collection": ""
