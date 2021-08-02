@@ -62,8 +62,9 @@ class Slideshow extends HTMLElement {
             }
 
             this.totalMargin = this.slideMargin * (this.slides.length - 1);
-
-            this.containerBounds = window.innerWidth / 100 * 80;
+            
+            window.innerWidth <= 900 ? this.containerBounds = window.innerWidth / 100 * 100 : this.containerBounds = window.innerWidth / 100 * 80;
+            
             this.totalSlidesWidth = (this.slideWidth * this.slides.length) + this.totalMargin;
 
             this.placeSlides();
@@ -99,7 +100,6 @@ class Slideshow extends HTMLElement {
                     this.slideshow.style.width = this.slidesAmount * this.slideWidth + (this.slidesAmount - 1) * this.slideMargin + "px";
                 }
             } else {
-                console.log("less than 1");
                 this.slideshow.style.width = this.slideWidth + "px";
             }
 
@@ -112,7 +112,9 @@ class Slideshow extends HTMLElement {
             this.activeIndex = counter / this.slidesAmount - 1;
             this.slidePosition = this.activeIndex;
 
-            this.slides[this.activeIndex].classList.add('slide--active');
+            if(this.slidesAmount > 1) {
+                this.slides[this.activeIndex].classList.add('slide--active');
+            }
 
             this.slideshowSlides.style.height = this.slideWidth + 150 + "px";
 
@@ -139,9 +141,12 @@ class Slideshow extends HTMLElement {
 
         if (this.slidePosition > 0) {
 
-            this.slides[this.activeIndex].classList.remove("slide--active");
-            this.activeIndex --;
-            this.slides[this.activeIndex].classList.add("slide--active");
+            if(this.slidesAmount > 1) {
+                this.slides[this.activeIndex].classList.remove("slide--active");
+                this.activeIndex --;
+                this.slides[this.activeIndex].classList.add("slide--active");
+            }
+     
 
             for (let i = 0; i < this.slides.length; i++) {
                 this.slides[i].style.left = (parseInt(this.slides[i].style.left)) + this.slideWidth + this.slideMargin + "px";
@@ -163,9 +168,12 @@ class Slideshow extends HTMLElement {
 
         if (this.slidePosition < this.slides.length - 1) {
 
-            this.slides[this.activeIndex].classList.remove("slide--active");
-            this.activeIndex ++;
-            this.slides[this.activeIndex].classList.add("slide--active");
+            if(this.slidesAmount > 1) {
+                this.slides[this.activeIndex].classList.remove("slide--active");
+                this.activeIndex ++;
+                this.slides[this.activeIndex].classList.add("slide--active");
+            }
+         
 
             for (let i = 0; i < this.slides.length; i++) {
                 this.slides[i].style.left = (parseInt(this.slides[i].style.left) - this.slideWidth - this.slideMargin) + "px";

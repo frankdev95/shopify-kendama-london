@@ -25,7 +25,7 @@
                         <div class="product-box__top">
                             {% assign kendama_products = collections[section.settings.featured_collection].products %}
                             {% if kendama_products[0] %}
-                                {% for product in collections[section.settings.featured_collection].products %}
+                                {% for product in kendama_products %}
                                     <a class="product-box__link{% if forloop.index > 1 %} absolute {% else %} relative {% endif %}" href="{{ product.url }}">
                                         <div class="product-box__image">
                                             <img src="{{ product.featured_media.preview_image | img_url: 'large'}}" alt="{{ product.title }}">

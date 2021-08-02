@@ -29,5 +29,11 @@
 @media only screen and (max-width: 600px) {
   .multicolumn-image__columns .column {
     flex-basis: 100%;
+    margin: 2rem 0;
+  }
+
+  .multicolumn-image__columns .column img,
+  .multicolumn-image__columns .column svg {
+    width: 60%!important;
   }
 }

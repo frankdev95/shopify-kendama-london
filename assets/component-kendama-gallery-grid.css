@@ -1,0 +1,30 @@
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(6, 5vw);
+    padding: 1.5rem;
+    grid-gap: 1.5rem;
+}
+
+.gallery__item {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery--one .gallery__item-1 {
+   grid-area: 1 / 1 / span 6 / span 4;
+}
+
+.gallery--one .gallery__item-2 {
+    grid-area: 1 / 5 / span 3 / span 2;
+}
+
+.gallery--one .gallery__item-3 {
+    grid-area: 1 / 7 / span 3 / span 2;
+}
+
+.gallery--one .gallery__item-4 {
+    grid-area: 4 / 5 / span 3 / span 4;
+}

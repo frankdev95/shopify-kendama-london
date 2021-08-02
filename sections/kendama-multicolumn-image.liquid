@@ -1,10 +1,8 @@
 {{ 'component-kendama-multicolumn-image.css' | asset_url | stylesheet_tag}}
 
-
-
 <section class="margin-vertical-lg">
     <div class="multicolumn-image container">
-        <h1 class="margin-vertical-sm bold">{{ section.settings.heading }}</h1>
+        <h1 class="margin-vertical-md bold">{{ section.settings.heading }}</h1>
         <div class="multicolumn-image__columns">
             {% for block in section.blocks %}
                 {% case block.type %}

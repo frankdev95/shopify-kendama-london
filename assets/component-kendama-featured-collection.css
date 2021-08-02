@@ -1,0 +1,87 @@
+.overflow-scroll-wrap {
+    overflow: hidden;
+    position: relative;
+}
+
+.overflow-scroller {
+    position: relative;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.overflow-scroller .grid {
+    white-space: nowrap;
+    display: flex;
+}
+
+.overflow-scroller .grid__item {
+    width: 27%;
+    flex: 0 0 27%;
+}
+
+.overflow-scroll-wrap .btn {
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid black;
+    box-shadow: 3px 3px black;
+    cursor: pointer;
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.overflow-scroll-wrap .btn:active {
+    box-shadow: none;
+}
+
+.overflow-scroll-wrap .btn.arrow--left {
+    left: 1rem;
+}
+
+.overflow-scroll-wrap .btn.arrow--right {
+    right: 1rem;
+}
+
+.grid__item {
+    padding-left: 40px;
+}
+
+.grid__item:first-child {
+    margin-left: 30px;
+}
+
+.grid-product__content {
+    text-align: center;
+
+}
+
+.grid-product__meta {
+    color: black;
+}
+
+.grid-product__title,
+.grid-product__price {
+    color: inherit;
+    text-decoration: none;
+}
+
+.product-slider img {
+    max-width: 100%;
+    width: 100%;
+    max-height: calc(100vw / 100 * 27);
+    object-fit: contain;
+}
+
+[data-product-image__scatter="true"] .grid__product:nth-child(2n) {
+    padding-top: 30px;
+}
+
+[data-type__product__capitalize="true"] .grid-product__title {
+    text-transform: uppercase;
+}
