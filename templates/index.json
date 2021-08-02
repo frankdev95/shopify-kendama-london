@@ -24,13 +24,17 @@
       ],
       "settings": {
         "title": "Try New Things",
-        "image": "shopify:\/\/shop_images\/GFN-Chris-June-Pro-Model-1600x900_1600x_b5bf7fa5-2226-4cf3-8355-56e7baeea434.jpg"
+        "image": "shopify:\/\/shop_images\/GFN-Chris-June-Pro-Model-1600x900_1600x_b5bf7fa5-2226-4cf3-8355-56e7baeea434.jpg",
+        "height": 100
       }
     },
     "16270168092abfe318": {
       "type": "kendama-kenkredits-cta",
       "settings": {
-        "title": "Save money with kenkredits"
+        "title": "Save money with kenkredits",
+        "image_size": 50,
+        "background": "#ba2b20",
+        "text_color": "#fff"
       }
     },
     "1627016842bb1fff4b": {
@@ -83,6 +87,18 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/3.jpg"
           }
+        },
+        "dfbbe442-b757-498b-9ff3-b6237c713d43": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/2.jpg"
+          }
+        },
+        "4e596731-8817-4193-9ceb-68dbd76b421a": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/1.jpg"
+          }
         }
       },
       "block_order": [
@@ -93,7 +109,9 @@
         "4ee11de6-d3d6-4284-9100-53dffa8630f9",
         "8d0723fd-c18b-4f00-8dc4-d9125c3eba24",
         "7ee47c9b-9ed7-4ae1-9135-122133326d2d",
-        "7fa3742e-1b59-4882-a8f3-37cb12c0ed8b"
+        "7fa3742e-1b59-4882-a8f3-37cb12c0ed8b",
+        "dfbbe442-b757-498b-9ff3-b6237c713d43",
+        "4e596731-8817-4193-9ceb-68dbd76b421a"
       ],
       "settings": {
         "heading": "Kendama Brands",
@@ -106,15 +124,24 @@
       "type": "kendama-image-with-text",
       "settings": {
         "heading": "New",
+        "heading_size": 32,
         "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
+        "main_image": "shopify:\/\/shop_images\/pexels-matheus-bertelli-2376999.jpg",
+        "image_width": 50,
+        "show_box_shadow": false,
+        "box_shadow_color": "#000",
+        "box_shadow_type": "one",
+        "image_shape": "rectangle",
+        "show_button": true,
         "button_label": "Click Here",
         "button_link": "",
-        "main_image": "shopify:\/\/shop_images\/pexels-matheus-bertelli-2376999.jpg",
-        "image_full_width": false,
-        "layout": "image_first",
+        "flow": "half",
+        "col_gap": 0,
+        "order": "image_first",
         "text_align": "center",
         "image_align": "left",
-        "image_size": 500
+        "show_product_box": false,
+        "featured_collection": ""
       }
     }
   },
