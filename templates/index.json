@@ -32,7 +32,8 @@
       "type": "kendama-kenkredits-cta",
       "settings": {
         "title": "Save money with kenkredits",
-        "image_size": 50,
+        "icon": "shopify:\/\/shop_images\/Kendama_Assets-18.png",
+        "image_size": 70,
         "background": "#ba2b20",
         "text_color": "#fff"
       }
