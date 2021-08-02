@@ -60,12 +60,40 @@
             "image": "shopify:\/\/shop_images\/aiony-haust-3TLl_97HNJo-unsplash.jpg",
             "background": "#4cd3a1"
           }
+        },
+        "d2eef62c-1e18-4a42-8577-f6b9eef8c59c": {
+          "type": "card",
+          "settings": {
+            "heading": "Name",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<\/p>",
+            "image": "shopify:\/\/shop_images\/maxresdefault.jpg",
+            "background": "#4cd3a1"
+          }
+        },
+        "63035184-ea5e-4f3e-9b4c-8419e8d5625d": {
+          "type": "card",
+          "settings": {
+            "heading": "Name",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<\/p>",
+            "background": "#fff"
+          }
+        },
+        "1d86817d-4a44-49d0-869e-163f872010a0": {
+          "type": "card",
+          "settings": {
+            "heading": "Name",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<\/p>",
+            "background": "#fff"
+          }
         }
       },
       "block_order": [
         "16278989763eaebff9-0",
         "16278989763eaebff9-1",
-        "16278989763eaebff9-2"
+        "16278989763eaebff9-2",
+        "d2eef62c-1e18-4a42-8577-f6b9eef8c59c",
+        "63035184-ea5e-4f3e-9b4c-8419e8d5625d",
+        "1d86817d-4a44-49d0-869e-163f872010a0"
       ],
       "settings": {
         "heading": "Meet the team",
