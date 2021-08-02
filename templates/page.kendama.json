@@ -36,11 +36,35 @@
         "show_product_box": false,
         "featured_collection": ""
       }
+    },
+    "162789980455e112c4": {
+      "type": "kendama-image-with-text",
+      "settings": {
+        "heading": "New",
+        "heading_size": 32,
+        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
+        "image_width": 50,
+        "show_box_shadow": false,
+        "box_shadow_color": "#000",
+        "box_shadow_type": "one",
+        "image_shape": "rectangle",
+        "show_button": true,
+        "button_label": "Click Here",
+        "button_link": "",
+        "flow": "two_thirds",
+        "col_gap": 0,
+        "order": "image_first",
+        "text_align": "center",
+        "image_align": "left",
+        "show_product_box": false,
+        "featured_collection": ""
+      }
     }
   },
   "order": [
     "main",
     "1627899749c25db2cf",
-    "16278996126e8e47c8"
+    "16278996126e8e47c8",
+    "162789980455e112c4"
   ]
 }
