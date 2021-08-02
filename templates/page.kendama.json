@@ -60,12 +60,49 @@
         "show_product_box": false,
         "featured_collection": ""
       }
+    },
+    "1627899944bbfeb123": {
+      "type": "kendama-gallery-grid",
+      "blocks": {
+        "1627899944bbfeb123-0": {
+          "type": "item",
+          "settings": {
+          }
+        },
+        "1627899944bbfeb123-1": {
+          "type": "item",
+          "settings": {
+          }
+        },
+        "1627899944bbfeb123-2": {
+          "type": "item",
+          "settings": {
+          }
+        },
+        "1627899944bbfeb123-3": {
+          "type": "item",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "1627899944bbfeb123-0",
+        "1627899944bbfeb123-1",
+        "1627899944bbfeb123-2",
+        "1627899944bbfeb123-3"
+      ],
+      "settings": {
+        "heading": "Enter heading",
+        "grid_layout": "one",
+        "grid_gap": 15
+      }
     }
   },
   "order": [
     "main",
     "1627899749c25db2cf",
     "16278996126e8e47c8",
-    "162789980455e112c4"
+    "162789980455e112c4",
+    "1627899944bbfeb123"
   ]
 }
