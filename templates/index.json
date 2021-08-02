@@ -140,7 +140,7 @@
         "col_gap": 100,
         "order": "image_first",
         "text_align": "center",
-        "image_align": "left",
+        "image_align": "right",
         "show_product_box": true,
         "featured_collection": "kendama-collection"
       }
