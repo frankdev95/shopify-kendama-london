@@ -125,7 +125,7 @@
       "type": "kendama-image-with-text",
       "settings": {
         "heading": "New",
-        "heading_size": 32,
+        "heading_size": 100,
         "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
         "main_image": "shopify:\/\/shop_images\/pexels-matheus-bertelli-2376999.jpg",
         "image_width": 75,
@@ -148,8 +148,8 @@
     "16278968221845f5a7": {
       "type": "kendama-image-with-text",
       "settings": {
-        "heading": "New",
-        "heading_size": 32,
+        "heading": "SALE",
+        "heading_size": 100,
         "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
         "main_image": "shopify:\/\/shop_images\/camilla-carvalho-JPTuOFurQrs-unsplash.jpg",
         "image_width": 75,
@@ -179,8 +179,122 @@
       "settings": {
         "heading": "Feature Collection",
         "featured_collection": "kendama-collection",
-        "image_scatter": false,
+        "image_scatter": true,
         "capitalize": true
+      }
+    },
+    "1627897192d86b017c": {
+      "type": "kendama-multicolumn-image",
+      "blocks": {
+        "1627897192d86b017c-0": {
+          "type": "column",
+          "settings": {
+            "image_size": 60,
+            "image_link": ""
+          }
+        },
+        "1627897192d86b017c-1": {
+          "type": "column",
+          "settings": {
+            "image_size": 60,
+            "image_link": ""
+          }
+        },
+        "1627897192d86b017c-2": {
+          "type": "column",
+          "settings": {
+            "image_size": 60,
+            "image_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "1627897192d86b017c-0",
+        "1627897192d86b017c-1",
+        "1627897192d86b017c-2"
+      ],
+      "settings": {
+        "heading": "collection"
+      }
+    },
+    "16278971634994ea0d": {
+      "type": "kendama-kenkredits-cta",
+      "settings": {
+        "title": "CTA Banner",
+        "image_size": 50,
+        "background": "#ba2b20",
+        "text_color": "#fff"
+      }
+    },
+    "1627897004a1ecd543": {
+      "type": "kendama-gallery",
+      "blocks": {
+        "1627897004a1ecd543-0": {
+          "type": "image",
+          "settings": {
+          }
+        },
+        "1627897004a1ecd543-1": {
+          "type": "image",
+          "settings": {
+          }
+        },
+        "1627897004a1ecd543-2": {
+          "type": "image",
+          "settings": {
+          }
+        },
+        "1627897004a1ecd543-3": {
+          "type": "image",
+          "settings": {
+          }
+        },
+        "1627897004a1ecd543-4": {
+          "type": "image",
+          "settings": {
+          }
+        },
+        "1627897004a1ecd543-5": {
+          "type": "image",
+          "settings": {
+          }
+        },
+        "1627897004a1ecd543-6": {
+          "type": "image",
+          "settings": {
+          }
+        },
+        "1627897004a1ecd543-7": {
+          "type": "image",
+          "settings": {
+          }
+        },
+        "1627897004a1ecd543-8": {
+          "type": "image",
+          "settings": {
+          }
+        },
+        "1627897004a1ecd543-9": {
+          "type": "image",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "1627897004a1ecd543-0",
+        "1627897004a1ecd543-1",
+        "1627897004a1ecd543-2",
+        "1627897004a1ecd543-3",
+        "1627897004a1ecd543-4",
+        "1627897004a1ecd543-5",
+        "1627897004a1ecd543-6",
+        "1627897004a1ecd543-7",
+        "1627897004a1ecd543-8",
+        "1627897004a1ecd543-9"
+      ],
+      "settings": {
+        "heading": "Follow us on instagram",
+        "sub_heading": "for more kendama antics"
       }
     }
   },
@@ -191,6 +305,9 @@
     "1627016813d5a022ab",
     "16278968221845f5a7",
     "16278968259d47cd9c",
-    "162789687426080ec3"
+    "162789687426080ec3",
+    "1627897192d86b017c",
+    "16278971634994ea0d",
+    "1627897004a1ecd543"
   ]
 }
