@@ -30,10 +30,50 @@
         "show_product_box": false,
         "featured_collection": ""
       }
+    },
+    "16278989763eaebff9": {
+      "type": "kendama-multicolumn-card",
+      "blocks": {
+        "16278989763eaebff9-0": {
+          "type": "card",
+          "settings": {
+            "heading": "Name",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<\/p>",
+            "image": "shopify:\/\/shop_images\/conor-sexton-BBhY-e1XsT0-unsplash.jpg",
+            "background": "#ba2b20"
+          }
+        },
+        "16278989763eaebff9-1": {
+          "type": "card",
+          "settings": {
+            "heading": "Name",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<\/p>",
+            "background": "#fff"
+          }
+        },
+        "16278989763eaebff9-2": {
+          "type": "card",
+          "settings": {
+            "heading": "Name",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<\/p>",
+            "background": "#fff"
+          }
+        }
+      },
+      "block_order": [
+        "16278989763eaebff9-0",
+        "16278989763eaebff9-1",
+        "16278989763eaebff9-2"
+      ],
+      "settings": {
+        "heading": "Meet the team",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>"
+      }
     }
   },
   "order": [
     "main",
-    "1627898705b59c6407"
+    "1627898705b59c6407",
+    "16278989763eaebff9"
   ]
 }
