@@ -128,7 +128,7 @@
         "heading_size": 32,
         "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
         "main_image": "shopify:\/\/shop_images\/pexels-matheus-bertelli-2376999.jpg",
-        "image_width": 50,
+        "image_width": 75,
         "show_box_shadow": false,
         "box_shadow_color": "#000",
         "box_shadow_type": "one",
@@ -141,8 +141,8 @@
         "order": "image_first",
         "text_align": "center",
         "image_align": "left",
-        "show_product_box": false,
-        "featured_collection": ""
+        "show_product_box": true,
+        "featured_collection": "kendama-collection"
       }
     }
   },
