@@ -230,6 +230,26 @@
         "text_color": "#4cd3a1"
       }
     },
+    "1627897391f2339f13": {
+      "type": "kendama-image-banner",
+      "blocks": {
+        "88e8e410-a359-44da-8b8a-c7188afa2c31": {
+          "type": "sub_link",
+          "settings": {
+            "text": "see our forest>",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "88e8e410-a359-44da-8b8a-c7188afa2c31"
+      ],
+      "settings": {
+        "title": "",
+        "image": "shopify:\/\/shop_images\/Kendama_Assets-29.png",
+        "height": 65
+      }
+    },
     "1627897004a1ecd543": {
       "type": "kendama-gallery",
       "blocks": {
@@ -312,6 +332,7 @@
     "162789687426080ec3",
     "1627897192d86b017c",
     "16278971634994ea0d",
+    "1627897391f2339f13",
     "1627897004a1ecd543"
   ]
 }
