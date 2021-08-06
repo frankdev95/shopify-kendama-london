@@ -1,0 +1,72 @@
+{{ 'template-kendama-main-collection-product-grid.css' | asset_url | stylesheet_tag}}
+{{ 'snippet-product-item.css' | asset_url | stylesheet_tag}}
+
+<script src="{{ 'product-filters-form.js' | asset_url}}" defer="defer"></script>
+
+<section class="margin-vertical-sm">
+    <div class="collection container">
+        <div class="collection-filters">
+            <product-filters-form>
+                <form id="ProductFiltersForm" class="filters__form">
+                    {% for filter in collection.filters %}
+                        {% case filter.type %}
+                            {% when 'list' %}
+                                <div class="filter__group js-filter" data-index="{{ forloop.index }}">
+                                    <h1>{{ filter.label }} <span class="selection-count">{%- if filter.active_values.size > 0 -%}{{ filter.active_values.size }}{%- endif -%}</span></h1>
+                                    <ul class="filter__list">
+                                        {% for value in filter.values %}
+                                            {% if value.param_name contains 'vendor' %}
+                                                {%- assign filter_type = 'vendor' -%}
+                                            {% elsif value.param_name contains 'product_type' %}
+                                                {%- assign filter_type = 'product' -%}
+                                            {% endif %}
+                                            <li class="filter__list-item">
+                                                <span>{{ value.label }} ({{ value.count }})</span>
+                                                <label for="Filter-{{ filter.label | escape }}-{{ forloop.index }}" class="filter__checkbox{% if value.count == 0 and value.active == false%} filter__checkbox--disabled{%  endif %}">
+                                                    <input type="checkbox" 
+                                                    id="Filter-{{ filter.label | escape}}-{{ forloop.index }}"
+                                                    class="filter__checkbox-input"
+                                                    name="{{ value.param_name }}" 
+                                                    value="{{ value.value }}" 
+                                                    data-type="{{ filter_type }}"
+                                                    {% if value.active %}checked{% endif %}
+                                                    {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                                                </label>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                
+                            {% else %}
+                                
+                        {% endcase %}
+                    {% endfor %}
+                </form>
+            </product-filters-form>
+        </div>
+        <div id="ProductGrid" class="products-container">
+            {% paginate collection.products by 9 %}
+                {% if collection.products.size == 0 %}
+                
+                {% else %}
+                <div class="collection-products">
+                    <div id="kendama-main-collection-product-grid" data-id="{{ section.id }}" class="product-grid">
+                        {% for product in collection.products %}
+                            <div>
+                                {% render 'product-item',
+                                    product: product 
+                                %}
+                            </div>
+                    {% endfor %}
+                    </div>
+                </div> 
+                   
+
+                {% endif %}
+                {% if paginate.pages > 1 %}
+                    {% render 'kendama-pagination', paginate: paginate %}
+                {% endif %}
+            {% endpaginate %}
+        </div>
+    </div>
+</section>

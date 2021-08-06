@@ -1,12 +1,12 @@
 {
   "sections": {
     "banner": {
-      "type": "main-collection-banner",
+      "type": "kendama-main-collection-banner",
       "settings": {
       }
     },
     "product-grid": {
-      "type": "main-collection-product-grid",
+      "type": "kendama-main-collection-product-grid",
       "settings": {
       }
     }

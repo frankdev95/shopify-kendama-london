@@ -1,0 +1,22 @@
+<div class="card__wrapper">
+    <a href="{{ product.url | default: '#'}}" class="card__link">
+        <div class="card__product {% if product.featured_media == nil%} card--no--media {% endif %}">
+            <div class="card__inner">
+                <div class="card__media">
+                    <img src="{{ product.featured_media | img_url: 'large' }}" alt="{{ product.featured_media.alt | escape }}">
+                </div>
+            </div>
+        </div>
+        <div class="card__bottom">
+            <div class="card__information">
+                <div class="card__information-wrapper">
+                    <h3 class="product__title">{{ product.title | escape }}</h3>
+                    <span class="product__price">{{ product.price | money_with_currency}}</span>
+                </div>
+            </div>
+            <div class="card__add-to-cart">
+                <button>Add To Cart</button>
+            </div>
+        </div>
+    </a>
+</div>
