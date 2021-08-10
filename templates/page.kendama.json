@@ -61,6 +61,30 @@
         "featured_collection": ""
       }
     },
+    "162858200234e10947": {
+      "type": "kendama-image-with-text",
+      "settings": {
+        "heading": "History",
+        "heading_size": 32,
+        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
+        "main_image": "shopify:\/\/shop_images\/hightide4-1019x1024.jpg",
+        "image_width": 100,
+        "show_box_shadow": true,
+        "box_shadow_color": "#ba2b20",
+        "box_shadow_type": "two",
+        "image_shape": "circle",
+        "show_button": true,
+        "button_label": "Click Here",
+        "button_link": "",
+        "flow": "half",
+        "col_gap": 0,
+        "order": "text_first",
+        "text_align": "center",
+        "image_align": "left",
+        "show_product_box": false,
+        "featured_collection": ""
+      }
+    },
     "1627899944bbfeb123": {
       "type": "kendama-gallery-grid",
       "blocks": {
@@ -107,6 +131,7 @@
     "1627899749c25db2cf",
     "16278996126e8e47c8",
     "162789980455e112c4",
+    "162858200234e10947",
     "1627899944bbfeb123"
   ]
 }
