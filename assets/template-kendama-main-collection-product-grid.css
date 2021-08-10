@@ -9,8 +9,13 @@
     padding: 2rem 3rem;
     background-color: var(--primary-green);
     margin-right: 2rem;
-    flex-basis: 27rem;
-    height: 80rem;
+    flex-basis: 30rem;
+    height: 120rem;
+}
+
+.filters__form {
+    display: flex;
+    flex-direction: column;
 }
 
 .filter__group h1 {
@@ -21,7 +26,7 @@
     text-transform: uppercase;
 }
 
-.filter__group:not(:last-child) {
+.filter__group {
     margin-bottom: 5rem;
 }
 
@@ -60,6 +65,10 @@
     opacity: 0;
 }
 
+.filter__group--price {
+    order: 1;
+}
+
 .products-container {
     flex: 1;
 }
@@ -69,3 +78,53 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2rem;
 }
+
+.price-fields {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.price-fields svg {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 1rem;
+}
+
+.price-field {
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #B2B1B9;
+    display: flex;
+    align-items: center;
+    padding: .5rem 1rem;
+    width: 100%;
+}
+
+.price-field__input {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    color: var(--color-main);
+    outline: none;
+    font-size: 1.5rem;
+    flex: 1;
+}
+
+.price-field__input::placeholder {
+    color: var(--color-main);
+}
+
+.price-field__input:focus,
+.price-field__input:active {
+    box-shadow: none;
+    border: none;
+    outline: none;
+}
+ 
+.price-field__currency {
+    font-size: 1.5rem;
+    margin-right: .2rem;
+}
+

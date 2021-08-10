@@ -16,7 +16,8 @@ class CollectionFiltersForm extends HTMLElement {
     event.preventDefault();
     const formData = new FormData(event.target.closest('form'));
     const searchParams = new URLSearchParams(formData).toString();
-    this.renderPage(searchParams, event);
+    console.log(searchParams);
+    // this.renderPage(searchParams, event);
   }
 
   onActiveFilterClick(event) {
@@ -38,6 +39,7 @@ class CollectionFiltersForm extends HTMLElement {
 
   renderPage(searchParams, event, updateURLHash = true) {
     const sections = this.getSections();
+    console.log(sections);
     document.getElementById('CollectionProductGrid').querySelector('.collection').classList.add('loading');
 
     sections.forEach((section) => {
@@ -88,7 +90,7 @@ class CollectionFiltersForm extends HTMLElement {
     }
     const facetsToRender = Array.from(facetDetailsElements).filter(element => !matchesIndex(element)); // match all filter elements which aren't active
     const countsToRender = Array.from(facetDetailsElements).find(matchesIndex); 
-    console.log(facetsToRender);
+      
     facetsToRender.forEach((element) => {
       document.querySelector(`.js-filter[data-index="${element.dataset.index}"]`).innerHTML = element.innerHTML;
     });

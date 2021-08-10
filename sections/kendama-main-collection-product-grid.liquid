@@ -8,6 +8,16 @@
         <div class="collection-filters">
             <product-filters-form>
                 <form id="ProductFiltersForm" class="filters__form">
+                    <div class="filter__group filter__group--sort-by">
+                        <h1>Sort By</h1>
+                        <select name="sort_by" id="sort_by">
+                            {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+
+                            {% for option in collection.sort_options %}
+                                <option value="{{ option.value }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                     {% for filter in collection.filters %}
                         {% case filter.type %}
                             {% when 'list' %}
@@ -37,8 +47,41 @@
                                     </ul>
                                 </div>
                                 
-                            {% else %}
-                                
+                            {% when 'price_range' %}
+                                <div class="filter__group js-filter filter__group--price" data-index="{{ forloop.index }}">
+                                    <h1>{{ filter.label }}</h1>
+                                    <price-range class="price-fields">
+                                        <div class="price-field">
+                                            <span class="price-field__currency">{{ cart.currency.symbol }}</span>
+                                            <input class="price-field__input" 
+                                                name="{{ filter.min_value.param_name }}" 
+                                                id="Filter-{{ filter.label | escape }}-GTE"
+                                                {% if filter.min_value.value %}
+                                                    value="{{ filter.min_value.value | money_without_currency}}"
+                                                {% endif %}
+                                                type="number"
+                                                placeholder=0
+                                                min=0
+                                                max="{{ filter.range_max | money_without_currency | replace: ',', ''}}"
+                                                >
+                                        </div>
+                                        {% render 'icon-arrow' %}
+                                        <div class="price-field">
+                                            <span class="price-field__currency">{{ cart.currency.symbol }}</span>
+                                            <input class="price-field__input" 
+                                                name="{{ filter.max_value.param_name }}"
+                                                id="Filter-{{ filter.label | escape }}-LTE"
+                                                {% if filter.max_value.value %}
+                                                    value="{{ filter.max_value.value | money_without_currency }}"
+                                                {% endif %}
+                                                type="number"
+                                                placeholder="{{ filter.range_max | money_without_currency | replace: ',', ''}}"
+                                                min="0"
+                                                max="{{ filter.range_max | money_without_currency | replace: ',', ''}}"
+                                                >
+                                        </div>
+                                    </price-range>
+                                </div>
                         {% endcase %}
                     {% endfor %}
                 </form>
@@ -47,9 +90,30 @@
         <div id="ProductGrid" class="products-container">
             {% paginate collection.products by 9 %}
                 {% if collection.products.size == 0 %}
-                
+                    <div class="collection-products" id="kendama-main-collection-product-grid" data-id="{{ section.id }}">
+                        <div class="loading-overlay">
+                            <div class="loading-overlay__spinner">
+                        
+                            </div>
+                        </div>
+
+                        <p class="product-count" role="status">
+                            {{ 'sections.collection_template.product_count' | t: product_count: collection.products_count, count: collection.all_products_count }}
+                        </p>
+
+                        <div class="product-empty">
+                            <h2> 
+                                {{ 'sections.collection_template.empty' | t }}
+                                {{ 'sections.collection_template.use_fewer_filters_html' | t: class: "empty_link", link: collection.url}}
+                            </h2>
+                        </div>
+                </div>
                 {% else %}
                 <div class="collection-products">
+                    <div class="collection-products__header">
+                
+                        
+                    </div>
                     <div id="kendama-main-collection-product-grid" data-id="{{ section.id }}" class="product-grid">
                         {% for product in collection.products %}
                             <div>
