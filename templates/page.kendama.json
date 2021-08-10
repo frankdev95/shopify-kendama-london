@@ -40,7 +40,7 @@
     "162789980455e112c4": {
       "type": "kendama-image-with-text",
       "settings": {
-        "heading": "New",
+        "heading": "why play kendama?",
         "heading_size": 32,
         "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
         "main_image": "shopify:\/\/shop_images\/maxresdefault.jpg",
@@ -49,13 +49,13 @@
         "box_shadow_color": "#e22120",
         "box_shadow_type": "two",
         "image_shape": "circle",
-        "show_button": true,
+        "show_button": false,
         "button_label": "Click Here",
         "button_link": "",
         "flow": "two_thirds",
-        "col_gap": 0,
+        "col_gap": 70,
         "order": "image_first",
-        "text_align": "center",
+        "text_align": "left",
         "image_align": "left",
         "show_product_box": false,
         "featured_collection": ""
