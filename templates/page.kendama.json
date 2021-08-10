@@ -80,7 +80,7 @@
         "col_gap": 0,
         "order": "text_first",
         "text_align": "left",
-        "image_align": "left",
+        "image_align": "right",
         "show_product_box": false,
         "featured_collection": ""
       }
