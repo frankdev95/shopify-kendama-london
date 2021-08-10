@@ -67,21 +67,25 @@
         "1627899944bbfeb123-0": {
           "type": "item",
           "settings": {
+            "image": "shopify:\/\/shop_images\/hightide4-1019x1024.jpg"
           }
         },
         "1627899944bbfeb123-1": {
           "type": "item",
           "settings": {
+            "image": "shopify:\/\/shop_images\/camilla-carvalho-JPTuOFurQrs-unsplash.jpg"
           }
         },
         "1627899944bbfeb123-2": {
           "type": "item",
           "settings": {
+            "image": "shopify:\/\/shop_images\/hightide4-1019x1024.jpg"
           }
         },
         "1627899944bbfeb123-3": {
           "type": "item",
           "settings": {
+            "image": "shopify:\/\/shop_images\/maxresdefault.jpg"
           }
         }
       },
@@ -92,7 +96,7 @@
         "1627899944bbfeb123-3"
       ],
       "settings": {
-        "heading": "Enter heading",
+        "heading": "How to play",
         "grid_layout": "one",
         "grid_gap": 15
       }
