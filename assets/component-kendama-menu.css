@@ -1,5 +1,6 @@
 .header {
     display: flex;
+    align-items: center;
     margin: 0 auto;
     padding: 1rem 2rem;
 }
@@ -40,7 +41,7 @@
     text-transform: uppercase;
 }
 
-.header-fixed .header {
+.header-fixed {
     animation: moveInTop .3s ease-in-out forwards;
     position: fixed;
     left: 0;
@@ -48,6 +49,19 @@
     z-index: 1;
     width: 100%;
 
+}
+
+.header__cart-icon {
+    position: relative;
+    display: flex;
+    color: black;
+    text-decoration: none;
+    margin-left: auto;
+}
+
+.header__cart-icon svg {
+    width: 5rem;
+    height: 5rem;
 }
 
 @keyframes moveInTop {

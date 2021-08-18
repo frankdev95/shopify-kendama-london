@@ -27,6 +27,16 @@ p {
     margin: 0 auto;
 }
 
+.container--md {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.container--sm {
+    width: 60%;
+    margin: 0 auto;
+}
+
 .flex {
     display: flex;
 }
@@ -71,7 +81,7 @@ h1.heading {
     font-weight: 600;
 }
 
-h1.bold {
+.bold {
     font-weight: 600;
 }
 

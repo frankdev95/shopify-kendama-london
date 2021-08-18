@@ -13,7 +13,7 @@
     height: 120rem;
 }
 
-.filters__form {
+.filters__form .filters__form--standard {
     display: flex;
     flex-direction: column;
 }
@@ -53,7 +53,7 @@
     transition: all .2s;
 }
 
-.filter__checkbox:hover {
+.filter__checkbox:hover:not([data-disabled="true"]):not(.active) {
     background-color: rgba(243, 244, 237, .4)
 }
 

@@ -10,10 +10,16 @@
                 <span>Featured Products</span>
             </div>
         </div>
-
     </animated-banner>
 </section>
 
+{% javascript %}
+    class AnimatedBanner extends HTMLElement {
+        constructor() {
+            super();
+        }
+    }
+{% endjavascript %}
 
 {% schema %}
 {

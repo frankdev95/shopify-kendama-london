@@ -1,0 +1,75 @@
+{{ 'kendama-product.css' | asset_url | stylesheet_tag}}
+
+<link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<script src="{{ 'variant-selects.js' | asset_url }}" defer></script>
+<script src="{{ 'kendama-product-form.js' | asset_url }}" defer></script>
+<script src="{{ 'kendama-cart-notification.js' | asset_url }}" defer></script>
+
+{%- assign current_product = product.selected_or_first_available_variant -%}
+{%- assign product_image = current_product.featured_image | default: product.featured_image -%}
+
+<section class="margin-vertical-md">
+    <div class="container--sm">
+        <div class="kendama-product">
+            <div class="kendama-product__media-wrapper">
+                <div class="kendama-product__media-item">
+                    {% render 'kendama-product-thumbnail', media: product.featured_image %}   
+                </div>
+            </div>
+            <div class="KendamaProductInfo-{{ section.id }}">
+                {%- assign product_form_id = 'kendama-product-form-' | append: section.id -%}
+                <h1>{{ product.title | escape }}</h1>
+                <div id="price-{{ section.id }}">
+                    {% render 'kendama-price', product: product %}
+                </div>
+                <variant-selects data-section={{ section.id }} data-url="{{ product.url }}">
+                    {% for option in product.options_with_values %}
+                        <div class="kendama-product-form__input">
+                            <label for="Option-{{ section.id }}-{{ forloop.index }}">{{ option.name }}</label>
+                            <select id="Option-{{ section.id }}-{{ forloop.index }}" 
+                                name="options[{{ option.name | escape }}]" 
+                                form="{{ product_form_id }}">
+                                {% for value in option.values %}
+                                    <option value="{{ value | escape }}" {%- if option.selected_value == value -%}selected{%- endif -%}>
+                                        {{ value }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    {% endfor %}
+
+                    <script type="application/json">
+                        {{ product.variants | json }}
+                    </script>
+                </variant-selects>
+                <product-form class="kendama-product-form">
+                    {%- form 'product', product, id: product_form_id, novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                        <div class="kendama-product-form__buttons">
+                            <button type="submit" name="add" {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}>
+                                {% if product.selected_or_first_available_variant.available %}
+                                    {{ 'products.product.add_to_cart' | t }}
+                                {% else %}
+                                    {{ 'products.product.sold_out' | t }}
+                                {% endif %}
+                            </button>
+                            {{ form | payment_button }}
+                        </div>
+                    {%- endform -%}
+                </product-form>
+                <div class="kendama-product__description">
+                    {{ product.description }}
+                </div>
+            </div>  
+        </div>
+    </div>
+    <!-- {%- render 'cart-notification' -%} -->
+</section>
+
+{% schema %}
+{
+    "name": "Main product",
+    "tag": "section"
+}
+{% endschema %}

@@ -1,0 +1,82 @@
+.kendama-product {
+    display: flex;
+}
+
+.kendama-product > * {
+    flex-basis: 100%;
+}
+
+.kendama-product__media {
+    display: flex;
+    flex-direction: column;
+} 
+
+.kendama-product__media img {
+    max-height: 53rem;
+    object-fit: contain;
+}
+
+.media__thumbnails {
+    display: flex;
+}
+
+.media__thumbnails img {
+    flex-basis: 33.3%;
+    height: 20rem;
+    object-fit: contain;
+    margin-top: 1rem;
+}
+
+.kendama-product-form__input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 1rem 0;
+}
+
+.kendama-product-form__input label {
+    font-weight: 300;
+    margin-bottom: .2rem;
+}
+
+.kendama-product-form__input select,
+.kendama-product-form__input select:focus,
+.kendama-product-form__input select:active {
+    border-radius: 2px;
+    border: 1px solid #ddd;
+    box-shadow: none;
+    outline: none;
+    width: 50%;
+    padding: 1rem;
+}
+.kendama-product-form__input select:focus,
+.kendama-product-form__input select:active {
+    border: 1px solid #2e466b;
+    box-shadow: 0 0 0 1pt #2e466b;
+}
+
+.kendama-product-form button {
+    border-radius: 2px;
+    cursor: pointer;
+    width: 100%;
+    padding: 1.5rem 0;
+    margin: .5rem 0;
+    text-transform: uppercase;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: .15rem;
+}
+
+.kendama-product-form button:first-child {
+    background-color: transparent;
+    border: 1px solid black;
+    margin-top: 1rem;
+}
+
+.kendama-product-form button:nth-child(2) {
+    background-color: #2e466b;
+}
+
+.kendama-product__description p {
+    font-size: 1.5rem;
+}

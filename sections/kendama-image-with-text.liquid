@@ -47,7 +47,7 @@
                         <div class="product-box__bottom">
                             {% if collections[section.settings.featured_collection].products[0] %}
                                 {% for product in collections[section.settings.featured_collection].products %}
-                                    <div class="product-box__thumbnail" >
+                                    <div class="product-box__thumbnail" style="left: 0;">
                                         <img src="{{ product.featured_media.preview_image | img_url: 'medium'}}" alt="{{ product.title }}" index={{ forloop.index }}>
                                     </div>
                                 {% endfor %}
@@ -66,6 +66,12 @@
             <div class="image-with-text__content flex-item {{ section.settings.text_align }}">
                 {% assign heading_font_size = section.settings.heading_size | divided_by: 10.0 | append: 'rem' %}
                 <h1 class="margin-vertical-sm" style=" font-size: {{ heading_font_size }};">{{ section.settings.heading }}</h1>
+                {% style %}
+                    .image-with-text__content p {
+                        width: {{ section.settings.text_width | append: '%' }}
+                    }
+
+                {% endstyle %}
                 {{ section.settings.description }}
                 {% if section.settings.show_button %}
                     <a class="image-with-text__button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
@@ -86,21 +92,48 @@
             this.slides = this.querySelectorAll('.product-box__link');
             this.slideWidth = this.slides[0].clientWidth;
             this.thumbnails = this.querySelectorAll('.product-box__thumbnail');
+            this.thumbnailWidth = this.thumbnails[0].clientWidth;
 
             this.arrowLeft = this.querySelector('.arrow-left');
             this.arrowRight = this.querySelector('.arrow-right');
 
             this.arrowLeft.style.display = "none";
+            this.moveDir = -1;
 
             this.slidePosition = 0;
             this.thumbnails[this.slidePosition].classList.add("active");
 
-            this.arrowLeft.addEventListener('click', this.moveSlide.bind(this, 1));
-            this.arrowRight.addEventListener('click', this.moveSlide.bind(this, -1));
+            this.moveSlideRight = this.moveSlide.bind(this, -1, -1);
+            this.moveSlideLeft = this.moveSlide.bind(this, 1, 1);
+
+            this.arrowLeft.addEventListener('click', () => this.moveSlideLeft());
+
+            this.arrowRight.addEventListener('click',() => this.moveSlideRight());
 
             for(let i = 0; i < this.thumbnails.length; i++) {
                 this.thumbnails[i].querySelector('img').addEventListener('click', this.moveThumbnail.bind(this));
             }
+
+            
+            setInterval(() => {
+                if(this.moveDir === -1) {
+                    this.moveSlideRight();
+                } else {
+                    this.moveSlideLeft();
+                }
+            }, 3000) 
+            
+            let resizeInterval;
+
+            window.addEventListener('resize', () => {
+                resizeInterval = setTimeout(() => {
+                    if(this.slidePosition > 3) {
+                        this.moveSlide(this.slidePosition, 1);
+                        this.resetThumbnails();
+                    }
+                    this.thumbnailWidth = this.querySelectorAll('.product-box__thumbnail')[0].clientWidth;
+                }, 500)
+            })
 
             this.placeSlides();
         }
@@ -111,13 +144,17 @@
             }
         }
 
-        moveSlide(numToMove) {  
-
+        moveSlide(numToMove, moveDir) {
             for(let i = 0; i < this.slides.length; i++) {
                 this.slides[i].style.left = parseInt(this.slides[i].style.left) + (numToMove * this.slideWidth) + "px";
             }
 
             this.thumbnails[this.slidePosition].classList.remove('active');
+            
+            if(moveDir === 1 && this.slidePosition % 4 === 0) {
+                this.moveThumbnails(moveDir);
+            }
+            
             this.slidePosition += (numToMove * -1);
 
             if(this.slidePosition > 0) {
@@ -132,8 +169,24 @@
                 this.arrowRight.style.display = "none"; 
             }
 
+            if(moveDir === -1 && this.slidePosition % 4 === 0) {
+              this.moveThumbnails(moveDir);
+            }
+
+            if(this.slidePosition === this.slides.length -1) {
+                this.moveDir = 1;
+            } else if(this.slidePosition === 0) {
+                this.moveDir = -1;
+            }
+
             this.thumbnails[this.slidePosition].classList.add('active');
 
+        }
+
+        moveThumbnails(moveDir) {
+            for(let i = 0; i < this.thumbnails.length; i++) {
+                this.thumbnails[i].style.left = parseInt(this.thumbnails[i].style.left) + this.thumbnailWidth * (moveDir * 4) + "px";
+            }
         }
 
         moveThumbnail(event) {
@@ -143,6 +196,12 @@
             const numToMove = this.slidePosition - elIndex;
             
             this.moveSlide(numToMove);
+        }
+
+        resetThumbnails() {
+            for(let i = 0; i < this.thumbnails.length; i++) {
+                this.thumbnails[i].style.left = "0px";
+            } 
         }
 
         changeActiveClass(direction) {
@@ -181,6 +240,16 @@
             "id": "description",
             "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
                         "label": "Description"
+        },
+        {
+            "type": "range",
+            "id": "text_width",
+            "min": 10,
+            "max": 100,
+            "step": 5,
+            "unit": "%",
+            "label": "Text width",
+            "default": 80
         },
         {
             "type": "image_picker",
