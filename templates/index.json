@@ -1,31 +1,30 @@
 {
   "sections": {
-    "1627038532ec4e01ad": {
-      "type": "kendama-image-banner",
+    "16309265842a7c6fdc": {
+      "type": "kendama-slideshow",
       "blocks": {
-        "1627038532ec4e01ad-0": {
-          "type": "text",
+        "f7291566-5130-4428-9ba5-47ce74593133": {
+          "type": "slide",
           "settings": {
-            "text": ""
+            "image": "shopify:\/\/shop_images\/2.jpg"
           }
         },
-        "1627038532ec4e01ad-1": {
-          "type": "button",
+        "1e69ef50-d202-4aaf-b4f0-788f0a41952c": {
+          "type": "slide",
           "settings": {
-            "button_label": "Shop Kendamas",
-            "button_link": "",
-            "border_width": 3
           }
         }
       },
       "block_order": [
-        "1627038532ec4e01ad-0",
-        "1627038532ec4e01ad-1"
+        "f7291566-5130-4428-9ba5-47ce74593133",
+        "1e69ef50-d202-4aaf-b4f0-788f0a41952c"
       ],
       "settings": {
-        "title": "Try New Things",
-        "image": "shopify:\/\/shop_images\/GFN-Chris-June-Pro-Model-1600x900_1600x_b5bf7fa5-2226-4cf3-8355-56e7baeea434.jpg",
-        "height": 100
+        "heading": "Section Heading",
+        "slide_width": 100,
+        "slide_margin": 70,
+        "toggle_automation": true,
+        "slide_speed": 3
       }
     },
     "16270168092abfe318": {
@@ -36,137 +35,6 @@
         "image_size": 70,
         "background": "#ba2b20",
         "text_color": "#ffffff"
-      }
-    },
-    "1627016842bb1fff4b": {
-      "type": "kendama-slideshow",
-      "blocks": {
-        "baaddef7-4f1d-4d57-9e89-bbcf13b683a1": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/11.jpg"
-          }
-        },
-        "0c6eb21a-8a74-4e4a-b6c2-5348e26151b4": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/9.jpg"
-          }
-        },
-        "f2301ab8-b383-45f6-b383-8b19b8f9f8a2": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/5.jpg"
-          }
-        },
-        "fa471409-79d9-4490-bf08-d2c073bb1b1f": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/8.jpg"
-          }
-        },
-        "4ee11de6-d3d6-4284-9100-53dffa8630f9": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/7.jpg"
-          }
-        },
-        "8d0723fd-c18b-4f00-8dc4-d9125c3eba24": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/6.jpg"
-          }
-        },
-        "7ee47c9b-9ed7-4ae1-9135-122133326d2d": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/4.jpg"
-          }
-        },
-        "7fa3742e-1b59-4882-a8f3-37cb12c0ed8b": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/3.jpg"
-          }
-        },
-        "dfbbe442-b757-498b-9ff3-b6237c713d43": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/2.jpg"
-          }
-        },
-        "4e596731-8817-4193-9ceb-68dbd76b421a": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/1.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "baaddef7-4f1d-4d57-9e89-bbcf13b683a1",
-        "0c6eb21a-8a74-4e4a-b6c2-5348e26151b4",
-        "f2301ab8-b383-45f6-b383-8b19b8f9f8a2",
-        "fa471409-79d9-4490-bf08-d2c073bb1b1f",
-        "4ee11de6-d3d6-4284-9100-53dffa8630f9",
-        "8d0723fd-c18b-4f00-8dc4-d9125c3eba24",
-        "7ee47c9b-9ed7-4ae1-9135-122133326d2d",
-        "7fa3742e-1b59-4882-a8f3-37cb12c0ed8b",
-        "dfbbe442-b757-498b-9ff3-b6237c713d43",
-        "4e596731-8817-4193-9ceb-68dbd76b421a"
-      ],
-      "settings": {
-        "heading": "Kendama Brands",
-        "arrow_icon": "shopify:\/\/shop_images\/next.png",
-        "slide_width": 130,
-        "slide_margin": 50
-      }
-    },
-    "1627016813d5a022ab": {
-      "type": "kendama-image-with-text",
-      "settings": {
-        "heading": "New",
-        "heading_size": 100,
-        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
-        "main_image": "shopify:\/\/shop_images\/pexels-matheus-bertelli-2376999.jpg",
-        "image_width": 75,
-        "show_box_shadow": false,
-        "box_shadow_color": "#000000",
-        "box_shadow_type": "one",
-        "image_shape": "rectangle",
-        "show_button": true,
-        "button_label": "Click Here",
-        "button_link": "",
-        "flow": "half",
-        "col_gap": 100,
-        "order": "image_first",
-        "text_align": "center",
-        "image_align": "left",
-        "show_product_box": true,
-        "featured_collection": "kendama-collection"
-      }
-    },
-    "16278968221845f5a7": {
-      "type": "kendama-image-with-text",
-      "settings": {
-        "heading": "SALE",
-        "heading_size": 100,
-        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
-        "main_image": "shopify:\/\/shop_images\/camilla-carvalho-JPTuOFurQrs-unsplash.jpg",
-        "image_width": 75,
-        "show_box_shadow": false,
-        "box_shadow_color": "#000000",
-        "box_shadow_type": "one",
-        "image_shape": "rectangle",
-        "show_button": true,
-        "button_label": "Click Here",
-        "button_link": "",
-        "flow": "half",
-        "col_gap": 0,
-        "order": "text_first",
-        "text_align": "center",
-        "image_align": "left",
-        "show_product_box": true,
-        "featured_collection": "kendama-collection"
       }
     },
     "16278968259d47cd9c": {
@@ -333,11 +201,8 @@
     }
   },
   "order": [
-    "1627038532ec4e01ad",
+    "16309265842a7c6fdc",
     "16270168092abfe318",
-    "1627016842bb1fff4b",
-    "1627016813d5a022ab",
-    "16278968221845f5a7",
     "16278968259d47cd9c",
     "162789687426080ec3",
     "1627897192d86b017c",
