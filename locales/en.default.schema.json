@@ -785,6 +785,30 @@
         "name": "Image with text"
       }
     },
+    "kendama_image_with_text": {
+      "settings": {
+        "header__1": {
+          "content": "Text settings",
+          "info": "Customise the text using these settings"
+        },
+        "header__2": {
+          "content": "Image settings",
+          "info": "Customise the image using these settings"
+        },
+        "header__3": {
+          "content": "Button settings",
+          "info": "Customise the button using these settings"
+        },
+        "header__4": {
+          "content": "Layout settings",
+          "info": "Customise the layout using these settings"
+        },
+        "header__5": {
+          "content": "Product box settings",
+          "info": "Customise the product box using these settings"
+        }
+      }
+    },
     "main-article": {
       "name": "Blog post",
       "blocks": {

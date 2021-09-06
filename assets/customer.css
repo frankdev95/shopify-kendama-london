@@ -1,3 +1,8 @@
+.customer h1 {
+  font-weight: bold;
+  font-size: 3.5rem;
+}
+
 .customer:not(.account, .order) {
   margin: 6rem auto 9rem;
   max-width: 33.4rem;
@@ -7,16 +12,16 @@
 
 @media screen and (min-width: 750px) {
   .customer:not(.account, .order) {
-    max-width: 47.8rem;
+    max-width: 52rem;
   }
 }
 
 .customer form {
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .customer button {
-  margin: 4rem 0 1.5rem;
+  margin: 2rem 0 4rem;
 }
 
 .customer ul {
@@ -51,6 +56,42 @@
 
 .customer .field:first-of-type {
   margin-top: 0;
+}
+
+/* Inputs */
+
+.customer-field {
+  display: flex;
+  flex-direction: column-reverse;
+  order: reverse;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.customer-field input {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  width: 100%;
+  padding: 1.2rem 1rem;
+  transition: border .3s ease-in-out;
+}
+
+.customer-field label {
+  margin-bottom: .5rem;
+}
+
+.customer-field input:hover,
+.customer-field input:active,
+.customer-field input:focus,
+.cusomter-field input:focus-visible
+ {
+  outline: none;
+  box-shadow: none;
+  outline-offset: 0;
+}
+
+.customer-field input:focus-visible {
+  border: 1px solid var(--primary-red);
 }
 
 /* Customer Table */
@@ -312,15 +353,16 @@
   display: block;
   margin: 0 auto;
   width: fit-content;
+  text-decoration: none;
 }
 
 .login a[href='#recover'] {
-  margin-left: 0;
-  margin-right: 0;
+  text-align: center;
+  text-decoration: none;
 }
 
 .login .field + a {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .login p {

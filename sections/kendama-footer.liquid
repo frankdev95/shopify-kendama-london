@@ -1,1 +1,274 @@
-<div class="footer"></div>
+{{ 'section-kendama-footer.css' | asset_url | stylesheet_tag }}
+
+<footer class="kendama-footer color-{{ section.settings.color_scheme }}">
+    {%- if section.blocks.size > 0 or sections.settings.newsletter_enable or section.settings.show_social -%}
+        <div class="kendama-footer__content-top">
+            <div class="kendama-footer__blocks-wrapper">
+                {%- for block in section.blocks -%}
+                    {%- if block.type == 'link_list' and block.settings.heading != blank -%}
+                        <div class="kendama-footer__list-wrapper">
+                            <h2 class="kendama-footer-block__heading">{{ block.settings.heading | escape}}</h2>
+                            {%- if block.settings.menu != blank -%}
+                                <ul class="kendama-footer__block-list list-unstyled">
+                                    {%- for link in block.settings.menu.links -%}
+                                        <li>
+                                            <a href="{{ link.url }}" class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}">
+                                                {{ link.title }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="kendama-footer-block--newsletter">
+            {%- if section.settings.newsletter_enable -%}
+                <div class="kendama-footer-block__newsletter">
+                    {%- if section.settings.newsletter_heading != blank -%}
+                        <h2 class="kendama-footer-block__heading">{{ section.settings.newsletter_heading | escape}}</h2>
+                    {%- endif -%}
+                    {% form 'customer', id: 'ContactFooter' %}
+                        <input type="hidden" name="contact[tags]" value="newsletter">
+                        <div class="kendama-newsletter-form__field-wrapper">
+                            <div class="kendama-field">
+                                <input 
+                                    id="NewsletterForm--{{section.id}}"
+                                    type="email"
+                                    name="contact[email]"
+                                    class="kendama-field__input"
+                                    value="{{ form.email }}"
+                                    aria-required="true"
+                                    autocorrect="off"
+                                    autocapitalize="off"
+                                    autocomplete="email"
+                                    {% if form.errors %}
+                                      autofocus
+                                      aria-invalid="true"
+                                      aria-describedby="ContactFooter-error"
+                                    {% elsif form.posted_successfully? %}
+                                      aria-describedby="ContactFooter-success"
+                                    {% endif %}
+                                    placeholder="{{ 'newsletter.label' | t }}"
+                                    required
+                                >
+                            </div>
+                            {%- if form.errors -%}
+                                <small class="newsletter-form__message form__message" id="ContactFooter-error">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</small>
+                          {%- endif -%}
+                        </div>
+                        <button type="submit" class="newsletter-btn btn btn-border-pop" name="commit" id="Subscribe">
+                            {{ 'newsletter.button_label' | t }}
+                        </button>
+                        {%- if form.posted_successfully? -%}
+                            <h3 class="newsletter-form__message newsletter-form__message--success form__message" id="ContactFooter-success" tabindex="-1" autofocus>{% render 'icon-success' %}{{ 'newsletter.success' | t }}</h3>
+                        {%- endif -%}
+                    {%- endform -%}
+                </div>
+            {% endif %}
+        </div>
+        {%- if section.settings.show_social -%}
+                <ul class="kendama-footer__list-social list-unstyled">
+                    {%- if settings.social_snapchat_link != blank -%}
+                        <li class="kendama-list-social__item">
+                            <a href="{{ settings.social_snapchat_link }}">
+                                <img src="{{ 'snapchat-icon.png' | file_img_url: "medium" }}" alt="snapchat icon">
+                                <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
+                            </a>
+                        </li>
+                    {%- endif -%}
+                    {%- if settings.social_twitter_link != blank -%}
+                        <li class="kendama-list-social__item">
+                            <a href="{{ settings.social_twitter_link}}">
+                                <img src="{{ 'twitter-icon.png' | file_img_url: "medium" }}" alt="twitter icon">
+                                <span class="visually-hidden">{{ 'general.social.links.twitter' | t }}</span>
+                            </a>
+                        </li>
+                    {%- endif -%}
+                    {%- if settings.social_facebook_link != blank -%}
+                        <li class="kendama-list-social__item">
+                            <a href="{{ settings.social_facebook_link }}">
+                                <img src="{{ 'facebook-icon.png' | file_img_url: "medium" }}" alt="faceboook icon">
+                                <span class="visually-hidden">{{ 'general.social.link.facebook' | t }}</span>
+                            </a>
+                        </li>
+                    {%- endif -%}
+                    {% if settings.social_instagram_link != blank %}
+                        <li class="kendama-list-social__item">
+                            <a href="{{ settings.social_instagram_link }}">
+                                <img src="{{ 'instagram-icon.png' | file_img_url: "medium" }}" alt="instagram icon">
+                                <span class="visually-hidden">{{ 'general.social.link.instagram' | t }}</span>
+                            </a>
+                        </li> 
+                    {% endif %}
+                    {% if settings.social_pinterest_link != blank %}
+                        <li class="kendama-list-social__item">
+                            <a href="{{ settings.social_pinterest_link }}">
+                                <img class="filter--white" src="{{ 'youtube.png' | file_img_url: "medium" }}" alt="pinterest icon">
+                                <span class="visually-hidden">{{ 'general.social.link.pinterest' | t }}</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if settings.social_youtube_link != blank %}
+                        <li class="kendama-list-social__item">
+                            <a href="{{ settings.social_youtube_link }}">
+                                <img class="filter--white" src="{{ 'pinterest-circular-logo-symbol.png' | file_img_url: "medium" }}" alt="youtube icon">
+                                <span class="visually-hidden">{{ 'general.social.links.youtube' | t }}</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            {%- endif -%}
+    {% endif %}
+</footer>
+
+{% schema %}
+{
+    "name": "kendama-footer",
+    "blocks": [
+        {
+            "type": "link_list",
+            "name": "t:sections.footer.blocks.link_list.name",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "default": "Quick links",
+                    "label": "t:sections.footer.blocks.link_list.settings.heading.label",
+                    "info": "t:sections.footer.blocks.link_list.settings.heading.info"
+                },
+                {
+                    "type": "link_list",
+                    "id": "menu",
+                    "default": "footer",
+                    "label": "t:sections.footer.blocks.link_list.settings.menu.label",
+                    "info": "t:sections.fotter.blocks.link_list.settings.menu.info"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "name": "t:sections.footer.blocks.text.name",
+            "settings": [
+              {
+                "type": "text",
+                "id": "heading",
+                "default": "Heading",
+                "label": "t:sections.footer.blocks.text.settings.heading.label"
+              },
+              {
+                "type": "richtext",
+                "id": "subtext",
+                "default": "<p>Share store details, promotions, or brand content with your customers.</p>",
+                "label": "t:sections.footer.blocks.text.settings.subtext.label"
+              }
+            ]
+          },
+          {
+              "type": "image",
+              "name": "Image",
+              "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "range",
+                    "id": "image_width",
+                    "label": "Image width",
+                    "min": 50,
+                    "max": 200,
+                    "step": 5,
+                    "unit": "px",
+                    "default": 100
+                },
+                {
+                    "type": "select",
+                    "id": "alignment",
+                    "label": "Image alignment on large screen",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ],
+                    "default": "center"
+                }
+              ]
+          }
+    ],
+    "settings": [
+          {
+              "type": "header",
+              "content": "t:sections.footer.settings.header__1.content",
+              "info": "t:sections.footer.settings.header__1.info"
+          },
+          {
+              "type": "checkbox",
+              "id": "newsletter_enable",
+              "default": true,
+              "label": "t:sections.footer.settings.newsletter_enable.label"
+          },
+          {
+              "type": "text",
+              "id": "newsletter_heading",
+              "default": "Sign up to our emails",
+              "label": "t:sections.footer.settings.newsletter_heading.label"
+          },
+          {
+            "type": "header",
+            "content": "t:sections.footer.settings.header__2.content",
+            "info": "t:sections.footer.settings.header__2.info"
+          },
+          {
+              "type": "checkbox",
+              "id": "show_social",
+              "default": true,
+              "label": "t:sections.footer.settings.show_social.label"
+          },
+          {
+            "type": "header",
+            "content": "t:sections.footer.settings.header__3.content",
+            "info": "t:sections.footer.settings.header__4.info"
+          },
+          {
+              "type": "checkbox",
+              "id": "enable_country_selector",
+              "default": true,
+              "label": "t:sections.footer.settings.enable_country_selector.label"
+          },
+          {
+            "type": "header",
+            "content": "t:sections.footer.settings.header__5.content",
+            "info": "t:sections.footer.settings.header__6.info"
+          },
+          {
+              "type": "checkbox",
+              "id": "enable_language_selector",
+              "default": true,
+              "label": "t:sections.footer.settings.enable_language_selector.label"
+          },
+          {
+            "type": "header",
+            "content": "t:sections.footer.settings.header__7.content"
+          },
+          {
+              "type": "checkbox",
+              "id": "payment_enable",
+              "default": true,
+              "label": "t:sections.footer.settings.payment_enable.label"
+          }
+    ]
+}
+{% endschema %}

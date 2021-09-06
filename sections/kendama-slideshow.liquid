@@ -3,7 +3,11 @@
 <div class="margin-vertical-lg">
     <slide-show>
         <h1 class="slideshow__header bold">{{ section.settings.heading | escape}}</h1>
-        <div class="slideshow" margin_width={{ section.settings.slide_margin }} slide_width={{ section.settings.slide_width }}>
+        <div class="slideshow" 
+            data-margin-width={{ section.settings.slide_margin }} 
+            data-slide-width={{ section.settings.slide_width }} 
+            data-slide-speed={{ section.settings.slide_speed }}
+            data-automation={{ section.settings.toggle_automation }}>
             <div class="slideshow__arrow slideshow__arrow--left">
                 {% if section.settings.arrow_icon != blank %}
                     {{ section.settings.arrow_icon | img_url: 'medium' | img_tag}}
@@ -27,7 +31,9 @@
 
             <div class="slideshow__arrow slideshow__arrow--right">
                 {% if section.settings.arrow_icon != blank %}
-                    {{ section.settings.arrow_icon | img_url: 'medium' | img_tag}}
+                    {{ section.settings.arrow_icon | img_url: 'medium' | img_tag: 'right arrow'}}
+                {% else %}
+                    <img src="https://cdn.shopify.com/s/files/1/0586/8142/6089/files/next.png?v=1626815045" alt="right arrow">
                 {% endif %}
             </div>
         </div>
@@ -39,10 +45,6 @@
 class Slideshow extends HTMLElement {
     constructor() {
         super();
-    }
-
-    connectedCallback() {
-
         this.slideshow = this.querySelector(".slideshow");
         this.slideshowSlides = this.querySelector(".slideshow__slides");
         this.slides = this.querySelectorAll(".slideshow__slide");
@@ -53,9 +55,30 @@ class Slideshow extends HTMLElement {
 
         if (this.slides[0]) {
 
-            this.slideWidth = parseInt(this.slideshow.getAttribute('slide_width'));
-            this.slideMargin = parseInt(this.slideshow.getAttribute('margin_width'));
-            this.slideshowWidth = parseInt(this.slideshow.getAttribute("slideshow_width"));
+            this.directions = {
+                right: -1,
+                left: 1
+            }
+    
+            this.moveDir = this.directions.right;
+            
+            this.moveSlideLeft = this.moveSlide.bind(this, this.directions.left);
+            this.moveSlideRight = this.moveSlide.bind(this, this.directions.right);
+
+            this.arrowLeft?.addEventListener('click', () => {
+                this.restartAutomation();
+                this.moveSlideLeft();
+            });
+            this.arrowRight?.addEventListener('click', () => {
+                this.restartAutomation();
+                this.moveSlideRight();
+            });
+
+            this.slideWidth = parseInt(this.slideshow.dataset.slideWidth);
+            this.slideMargin = parseInt(this.slideshow.dataset.marginWidth);
+            this.slideSpeed = parseInt(this.slideshow.dataset.slideSpeed) * 1000;
+
+            this.isAutomated = this.slideshow.dataset.automation;
 
             for (let i = 0; i < this.slides.length; i++) {
                 this.slides[i].style.width = this.slideWidth + "px";
@@ -63,33 +86,53 @@ class Slideshow extends HTMLElement {
 
             this.totalMargin = this.slideMargin * (this.slides.length - 1);
             
-            window.innerWidth <= 900 ? this.containerBounds = window.innerWidth / 100 * 100 : this.containerBounds = window.innerWidth / 100 * 80;
-            
+            this.setBounds = () => window.innerWidth <= 900 ? this.containerBounds = window.innerWidth / 100 * 100 : this.containerBounds = window.innerWidth / 100 * 80;
+            this.setBounds();
+
             this.totalSlidesWidth = (this.slideWidth * this.slides.length) + this.totalMargin;
 
-            this.placeSlides();
-        }
+            if(!this.totalSlide <= this.containerBounds) this.startAutomation();
 
+            this.initialLoad = true;
+
+            this.placeSlides();
+            this.onScreenResize();
+
+            this.initialLoad = false;
+        }
     }
 
     placeSlides() {
         if (this.totalSlidesWidth <= this.containerBounds) {
+            this.isSingular = true;
             this.slideshow.style.width = this.totalSlidesWidth + "px";
 
             for (let i = 0; i < this.arrows.length; i++) {
                 this.arrows[i].style.display = "none";
-            }
+            } 
 
             this.slideshowSlides.style.height = this.slideWidth + "px";
 
         } else {
-            this.isEventListeners = true;
+            if(this.onScreenResize && !this.initialLoad) {
+                
+                for (let i = 0; i < this.arrows.length; i++) {
+                    this.arrows[i].style.display = "initial";
+                } 
 
-            this.slidesAmount = Math.floor(this.containerBounds / (this.slideWidth + this.slideMargin));
+                this.startAutomation();
+            }
+
+            this.isSingular = false;
+            this.slidesAmount = Math.floor((this.containerBounds + this.slideMargin) / (this.slideWidth  + this.slideMargin));
+
+            console.log(`SlideWidth: ${this.slideWidth} \n Total Slide Width: ${this.slideWidth} \n Container Bounds: ${this.containerBounds} \n Slides Amount: ${this.slidesAmount} \n Slide Margin: ${this.slideMargin} \n TotalMargin: ${this.totalMargin} \n Total Slide Amount: ${this.totalSlideAmount}`);
 
             if (this.slidesAmount > 1) {
                 if (this.slidesAmount % 2 === 0) {
-                    this.slidesAmount --;
+                    if(this.slidesAmount === 2) this.isSingular = true;
+
+                    this.slidesAmount--;
 
                     if (this.slidesAmount === 1) {
                         this.slideshow.style.width = this.slideWidth + "px";
@@ -109,17 +152,13 @@ class Slideshow extends HTMLElement {
                 counter += i;
             }
 
-            this.activeIndex = counter / this.slidesAmount - 1;
-            this.slidePosition = this.activeIndex;
+            this.slidePosition = counter / this.slidesAmount - 1;
 
             if(this.slidesAmount > 1) {
-                this.slides[this.activeIndex].classList.add('slide--active');
+                this.slides[this.slidePosition].classList.add('slide--active');
             }
 
             this.slideshowSlides.style.height = this.slideWidth + 150 + "px";
-
-            this.arrowLeft.addEventListener('click', this.moveSlideLeft.bind(this));
-            this.arrowRight.addEventListener('click', this.moveSlideRight.bind(this));
         }
 
         for (let i = 0; i < this.slides.length; i++) {
@@ -128,63 +167,81 @@ class Slideshow extends HTMLElement {
     }
 
     disconectCallback() {
-        if (this.isEventListeners) {
-            this.arrowLeft.removeEventListener('click', this.moveSlideLeft.bind(this));
-            this.arrowRight.removeEventListener('click', this.moveSlideRight.bind(this));
-        }
+        this.arrowLeft?.removeEventListener('click', this.moveSlideLeft.bind(this));
+        this.arrowRight?.removeEventListener('click', this.moveSlide.bind(this, -1));
+        
     }
 
-    moveSlideLeft() {
-        if (this.slidePosition === this.slides.length - 1) 
-            this.arrowRight.style.display = "initial";
-        
+    moveSlide(direction, event = null) {
+        this.slidePosition += direction * -1;
 
-        if (this.slidePosition > 0) {
+        if(!this.isSingular) {
+            this.arrowRight.style.display = this.slidePosition < this.slides.length -1 ? "initial" : "none";
+            this.arrowLeft.style.display = this.slidePosition > 0 ? "initial" : "none";
+        }
 
-            if(this.slidesAmount > 1) {
-                this.slides[this.activeIndex].classList.remove("slide--active");
-                this.activeIndex --;
-                this.slides[this.activeIndex].classList.add("slide--active");
-            }
-     
+        for(let i = 0; i < this.slides.length; i++) {
+            const amountToMove = (this.slideWidth + this.slideMargin) * direction;
+            this.slides[i].style.left =  `${(parseInt(this.slides[i].style.left)) + amountToMove}px`;
+        }
 
-            for (let i = 0; i < this.slides.length; i++) {
-                this.slides[i].style.left = (parseInt(this.slides[i].style.left)) + this.slideWidth + this.slideMargin + "px";
-            }
-            this.slidePosition --;
+        if(this.slidesAmount > 1) {
+            this.changeActiveClass(this.slidePosition, direction);
+        }
 
-            if (this.slidePosition === 0) 
-                this.arrowLeft.style.display = "none";
-            
-
+        if(this.slidePosition === this.slides.length -1) {
+            this.moveDir = this.directions.left;
+        } else if(this.slidePosition === 0) {
+            this.moveDir = this.directions.right;
         }
 
     }
 
-    moveSlideRight() {
-        if (this.slidePosition === 0) 
-            this.arrowLeft.style.display = "initial";
-        
+    resetSlides() {
+        if(this.slidePosition) this.slides[this.slidePosition].classList.remove('slide--active');
+        this.moveDir = this.directions.right;
+        this.setBounds();
+        this.placeSlides();
+    }
 
-        if (this.slidePosition < this.slides.length - 1) {
+    startAutomation() {
+        this.automationIntervalStopped = false;
 
-            if(this.slidesAmount > 1) {
-                this.slides[this.activeIndex].classList.remove("slide--active");
-                this.activeIndex ++;
-                this.slides[this.activeIndex].classList.add("slide--active");
-            }
-         
+        this.moveSlideInterval = setInterval(() => {
+            this.moveSlide(this.moveDir);
+        }, this.slideSpeed);
+    }
 
-            for (let i = 0; i < this.slides.length; i++) {
-                this.slides[i].style.left = (parseInt(this.slides[i].style.left) - this.slideWidth - this.slideMargin) + "px";
-            }
-            this.slidePosition ++;
+    stopAutomation() {
+        this.automationIntervalStopped = true;
+        clearInterval(this.moveSlideInterval);
+    }
 
-            if (this.slidePosition === this.slides.length - 1) 
-                this.arrowRight.style.display = "none";
+    restartAutomation() {
+        this.stopAutomation();
+        clearTimeout(this.startAutomationTimeout);
+        this.startAutomationTimeout = setTimeout(() => {
+            this.startAutomation();
+        }, 5000);
+    }
+    
+    onScreenResize() {
+        this.onScreenResize = true;
+
+        window.addEventListener('resize', () => {
+
+            clearTimeout(this.resizeInterval);
+            clearInterval(this.moveSlideInterval);
             
+            this.resizeInterval = setTimeout(() => {    
+                this.resetSlides();
+            }, 300)
+        })
+    } 
 
-        }
+    changeActiveClass(slidePosition, direction) {
+        this.slides[slidePosition + direction].classList.remove("slide--active");
+        this.slides[slidePosition].classList.add("slide--active");
     }
 }
 
@@ -227,6 +284,23 @@ customElements.define('slide-show', Slideshow)
             "min": 50,
             "max": 150,
             "step": 5
+        },
+        {
+            "type": "checkbox",
+            "id": "toggle_automation",
+            "label": "Toggle Automation",
+            "info": "Control slideshow automation",
+            "default": true
+        },
+        {
+            "type": "range",
+            "id": "slide_speed",
+            "label": "Slide Speed",
+            "info": "Control the speed at which the slides move",
+            "default": 3,
+            "min": 1,
+            "max": 10,
+            "step": 0.5
         }
     ],
     "blocks": [

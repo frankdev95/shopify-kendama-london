@@ -19,6 +19,7 @@
 
 .slideshow__arrow img {
     width: 3rem;
+    pointer-events: none;
 }
 
 .slideshow__arrow--left {

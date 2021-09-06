@@ -35,33 +35,31 @@
         {%- endfor -%}
       </ul>
     {%- endif -%}
-    <div class="field">      
+    <div class="customer-field">      
       <input
         type="text"
         name="customer[first_name]"
         id="RegisterForm-FirstName"
         {% if form.first_name %}value="{{ form.first_name }}"{% endif %}
         autocomplete="given-name"
-        placeholder="{{ 'customer.register.first_name' | t }}"
       >
       <label for="RegisterForm-FirstName">
         {{ 'customer.register.first_name' | t }}
       </label>
     </div>
-    <div class="field">
+    <div class="customer-field">
       <input
         type="text"
         name="customer[last_name]"
         id="RegisterForm-LastName"
         {% if form.last_name %}value="{{ form.last_name }}"{% endif %}
         autocomplete="family-name"
-        placeholder="{{ 'customer.register.last_name' | t }}"
       >
       <label for="RegisterForm-LastName">
         {{ 'customer.register.last_name' | t }}
       </label>
     </div>
-    <div class="field">      
+    <div class="customer-field">      
       <input
         type="email"
         name="customer[email]"
@@ -75,7 +73,6 @@
           aria-invalid="true"
           aria-describedby="RegisterForm-email-error"
         {% endif %}
-        placeholder="{{ 'customer.register.email' | t }}"
       >
       <label for="RegisterForm-email">
         {{ 'customer.register.email' | t }}
@@ -89,7 +86,7 @@
         {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.
       </span>
     {%- endif -%}
-    <div class="field">     
+    <div class="customer-field">     
       <input
         type="password"
         name="customer[password]"
@@ -99,7 +96,6 @@
           aria-invalid="true"
           aria-describedby="RegisterForm-password-error"
         {% endif %}
-        placeholder="{{ 'customer.register.password' | t }}"
       >
       <label for="RegisterForm-password">
         {{ 'customer.register.password' | t }}
@@ -113,7 +109,7 @@
         {{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.
       </span>
     {%- endif -%}
-    <button>
+    <button class="cutomer__button btn-customer">
       {{ 'customer.register.submit' | t }}
     </button>
   {%- endform -%}

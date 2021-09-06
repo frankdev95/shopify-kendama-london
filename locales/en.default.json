@@ -54,9 +54,9 @@
     "month_year": "%B %Y"
   },
   "newsletter": {
-    "label": "Your email",
+    "label": "Enter your email",
     "success": "Thanks for subscribing",
-    "button_label": "Subscribe"
+    "button_label": "Sign me up"
   },
   "accessibility": {
     "skip_to_text": "Skip to content",

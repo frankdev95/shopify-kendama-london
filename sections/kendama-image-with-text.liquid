@@ -3,68 +3,88 @@
 
 <section class="image-with-text margin-vertical-lg">
     <div class="container ">
-        {% if section.settings.flow == "half" %}
+        {%- if section.settings.flow == "half" -%}
             {%- assign layout_class = 'flex-col-2' -%}
-        {% elsif section.settings.flow == 'two_thirds' %}
+        {%- elsif section.settings.flow == 'two_thirds' -%}
             {%- assign layout_class = 'flex-col-two-thirds' -%}
-        {% else %}
+        {%- else -%}
             {%- assign layout_class = 'flex-col-three-fifths' -%}
-        {% endif %}
+        {%- endif -%}
         {%- assign col_gap = section.settings.col_gap | divided_by: 10.0 | append: 'rem' -%}
-        <div class="image-with-text__container flex {% if section.settings.order == 'text_first' %} image-with-text__container--reverse {% endif %} {{ layout_class }}" style="gap: {{ col_gap }};">
+        <div class="image-with-text__container flex{% if section.settings.order == 'text_first' %} image-with-text__container--reverse {% endif %} {{ layout_class }}" style="gap: {{ col_gap }};">
             <div class="image-with-text__col-1 flex-item {{ section.settings.image_align }}">
-                <div class="image-with-text__image {% if section.settings.image_full_width %} full-width {% endif %} {% if section.settings.image_full_height %} full-height {% endif %} {% if section.settings.image_shape == "circle" %} circle {% endif %} ">
-                    {% if section.settings.main_image != blank %}
-                        <img class="{% if section.settings.show_box_shadow %}box-shadow-{{ section.settings.box_shadow_type }}{% endif %}" style="color: {{ section.settings.box_shadow_color }}; width: {{ section.settings.image_width }}%" src="{{ section.settings.main_image | img_url: '1000x' }}" alt="">
-                    {% else %}
+                <div class="image-with-text__image {%- if section.settings.image_full_width -%}full-width {%- endif -%}{%- if section.settings.image_shape == "circle" -%}circle{%- endif -%} ">
+                    {%- if section.settings.main_image != blank -%}
+                        {%- assign image_width = section.settings.image_width | divided_by: 10 | append: 'rem' -%}
+                        {%- assign image_height = section.settings.image_height | divided_by: 10 | append: 'rem' -%}
+                        {%- if section.settings.image_shape == "circle" -%}
+                            {%- assign image_height = image_width -%}
+                        {%- endif -%}
+
+                        {%- if section.settings.box_shadow_type == "one" and section.settings.show_box_shadow == true -%}
+                            {%- assign bs_x_position = section.settings.bs_x_position | times: -1 | divided_by: 10  | append: 'rem' -%}
+                            {%- assign bs_y_position = section.settings.bs_y_position | times: -1 | divided_by: 10 | append: 'rem' -%}
+                        {%- elsif section.settings.box_shadow_type == "two" and section.settings.show_box_shadow == true -%}
+                            {%- assign bs_x_position = section.settings.bs_x_position | divided_by: 10  | append: 'rem' -%}
+                            {%- assign bs_y_position = section.settings.bs_y_position | divided_by: 10 | append: 'rem' -%}
+                        {%- endif -%}
+                        <img 
+                            style="color: {{ section.settings.box_shadow_color }}; width: {{ image_width }}; height: {{ image_height }}; box-shadow: {{ bs_x_position }} {{ bs_y_position }};" 
+                            src="{{ section.settings.main_image | img_url: '1000x' }}" 
+                            alt="">
+                    {%- else -%}
                         {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                    {% endif %}
+                    {%- endif -%}
                 </div>
-                {% if section.settings.show_product_box %}
-                    <product-box class="product-box">
+                {%- if section.settings.show_product_box -%}
+                    {%- assign pb_width = section.settings.pb_width | divided_by: 10 | append: 'rem' -%}
+                    {%- assign pb_height = section.settings.pb_height | divided_by: 10 | append: 'rem' -%}
+                    <product-box class="product-box" style="width: {{ pb_width }}; height: {{ pb_height }};" data-toggle-automation={{ section.settings.toggle_automation }} data-slide-speed={{ section.settings.slide_speed }}>
                         <div class="product-box__top">
-                            {% assign kendama_products = collections[section.settings.featured_collection].products %}
-                            {% if kendama_products[0] %}
-                                {% for product in kendama_products %}
-                                    <a class="product-box__link{% if forloop.index > 1 %} absolute {% else %} relative {% endif %}" href="{{ product.url }}">
+                            {%- assign kendama_products = collections[section.settings.featured_collection].products -%}
+                            {%- if kendama_products[0] -%}
+                                {%- for product in kendama_products -%}
+                                    <a class="product-box__link {% if forloop.index > 1 %} absolute {% else %} relative {% endif %}" href="{{ product.url }}">
                                         <div class="product-box__image">
                                             <img src="{{ product.featured_media.preview_image | img_url: 'large'}}" alt="{{ product.title }}">
                                         </div>
                                     </a>
-                                {% endfor %}
-                                {% if kendama_products.size > 1 %}
-                                    {{ 'right.png' | file_url | img_tag: 'right arrow', 'arrow arrow-right'}}
-                                    {{ 'right.png' | file_url | img_tag: 'left arrow', 'arrow arrow-left'}}
-                                {% endif %}     
-                            {% else %}
+                                {%- endfor -%}
+                                {%- if kendama_products.size > 4 -%}
+                                    <div class="product-box__arrows">
+                                        <img src="https://cdn.shopify.com/s/files/1/0586/8142/6089/files/right.png?v=1627290972" alt="right arrow" class="arrow arrow-right">
+                                        <img src="https://cdn.shopify.com/s/files/1/0586/8142/6089/files/right.png?v=1627290972" alt="left arrow" class="arrow arrow-left">
+                                    </div>
+                                {%- endif -%}     
+                            {%- else -%}
                             <a class="product-box__link" href="#">
                                 <div class="product-box__image">
                                     {{ 'product-1' | placeholder_svg_tag: 'product-box__image--placeholder'}}
                                 </div>
                             </a>
-                            {% endif %}
+                            {%- endif -%}
                         </div>
                         <div class="product-box__bottom">
-                            {% if collections[section.settings.featured_collection].products[0] %}
-                                {% for product in collections[section.settings.featured_collection].products %}
+                            {%- if collections[section.settings.featured_collection].products[0] -%}
+                                {%- for product in collections[section.settings.featured_collection].products -%}
                                     <div class="product-box__thumbnail" style="left: 0;">
                                         <img src="{{ product.featured_media.preview_image | img_url: 'medium'}}" alt="{{ product.title }}" index={{ forloop.index }}>
                                     </div>
-                                {% endfor %}
-                            {% else %}
-                                {% for i in (1..4) %}
+                                {%- endfor -%}
+                            {%- else -%}
+                                {%- for i in (1..4) -%}
                                     <div class="product-box__thumbnail">
                                         {{ 'product-1' | placeholder_svg_tag: 'product-box__image--placeholder'}}
                                     </div>
-                                {% endfor %}
-                            {% endif %}
+                                {%- endfor -%}
+                            {%- endif -%}
                         </div>
                     </product-box>
-                {% endif %}
+                {%- endif -%}
             </div>
             
             <div class="image-with-text__content flex-item {{ section.settings.text_align }}">
-                {% assign heading_font_size = section.settings.heading_size | divided_by: 10.0 | append: 'rem' %}
+                {%- assign heading_font_size = section.settings.heading_size | divided_by: 10.0 | append: 'rem' -%}
                 <h1 class="margin-vertical-sm" style=" font-size: {{ heading_font_size }};">{{ section.settings.heading }}</h1>
                 {% style %}
                     .image-with-text__content p {
@@ -73,9 +93,9 @@
 
                 {% endstyle %}
                 {{ section.settings.description }}
-                {% if section.settings.show_button %}
-                    <a class="image-with-text__button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
-                {% endif %}
+                {%- if section.settings.show_button -%}
+                    <a class="image-with-text__button btn btn-background-slide btn--solid" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+                {%- endif -%}
             </div>
         </div>
     </div>
@@ -86,56 +106,56 @@
     class ProductBox extends HTMLElement {
         constructor() {
             super();
-        }
-
-        connectedCallback() {
             this.slides = this.querySelectorAll('.product-box__link');
-            this.slideWidth = this.slides[0].clientWidth;
             this.thumbnails = this.querySelectorAll('.product-box__thumbnail');
-            this.thumbnailWidth = this.thumbnails[0].clientWidth;
-
             this.arrowLeft = this.querySelector('.arrow-left');
             this.arrowRight = this.querySelector('.arrow-right');
+
+            this.slideWidth = this.slides[0].clientWidth;
+            this.thumbnailWidth = this.thumbnails[0].getBoundingClientRect().width;
+            const resizeObserver = new ResizeObserver(entries => this.init());
+            resizeObserver.observe(this);
 
             this.arrowLeft.style.display = "none";
             this.moveDir = -1;
 
             this.slidePosition = 0;
+
             this.thumbnails[this.slidePosition].classList.add("active");
 
             this.moveSlideRight = this.moveSlide.bind(this, -1, -1);
             this.moveSlideLeft = this.moveSlide.bind(this, 1, 1);
 
-            this.arrowLeft.addEventListener('click', () => this.moveSlideLeft());
+            this.arrowLeft.addEventListener('click', () => {
+                this.slideClickedAutomationHandler();
+                this.moveSlideLeft()
+            } );
 
-            this.arrowRight.addEventListener('click',() => this.moveSlideRight());
+            this.arrowRight.addEventListener('click',() => {
+                this.slideClickedAutomationHandler();
+                this.moveSlideRight()
+            });
 
             for(let i = 0; i < this.thumbnails.length; i++) {
                 this.thumbnails[i].querySelector('img').addEventListener('click', this.moveThumbnail.bind(this));
             }
-
-            
-            setInterval(() => {
-                if(this.moveDir === -1) {
-                    this.moveSlideRight();
-                } else {
-                    this.moveSlideLeft();
-                }
-            }, 3000) 
-            
-            let resizeInterval;
-
-            window.addEventListener('resize', () => {
-                resizeInterval = setTimeout(() => {
-                    if(this.slidePosition > 3) {
-                        this.moveSlide(this.slidePosition, 1);
-                        this.resetThumbnails();
-                    }
-                    this.thumbnailWidth = this.querySelectorAll('.product-box__thumbnail')[0].clientWidth;
-                }, 500)
-            })
+            console.log(this.dataset.toggleAutomation);
+            if(this.dataset.toggleAutomation == "true") this.startAutomation();
 
             this.placeSlides();
+        }
+
+        init() {
+            this.resizeInterval;
+
+            clearTimeout(this.resizeInterval);
+            this.resizeInterval = setTimeout(() => {
+                if(this.slidePosition > 3) {
+                    this.moveSlide(this.slidePosition, 1);
+                    this.resetThumbnails();
+                }
+                this.thumbnailWidth = this.querySelectorAll('.product-box__thumbnail')[0].getBoundingClientRect().width;
+            }, 500)
         }
 
         placeSlides() {
@@ -157,17 +177,8 @@
             
             this.slidePosition += (numToMove * -1);
 
-            if(this.slidePosition > 0) {
-                this.arrowLeft.style.display = "initial";
-            } else {
-                this.arrowLeft.style.display = "none";
-            }
-
-            if(this.slidePosition < this.slides.length -1) {
-                this.arrowRight.style.display = "initial"
-            } else {
-                this.arrowRight.style.display = "none"; 
-            }
+            this.slidePosition > 0 ? this.arrowLeft.style.display = "initial" : this.arrowLeft.style.display = "none";
+            this.slidePosition < this.slides.length -1 ? this.arrowRight.style.display = "initial" : this.arrowRight.style.display = "none"; 
 
             if(moveDir === -1 && this.slidePosition % 4 === 0) {
               this.moveThumbnails(moveDir);
@@ -190,6 +201,7 @@
         }
 
         moveThumbnail(event) {
+            this.slideClickedAutomationHandler();
             const { target: el } = event;
             const elIndex = parseInt(el.getAttribute('index')) - 1;
 
@@ -209,7 +221,39 @@
 
             direction === 'left' ? this.thumbnails[this.slidePosition - 1].classList.add('active') : this.thumbnails[this.slidePosition + 1].classList.add('active');
         }
+
+        startAutomation() {
+            this.automationIntervalStopped = false;
+
+            this.automateSlideInterval = setInterval(() => {
+                if(this.moveDir === -1) {
+                    this.moveSlideRight();
+                } else {
+                    this.moveSlideLeft();
+                }
+            }, parseInt(this.dataset.slideSpeed * 1000)) 
+        }
+
+        stopAutomation() {
+            this.automationIntervalStopped = true;
+
+            clearInterval(this.automateSlideInterval);
+        }
+    
+        slideClickedAutomationHandler() {
+            if(this.dataset.toggleAutomation == "true") {
+                console.log("Restart");
+                if(!this.automationIntervalStopped) this.stopAutomation();
+
+                clearTimeout(this.startAutomationTimeout);
+
+                this.startAutomationTimeout = setTimeout(() => {
+                    this.startAutomation();
+                }, 5000);
+            }
+        }
     }    
+
 
     customElements.define('product-box', ProductBox);
 
@@ -220,6 +264,11 @@
     "name": "Image-with-text",
     "settings": [
         {
+            "type": "header",
+            "content": "t:sections.kendama_image_with_text.settings.header__1.content",
+            "info": "t:sections.kendama_image_with_text.settings.header__1.info"
+        },
+        {
             "type": "text",
             "id": "heading",
             "default": "New",
@@ -228,12 +277,12 @@
         {
             "type": "range",
             "id": "heading_size",
+            "label": "Heading font size",
             "min": 12,
             "max": 100,
             "step": 1,
-            "unit": "px",
-            "label": "Heading font size",
-            "default": 32
+            "default": 32,
+            "unit": "px"
         },
         {
             "type": "richtext",
@@ -244,12 +293,38 @@
         {
             "type": "range",
             "id": "text_width",
-            "min": 10,
+            "label": "Text width",
+            "info": "Control the width of the text inside its container",
+            "min": 5,
             "max": 100,
             "step": 5,
-            "unit": "%",
-            "label": "Text width",
-            "default": 80
+            "default": 80,
+            "unit": "%"
+        },
+        {
+            "type": "select",
+            "id": "text_align",
+            "options": [
+                {
+                    "value": "center",
+                    "label": "Centre aligned" 
+                },
+                {
+                    "value": "left",
+                    "label": "Left aligned"
+                }, 
+                {
+                    "value": "right",
+                    "label": "Right aligned"
+                }
+            ],
+            "default": "center",
+            "label": "Text alignment"
+        },
+        {
+            "type": "header",
+            "content": "t:sections.kendama_image_with_text.settings.header__2.content",
+            "info": "t:sections.kendama_image_with_text.settings.header__2.info"
         },
         {
             "type": "image_picker",
@@ -259,14 +334,39 @@
         {
             "type": "range",
             "id": "image_width",
-            "min": 0,
-            "max": 100,
-            "step": 5,
-            "unit": "%",
-            "label": "Image Size",
-            "default": 50,
-            "info": "Control the image size"
-        },    
+            "label": "Image width",
+            "min": 50,
+            "max": 1000,
+            "step": 10,
+            "default": 550,
+            "unit": "px"
+        },
+        {
+            "type": "range",
+            "id": "image_height",
+            "label": "Image height",
+            "min": 50,
+            "max": 1000,
+            "step": 10,
+            "default": 550,
+            "unit": "px"
+        },
+        {
+            "type": "select",
+            "id": "image_shape",
+            "options": [
+                {
+                    "value": "rectangle",
+                    "label": "Rectangle"
+                },
+                {
+                    "value": "circle",
+                    "label": "Circle"
+                }
+            ],
+            "default": "rectangle",
+            "label": "Image shape"
+        },
         {
             "type": "checkbox",
             "id": "show_box_shadow",
@@ -296,28 +396,57 @@
             "label": "Box shadow type"
         },
         {
+            "type": "range",
+            "id": "bs_x_position",
+            "label": "Horizontal position",
+            "info": "Change the horizontal position of the box shadow",
+            "min": 1,
+            "max": 50,
+            "step": 1,
+            "default": 10,
+            "unit": "px"
+        },
+        {
+            "type": "range",
+            "id": "bs_y_position",
+            "label": "Vertical position",
+            "info": "Change the vertical position of the box shadow",
+            "min": 1,
+            "max": 50,
+            "step": 1,
+            "default": 10,
+            "unit": "px"
+        },
+        {
             "type": "select",
-            "id": "image_shape",
+            "id": "image_align",
             "options": [
                 {
-                    "value": "rectangle",
-                    "label": "Rectangle"
+                    "value": "center",
+                    "label": "Center aligned" 
                 },
                 {
-                    "value": "circle",
-                    "label": "Circle"
+                    "value": "left",
+                    "label": "Left aligned"
+                }, 
+                {
+                    "value": "right",
+                    "label": "Right aligned"
                 }
             ],
-            "default": "rectangle",
-            "label": "Image shape",
-            "info": "Choose the shape of the image"
+            "default": "left",
+            "label": "Image alignment"
+        },
+        {
+            "type": "header",
+            "content": "t:sections.kendama_image_with_text.settings.header__3.content",
+            "info": "t:sections.kendama_image_with_text.settings.header__3.info"
         },
         {
             "type": "checkbox",
             "id": "show_button",
             "label": "Show Button",
-            "default": true,
-            "info": "Check if you would like a button link"
+            "default": true
         },
         {
             "type": "text",
@@ -329,6 +458,11 @@
             "type": "url",
             "id": "button_link",
             "label": "Button link"
+        },
+        {
+            "type": "header",
+            "content": "t:sections.kendama_image_with_text.settings.header__4.content",
+            "info": "t:sections.kendama_image_with_text.settings.header__4.info"
         },
         {
             "type": "select",
@@ -350,12 +484,13 @@
         {
             "type": "range",
             "id": "col_gap",
+            "label": "Column gap",
+            "info": "Control the margin between columns",
             "min": 0,
             "max": 150,
             "step": 5,
-            "unit": "px",
-            "label": "Column gap",
-            "default": 0
+            "default": 0,
+            "unit": "px"
         },        
         {
             "type": "select",
@@ -375,46 +510,9 @@
             "info": "Choose the order of the image and text"
         },
         {
-            "type": "select",
-            "id": "text_align",
-            "options": [
-                {
-                    "value": "center",
-                    "label": "Centre aligned" 
-                },
-                {
-                    "value": "left",
-                    "label": "Left aligned"
-                }, 
-                {
-                    "value": "right",
-                    "label": "Right aligned"
-                }
-            ],
-            "default": "center",
-            "label": "Text alignment",
-            "info": "Choose how you would like the text to align"
-        },
-        {
-            "type": "select",
-            "id": "image_align",
-            "options": [
-                {
-                    "value": "center",
-                    "label": "Center aligned" 
-                },
-                {
-                    "value": "left",
-                    "label": "Left aligned"
-                }, 
-                {
-                    "value": "right",
-                    "label": "Right aligned"
-                }
-            ],
-            "default": "left",
-            "label": "Image alignment",
-            "info": "Choose how you would like the image to align"
+            "type": "header",
+            "content": "t:sections.kendama_image_with_text.settings.header__5.content",
+            "info": "t:sections.kendama_image_with_text.settings.header__5.info"
         },
         {
             "type": "checkbox",
@@ -423,10 +521,49 @@
             "default": false
         },
         {
+            "type": "checkbox",
+            "id": "toggle_automation",
+            "label": "Toggle Automation",
+            "info": "Control slideshow automation",
+            "default": true
+        },
+        {
+            "type": "range",
+            "id": "slide_speed",
+            "label": "Slide Speed",
+            "info": "Control the speed at which the slides move",
+            "default": 3,
+            "min": 0.5,
+            "max": 5,
+            "step": 0.5,
+            "default": 2,
+            "unit": "sec"
+        },
+        {
             "type": "collection",
             "id": "featured_collection",
             "label": "Collection",
             "info": "Select the collection you would like to show in the product box"
+        },
+        {
+            "type": "range",
+            "id": "pb_height",
+            "label": "Product box height",
+            "min": 50,
+            "max": 500,
+            "step": 10,
+            "default": 350,
+            "unit": "px"
+        },
+        {
+            "type": "range",
+            "id": "pb_width",
+            "label": "Product box width",
+            "min": 50,
+            "max": 500,
+            "step": 10,
+            "default": 350,
+            "unit": "px"
         }
     ],
     "presets": [

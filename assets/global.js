@@ -230,7 +230,7 @@ Shopify.CountryProvinceSelector.prototype = {
   }
 };
 
-class MenuDrawer extends HTMLElement {
+class DawnMenuDrawer extends HTMLElement {
   constructor() {
     super();
 
@@ -348,9 +348,9 @@ class MenuDrawer extends HTMLElement {
   }
 }
 
-customElements.define('menu-drawer', MenuDrawer);
+customElements.define('menu-drawer', DawnMenuDrawer);
 
-class HeaderDrawer extends MenuDrawer {
+class HeaderDrawer extends DawnMenuDrawer {
   constructor() {
     super();
   }
@@ -441,8 +441,8 @@ class SliderComponent extends HTMLElement {
     super();
     this.slider = this.querySelector('ul');
     this.sliderItems = this.querySelectorAll('li');
-    this.pageCount = this.querySelector('.slider-counter--current');
-    this.pageTotal = this.querySelector('.slider-counter--total');
+    this.pageCount = this.querySelector('.slider-counter--current'); // get current slide - always starts at one
+    this.pageTotal = this.querySelector('.slider-counter--total'); // get slide amount
     this.prevButton = this.querySelector('button[name="previous"]');
     this.nextButton = this.querySelector('button[name="next"]');
 
@@ -451,13 +451,14 @@ class SliderComponent extends HTMLElement {
     const resizeObserver = new ResizeObserver(entries => this.initPages());
     resizeObserver.observe(this.slider);
 
-    this.slider.addEventListener('scroll', this.update.bind(this));
+    this.slider.addEventListener('scroll', () => this.update.bind(this));
     this.prevButton.addEventListener('click', this.onButtonClick.bind(this));
     this.nextButton.addEventListener('click', this.onButtonClick.bind(this));
   }
 
   initPages() {
     if (!this.sliderItems.length === 0) return;
+
     this.slidesPerPage = Math.floor(this.slider.clientWidth / this.sliderItems[0].clientWidth);
     this.totalPages = this.sliderItems.length - this.slidesPerPage + 1;
     this.update();

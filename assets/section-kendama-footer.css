@@ -1,0 +1,85 @@
+.kendama-footer {
+    background-color: black;
+    padding: 4rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.kendama-footer__block-list li {
+    display: inline-block;
+}
+
+.kendama-footer__block-list li:not(:last-child) {
+    margin-right: 1rem;
+}
+
+.kendama-footer__block-list li a {
+    
+    color: #fff;
+}
+
+.kendama-footer-block__newsletter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 5rem;
+}
+
+
+.kendama-footer-block__heading {
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.kendama-footer-block__newsletter form {
+    display: flex;
+}
+
+.kendama-field input {
+    border-radius: 2px;
+    border: 1px solid #ddd;
+    width: 20rem;
+    padding: 1rem;
+    margin-right: 1.5rem;
+}
+
+.kendama-footer-block__newsletter button {
+    all: unset;
+    color: #fff;
+    cursor: pointer;
+    background-color: var(--primary-red);
+    border-radius: 2px;
+    padding: .5rem 2rem;
+    text-transform: uppercase;
+    
+}
+
+.kendama-field input:active,
+.kendama-field input:focus,
+.kendama-field input:focus-visible {
+    box-shadow: none;
+    outline: none;
+    border: 1px solid var(--primary-red);
+}
+
+.kendama-footer__list-social {
+    width: max-content;
+    margin: 0 auto;
+}
+
+.kendama-list-social__item {
+    display: inline-block;
+}
+
+.kendama-list-social__item img {
+    
+    width: 4rem;
+    height: 4rem;
+}
+
+.filter--white {
+    filter: invert(98%) sepia(0%) saturate(7500%) hue-rotate(199deg) brightness(105%) contrast(106%);
+}

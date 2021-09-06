@@ -106,6 +106,111 @@ h1.heading {
     width: 70%;
 }
 
+.btn-customer {
+    background-color: #1f2f47;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    box-shadow: none;
+    padding: 1rem 2.5rem;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    outline: none;
+    text-transform: uppercase;
+}
+
+.btn-customer:focus,
+.btn-customer:hover {
+    outline: none;
+}
+
+.btn--solid {
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px 3px #ddd;
+    text-decoration: none;
+}
+
+.btn.btn-border-pop,
+.btn.btn-background-slide,
+.btn.btn-border-underline {
+    --border-size: 1px;
+    z-index: 1;
+    position: relative;
+}
+
+.btn.btn-border-pop::before {
+    border: var(--border-size) solid var(--primary-red);
+    background-color: transparent;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    transition: all .1s ease-in-out;
+}
+
+.btn-border-pop:hover::before,
+.btn-border-pop:focus::before {
+    top: calc(var(--border-size) * -3);
+    left: calc(var(--border-size) * -3);    
+    right: calc(var(--border-size) * -3);    
+    bottom: calc(var(--border-size) * -3);        
+
+}
+
+.btn.btn-background-slide::before {
+    background-color: var(--primary-red);
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .2s ease-in-out;
+}
+
+.btn.btn-background-slide.btn--solid::before {
+    border-radius: 5px;
+}
+
+.btn.btn-background-slide:hover::before,
+.btn.btn-background-slide:focus::before {
+    transform: scaleX(1);
+}
+
+.btn.btn-background-slide:hover,
+.btn.btn-background-slide:focus {
+    color: #fff;
+}
+
+.btn.btn-border-underline::before {
+    background-color: var(--primary-red);
+    content: "";
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4px;
+    position: absolute;
+    transform: scaleX(0);
+    transition: .2s ease-in-out;
+}
+
+.btn.btn-border-underline.btn--solid::before {
+    border-radius: 5px;
+}
+
+.btn.btn-border-underline:hover::before,
+.btn.btn-border-underline:focus::before {
+    transform: scaleX(1);
+}
+
 @keyframes slide {
     0% {
         background-position: 0 0;
@@ -113,6 +218,16 @@ h1.heading {
 
     100% {
         background-position: 20000px 0;
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
     }
 }
 

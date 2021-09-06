@@ -15,8 +15,7 @@
 }
 
 .overflow-scroller .grid__item {
-    width: 27%;
-    flex: 0 0 27%;
+    width: max(30rem, 27%);
 }
 
 .overflow-scroll-wrap .btn {
@@ -58,6 +57,7 @@
 
 .grid-product__content {
     text-align: center;
+    white-space: normal;
 
 }
 
@@ -71,11 +71,24 @@
     text-decoration: none;
 }
 
+.grid-product__title {
+    font-weight: bold;
+    font-size: 1.6rem;
+}
+
+.product-slider {
+    /* height: 500px; */
+}
+
 .product-slider img {
     max-width: 100%;
     width: 100%;
-    max-height: calc(100vw / 100 * 27);
+    height: max(30rem, calc(100vw / 100 * 27));
     object-fit: contain;
+}
+
+.grid-product__link {
+    text-decoration: none;
 }
 
 [data-product-image__scatter="true"] .grid__product:nth-child(2n) {

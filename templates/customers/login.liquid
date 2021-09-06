@@ -11,7 +11,7 @@
 
     {%- form 'recover_customer_password' -%}
       {% assign recover_success = form.posted_successfully? %}
-      <div class="field">
+      <div class="customer-field">
         <input type="email"
           value=""
           name="email"
@@ -24,7 +24,6 @@
             aria-describedby="RecoverEmail-email-error"
             autofocus
           {% endif %}
-          placeholder="{{ 'customer.login_page.email' | t }}"
         >
         <label for="RecoverEmail">
           {{ 'customer.login_page.email' | t }}
@@ -42,7 +41,7 @@
         </small>
       {%- endif -%}
 
-      <button>
+      <button class="customer__button btn-customer">
         {{ 'customer.login_page.submit' | t }}
       </button>
 
@@ -66,7 +65,7 @@
         {{ 'customer.recover_password.success' | t }}
       </h3>
     {%- endif -%}
-    {%- form 'customer_login', novalidate: 'novalidate' -%}
+    {%- form 'customer_login' -%}
       {%- if form.errors -%}
         <h2 class="form__message" tabindex="-1" autofocus>
           <span class="visually-hidden">{{ 'accessibility.error' | t }} </span>
@@ -81,7 +80,7 @@
         {{ form.errors | default_errors }}
       {%- endif -%}
 
-      <div class="field">        
+      <div class="customer-field">        
         <input
           type="email"
           name="customer[email]"
@@ -92,7 +91,6 @@
           {% if form.errors contains 'form' %}
             aria-invalid="true"
           {% endif %}
-          placeholder="{{ 'customer.login_page.email' | t }}"
         >
         <label for="CustomerEmail">
           {{ 'customer.login_page.email' | t }}
@@ -100,7 +98,7 @@
       </div>
 
       {%- if form.password_needed -%}
-        <div class="field">          
+        <div class="customer-field">          
           <input
             type="password"
             value=""
@@ -110,7 +108,6 @@
             {% if form.errors contains 'form' %}
               aria-invalid="true"
             {% endif %}
-            placeholder="{{ 'customer.login_page.password' | t }}"
           >
           <label for="CustomerPassword">
             {{ 'customer.login_page.password' | t }}
@@ -122,11 +119,11 @@
         </a>
       {%- endif -%}
 
-      <button>
+      <button class="customer__button btn-customer">
         {{ 'customer.login_page.sign_in' | t }}
       </button>
 
-      <a href="{{ routes.account_register_url }}">
+      <a id="create" href="{{ routes.account_register_url }}">
         {{ 'customer.login_page.create_account' | t }}
       </a>
       
