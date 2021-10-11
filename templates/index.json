@@ -35,34 +35,6 @@
         "max_indicators": 4
       }
     },
-    "16309265842a7c6fdc": {
-      "type": "kendama-slideshow",
-      "blocks": {
-        "f7291566-5130-4428-9ba5-47ce74593133": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/2.jpg"
-          }
-        },
-        "1e69ef50-d202-4aaf-b4f0-788f0a41952c": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/hobie.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "f7291566-5130-4428-9ba5-47ce74593133",
-        "1e69ef50-d202-4aaf-b4f0-788f0a41952c"
-      ],
-      "settings": {
-        "heading": "Section Heading",
-        "slide_width": 100,
-        "slide_margin": 70,
-        "toggle_automation": true,
-        "slide_speed": 3
-      }
-    },
     "16270168092abfe318": {
       "type": "kendama-kenkredits-cta",
       "settings": {
@@ -71,6 +43,27 @@
         "image_size": 70,
         "background": "#ba2b20",
         "text_color": "#ffffff"
+      }
+    },
+    "163394004156d115c8": {
+      "type": "kendama-slideshow",
+      "blocks": {
+        "6710546e-0e13-4bc1-a04a-128aeb542412": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/11.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "6710546e-0e13-4bc1-a04a-128aeb542412"
+      ],
+      "settings": {
+        "heading": "Section Heading",
+        "slide_width": 100,
+        "slide_margin": 70,
+        "toggle_automation": true,
+        "slide_speed": 3
       }
     },
     "16278968259d47cd9c": {
@@ -270,8 +263,8 @@
   },
   "order": [
     "1633939916c24c41c7",
-    "16309265842a7c6fdc",
     "16270168092abfe318",
+    "163394004156d115c8",
     "16278968259d47cd9c",
     "162789687426080ec3",
     "1627897192d86b017c",
