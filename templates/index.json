@@ -1,5 +1,40 @@
 {
   "sections": {
+    "1633939916c24c41c7": {
+      "type": "kendama-image-slideshow",
+      "blocks": {
+        "1633939916c24c41c7-0": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/hobie.jpg",
+            "image_link": ""
+          }
+        },
+        "cf226e3e-abf9-42f9-8c75-6ab5ff726d69": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/solbm.jpg",
+            "image_link": ""
+          }
+        },
+        "e51ddd85-37b7-4d80-8612-13657214a242": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/solbm.jpg",
+            "image_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "1633939916c24c41c7-0",
+        "cf226e3e-abf9-42f9-8c75-6ab5ff726d69",
+        "e51ddd85-37b7-4d80-8612-13657214a242"
+      ],
+      "settings": {
+        "slide_speed": 2,
+        "max_indicators": 4
+      }
+    },
     "16309265842a7c6fdc": {
       "type": "kendama-slideshow",
       "blocks": {
@@ -12,6 +47,7 @@
         "1e69ef50-d202-4aaf-b4f0-788f0a41952c": {
           "type": "slide",
           "settings": {
+            "image": "shopify:\/\/shop_images\/hobie.jpg"
           }
         }
       },
@@ -37,140 +73,6 @@
         "text_color": "#ffffff"
       }
     },
-<<<<<<< HEAD
-    "1627016842bb1fff4b": {
-      "type": "kendama-slideshow",
-      "blocks": {
-        "baaddef7-4f1d-4d57-9e89-bbcf13b683a1": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/11.jpg"
-          }
-        },
-        "0c6eb21a-8a74-4e4a-b6c2-5348e26151b4": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/9.jpg"
-          }
-        },
-        "f2301ab8-b383-45f6-b383-8b19b8f9f8a2": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/5.jpg"
-          }
-        },
-        "fa471409-79d9-4490-bf08-d2c073bb1b1f": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/8.jpg"
-          }
-        },
-        "4ee11de6-d3d6-4284-9100-53dffa8630f9": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/7.jpg"
-          }
-        },
-        "8d0723fd-c18b-4f00-8dc4-d9125c3eba24": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/6.jpg"
-          }
-        },
-        "7ee47c9b-9ed7-4ae1-9135-122133326d2d": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/4.jpg"
-          }
-        },
-        "7fa3742e-1b59-4882-a8f3-37cb12c0ed8b": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/3.jpg"
-          }
-        },
-        "dfbbe442-b757-498b-9ff3-b6237c713d43": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/2.jpg"
-          }
-        },
-        "4e596731-8817-4193-9ceb-68dbd76b421a": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/1.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "baaddef7-4f1d-4d57-9e89-bbcf13b683a1",
-        "0c6eb21a-8a74-4e4a-b6c2-5348e26151b4",
-        "f2301ab8-b383-45f6-b383-8b19b8f9f8a2",
-        "fa471409-79d9-4490-bf08-d2c073bb1b1f",
-        "4ee11de6-d3d6-4284-9100-53dffa8630f9",
-        "8d0723fd-c18b-4f00-8dc4-d9125c3eba24",
-        "7ee47c9b-9ed7-4ae1-9135-122133326d2d",
-        "7fa3742e-1b59-4882-a8f3-37cb12c0ed8b",
-        "dfbbe442-b757-498b-9ff3-b6237c713d43",
-        "4e596731-8817-4193-9ceb-68dbd76b421a"
-      ],
-      "settings": {
-        "heading": "Kendama Brands",
-        "arrow_icon": "shopify:\/\/shop_images\/next.png",
-        "slide_width": 130,
-        "slide_margin": 50
-      }
-    },
-    "1627016813d5a022ab": {
-      "type": "kendama-image-with-text",
-      "settings": {
-        "heading": "New",
-        "heading_size": 100,
-        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
-        "main_image": "shopify:\/\/shop_images\/pexels-matheus-bertelli-2376999.jpg",
-        "image_width": 100,
-        "show_box_shadow": false,
-        "box_shadow_color": "#000000",
-        "box_shadow_type": "one",
-        "image_shape": "rectangle",
-        "show_button": true,
-        "button_label": "Click Here",
-        "button_link": "",
-        "flow": "half",
-        "col_gap": 100,
-        "order": "image_first",
-        "text_align": "center",
-        "image_align": "left",
-        "show_product_box": true,
-        "featured_collection": "kendama-collection"
-      }
-    },
-    "16278968221845f5a7": {
-      "type": "kendama-image-with-text",
-      "settings": {
-        "heading": "SALE",
-        "heading_size": 100,
-        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
-        "main_image": "shopify:\/\/shop_images\/camilla-carvalho-JPTuOFurQrs-unsplash.jpg",
-        "image_width": 100,
-        "show_box_shadow": false,
-        "box_shadow_color": "#000000",
-        "box_shadow_type": "one",
-        "image_shape": "rectangle",
-        "show_button": true,
-        "button_label": "Click Here",
-        "button_link": "",
-        "flow": "half",
-        "col_gap": 0,
-        "order": "text_first",
-        "text_align": "center",
-        "image_align": "left",
-        "show_product_box": true,
-        "featured_collection": "kendama-collection"
-      }
-    },
-=======
->>>>>>> 33a3735b982b9af79fb32772065a297c397c84c3
     "16278968259d47cd9c": {
       "type": "kendama-animated-banner",
       "settings": {
@@ -330,7 +232,8 @@
       ],
       "settings": {
         "heading": "Follow us on instagram",
-        "sub_heading": "for more kendama antics"
+        "sub_heading": "for more kendama antics",
+        "swipe_on_mobile": true
       }
     },
     "1630926661aaa166b4": {
@@ -345,7 +248,7 @@
         "image_height": 550,
         "image_shape": "rectangle",
         "show_box_shadow": false,
-        "box_shadow_color": "#000",
+        "box_shadow_color": "#000000",
         "box_shadow_type": "one",
         "bs_x_position": 10,
         "bs_y_position": 10,
@@ -366,6 +269,7 @@
     }
   },
   "order": [
+    "1633939916c24c41c7",
     "16309265842a7c6fdc",
     "16270168092abfe318",
     "16278968259d47cd9c",

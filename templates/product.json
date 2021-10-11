@@ -1,10 +1,14 @@
 {
   "sections": {
     "main": {
-      "type": "kendama-main-product"
+      "type": "kendama-main-product",
+      "settings": {
+      }
     },
     "product-recommendations": {
-      "type": "product-recommendations"
+      "type": "product-recommendations",
+      "settings": {
+      }
     }
   },
   "order": [
