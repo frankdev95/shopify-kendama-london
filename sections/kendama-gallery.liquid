@@ -1,4 +1,7 @@
 {{ 'component-kendama-gallery.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'gallery-slider.js' | asset_url }}" defer="defer"></script>
+
+{%- assign image_count = section.blocks.size -%}
 
 <section class="margin-vertical-lg">
     <div>
@@ -6,39 +9,61 @@
             <h1 class="heading margin-vertical-md">{{ section.settings.heading }}</h1>
             <h3>{{ section.settings.sub_heading }}</h3>
         </div>
-        <div class="gallery__container flex">
-            {% for block in section.blocks %}
-                {% case block.type %}
-                            {% when 'image' %}
-                                <div class="gallery__item">
-                                    {% if block.settings.image != blank %}
-                                        {% if block.settings.media_icon != blank %}
-                                            <img class="gallery__icon" src="{{ block.settings.media_icon | img_url: 'large'}}" alt="">
-                                        {% else %}
-                                            {{ 'image' | placeholder_svg_tag: 'icon-placeholder' }}
-                                        {% endif %}
-                                       
-                                        <img class="gallery__image" src="{{ block.settings.image | img_url: 'large'}}" alt="">
-                                    {% else %}
-                                        {{ 'image' | placeholder_svg_tag: 'image-placeholder' }}
-                                    {% endif %}
+        <gallery-slider>
+            <div class="overflow-scroll-wrap">
+                <div class="overflow-scroller">
+                <div class="gallery__container flex flex-{% if section.blocks.size < 10 %}col-10{% endif %}{% if condition %}{% endif %}">
+                    {% for block in section.blocks %}
+                        {% case block.type %}
+                                    {% when 'image' %}
+                                        <div class="gallery__item">
+                                            {% if block.settings.image != blank %}
+                                                {% if block.settings.media_icon != blank %}
+                                                    <img class="gallery__icon" src="{{ block.settings.media_icon | img_url: 'large'}}" alt="">
+                                                {% else %}
+                                                    {{ 'image' | placeholder_svg_tag: 'icon-placeholder' }}
+                                                {% endif %}
+                                            
+                                                <img class="gallery__image" src="{{ block.settings.image | img_url: 'large'}}" alt="">
+                                            {% else %}
+                                                {{ 'image' | placeholder_svg_tag: 'image-placeholder' }}
+                                            {% endif %} 
+                                        </div>
+                                    {% when 'video' %}
+                                        <div class="gallery__item video">
+                                                <!-- <video width="100%" height="100%">
+                                                {% if block.settings.video != blank %}
+                                                    <source src="{{ block.settings.video }}" type="video/mp4">
+                                                    <source src="{{ block.settings.video }}" type="video/ogg">
+                                                    <source src="{{ block.settings.video }}" type="video/webm">
+                                                {% else %}
+                                                    <source src="https://www.youtube.com/watch?v=iFiiXkonsXY" type="video/mp4">
+                                                {% endif %}
+                                            </video> -->
+                                        </div>
+                        {% endcase %}
+                    {% endfor %}
+                    {% if section.blocks.size > 2 and section.settings.swipe_on_mobile %}
+                        <div class="slider__buttons">
+                            <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}">{% render 'icon-left' %}</button>
+                                <div class="slider-counter">
+                                    <span class="slider-counter--current">1</span>
+                                    <span aria-hidden="true"> / </span>
+                                    <span class=visually-hidden> {{ 'accessibility.of' | t }}</span>
+                                    <span class="slider-counter--total">{{ section.blocks.size }}</span>
                                 </div>
+                            
+                                <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">{% render 'icon-right' %}</button>
+                            </div>
+                        
+
+                    {% endif %}
+                </div>
+            </div>
                                 
-                            {% when 'video' %}
-                                <div class="gallery__item video">
-                                        <!-- <video width="100%" height="100%">
-                                        {% if block.settings.video != blank %}
-                                            <source src="{{ block.settings.video }}" type="video/mp4">
-                                            <source src="{{ block.settings.video }}" type="video/ogg">
-                                            <source src="{{ block.settings.video }}" type="video/webm">
-                                        {% else %}
-                                            <source src="https://www.youtube.com/watch?v=iFiiXkonsXY" type="video/mp4">
-                                        {% endif %}
-                                    </video> -->
-                                </div>
-                {% endcase %}
-            {% endfor %}
         </div>
+        </gallery-slider>
+
     </div>
 </section>
 
@@ -58,12 +83,19 @@
             "id": "sub_heading",
             "label": "Sub heading",
             "default": "for more kendama antics"
+        },
+        {
+            "type": "checkbox",
+            "id": "swipe_on_mobile",
+            "label": "Allow slider on mobile",
+            "default": true
         }
     ],
     "blocks": [
         {
             "name": "Image",
             "type": "image",
+            "limit": 10,
             "settings": [
                 {
                     "type": "image_picker",

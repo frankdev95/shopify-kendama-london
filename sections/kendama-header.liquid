@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{ 'component-kendama-menu.css' | asset_url}}" >
 <script src="{{ 'kendama-menu-drawer.js' | asset_url }}" defer="defer"></script>
-
+<script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
 <style>
 
 </style>
@@ -76,16 +76,78 @@
         <nav class="nav">
             <ul class="nav__list">
                 {% for link in section.settings.menu.links %}
-                    <li class="nav__item {% if link.current %} nav__item-active {% endif %}">
-                        <a class="nav__link" href="{{ link.url }}">
-                            <span>{{ link.title | escape }}</span>
-                        </a>
+                    <li class="nav__item {% if link.current or link.child_active %} nav__item-active {% endif %}">
+                        {%- if link.links != blank -%}
+                        <details-disclosure>
+                            <details>
+                              <summary class="nav__link link focus-inset">
+                                <span {%- if link.child_active %} class=""{% endif %}>{{ link.title | escape }}</span>
+                                {% render 'icon-caret' %}
+                              </summary>
+                              <ul class="header__submenu header__submenu-main list-unstyled" role="list" tabindex="-1">
+                                {%- for childlink in link.links -%}
+                                  <li>
+                                    {%- if childlink.links == blank -%}
+                                      <a href="{{ childlink.url }}" class="header__link-title header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
+                                        {{ childlink.title | escape }}
+                                      </a>
+                                    {%- else -%}
+                                        <a href="{{ childlink.url }}" class="header__link-title header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
+                                            {{ childlink.title | escape }}
+                                        </a>
+                                        <ul class="header__submenu list-menu motion-reduce list-unstyled">
+                                          {%- for grandchildlink in childlink.links -%}
+                                            <li>
+                                              <a href="{{ grandchildlink.url }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"{% if grandchildlink.current %} aria-current="page"{% endif %}>
+                                                {{ grandchildlink.title | escape }}
+                                              </a>
+                                            </li>
+                                          {%- endfor -%}
+                                        </ul>
+                                    {%- endif -%}
+                                  </li>
+                                {%- endfor -%}
+                              </ul>
+                            </details>
+                          </details-disclosure>
+                        {%- else -%}
+                            <a class="nav__link" href="{{ link.url }}">
+                                <span>{{ link.title | escape }}</span>
+                            </a>
+                        {%- endif -%}
                     </li>
                 {% endfor %}
             </ul>
         </nav>
     {% endif %}
     <div class="header__icons">
+        <details-modal class="header__search">
+            <details>
+              <summary class="header__icon header__icon--search header__icon--summary link link--text focus-inset modal__toggle" aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
+                <span>
+                  {% render 'icon-search' %}
+                  {% render 'icon-cancel' %}
+                </span>
+              </summary>
+              <div class="search-modal modal__content" role="dialog" aria-modal="true" aria-label="{{ 'general.search.search' | t }}">
+                <div class="search-modal__content" tabindex="-1">
+                  <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+                    <div class="field">
+                      <input class="search__input field__input" id="Search-In-Modal" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.search' | t }}">
+                      <label class="field__label" for="Search-In-Modal">{{ 'general.search.search' | t }}</label>
+                      <input type="hidden" name="options[prefix]" value="last">
+                      <button class="search__button field__button focus-inset" aria-label="{{ 'general.search.search' | t }}">
+                        {% render 'icon-search' %}
+                      </button>
+                    </div>
+                  </form>
+                  <button type="button" class="search-modal__close-button modal__close-button link link--text focus-inset" aria-label="{{ 'accessibility.close' | t }}">
+                    {% render 'icon-close' %}
+                  </button>
+                </div>
+              </div>
+            </details>
+          </details-modal>
         {% if shop.customer_accounts_enabled %}
             <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account link link--text focus-inset">
                 {% render 'icon-account' %}

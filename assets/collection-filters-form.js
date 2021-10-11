@@ -16,8 +16,7 @@ class CollectionFiltersForm extends HTMLElement {
     event.preventDefault();
     const formData = new FormData(event.target.closest('form'));
     const searchParams = new URLSearchParams(formData).toString();
-    console.log(searchParams);
-    // this.renderPage(searchParams, event);
+    this.renderPage(searchParams, event);
   }
 
   onActiveFilterClick(event) {
@@ -39,7 +38,6 @@ class CollectionFiltersForm extends HTMLElement {
 
   renderPage(searchParams, event, updateURLHash = true) {
     const sections = this.getSections();
-    console.log(sections);
     document.getElementById('CollectionProductGrid').querySelector('.collection').classList.add('loading');
 
     sections.forEach((section) => {
@@ -85,7 +83,7 @@ class CollectionFiltersForm extends HTMLElement {
     const facetDetailsElements =
       parsedHTML.querySelectorAll('#CollectionFiltersForm .js-filter, #CollectionFiltersFormMobile .js-filter'); // selects all filter elements
       const matchesIndex = (element) => {
-      // console.log(event?.target.closest('.js-filter'));
+
       return element.dataset.index === event?.target.closest('.js-filter')?.dataset.index // the filter element which has been clicked on
     }
     const facetsToRender = Array.from(facetDetailsElements).filter(element => !matchesIndex(element)); // match all filter elements which aren't active

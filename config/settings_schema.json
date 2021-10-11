@@ -115,6 +115,14 @@
           {
             "value": "background-2",
             "label": "t:settings_schema.styles.settings.sale_badge_color_scheme.options__1.label"
+          },
+          {
+            "value": "background-3",
+            "label": "t:settings_schema.styles.settings.sale_badge_color_scheme.options__5.label"
+          },
+          {
+            "value": "transparent",
+            "label": "t:settings_schema.styles.settings.sale_badge_color_scheme.options__4.label"
           }
         ],
         "default": "accent-2",
@@ -131,6 +139,10 @@
           {
             "value": "inverse",
             "label": "t:settings_schema.styles.settings.sold_out_badge_color_scheme.options__2.label"
+          },
+          {
+            "value": "transparent",
+            "label": "t:settings_schema.styles.settings.sale_badge_color_scheme.options__4.label"
           }
         ],
         "default": "inverse",

@@ -6,14 +6,31 @@ class MenuDrawer extends HTMLElement {
         this.summaryElement = this.querySelectorAll('summary');
         this.addAccessibilityAttributes(this.summaryElement);
 
+        if(this.dataset.element === "mobile") this.isMobileFilters = true;
+
         this.addEventListener('keyup', this.onKeyUp.bind(this));
         this.addEventListener('focusout', this.onFocusOut.bind(this));
         this.bindEvents();
     }
 
-    bindEvents() {
-        this.querySelectorAll('summary').forEach(summary => summary.addEventListener('click', this.onSummaryClick.bind(this)));
-        this.querySelectorAll('button').forEach(button => button.addEventListener('click', this.onCloseButtonClick.bind(this)));
+    bindEvents(countsToRender = null) {
+        const summaryFromCounts = countsToRender?.querySelector('summary');
+        const buttonFromCounts = countsToRender?.parentNode.querySelector('button');
+
+        const summaryElements = Array.from(this.querySelectorAll('summary'));
+        const buttonElements = Array.from(this.querySelectorAll('button'));
+
+        if(countsToRender && countsToRender.dataset.element !== "desktop") {
+            const summariesToEvent = summaryElements.filter(element => element.dataset.index !== summaryFromCounts?.dataset.index);
+            const buttonsToEvent = buttonElements.filter(element => element.dataset.index !== buttonFromCounts?.dataset.index);
+
+            summariesToEvent.forEach(summary => summary.addEventListener('click', this.onSummaryClick.bind(this)));
+            buttonsToEvent.forEach(button => button.addEventListener('click', this.onCloseButtonClick.bind(this)));
+            
+        } else {
+            this.querySelectorAll('summary').forEach(summary => summary.addEventListener('click', this.onSummaryClick.bind(this)));
+            this.querySelectorAll('button').forEach(button => button.addEventListener('click', this.onCloseButtonClick.bind(this)));
+        }    
     }
 
     addAccessibilityAttributes(summaryElements) {
@@ -36,8 +53,35 @@ class MenuDrawer extends HTMLElement {
         } else {
             setTimeout(() => {
                 detailsElement.classList.add('menu-opening');
-            })
+
+                if(this.isMobileFilters) {
+                    isOpen ? this.onSubMenuClose(detailsElement, summaryElement) : this.onSubMenuOpen(detailsElement, summaryElement);
+                }
+     
+            });
         }
+    }
+
+    onSubMenuOpen(detailsElement, summaryElement) {
+        const subMenuElement = detailsElement.querySelector('.mobile-filters__submenu');
+        this.subMenuHeight = subMenuElement?.getBoundingClientRect().height;
+        console.log(this.subMenuHeight);
+        summaryElement.setAttribute('aria-expanded', true);
+
+        subMenuElement.animate([
+            { height: '0px' },
+            { height: `${this.subMenuHeight}px` }
+        ], {
+            duration: 400,
+            fill: 'forwards',
+            easing: 'ease-out'
+        });
+    }
+
+    onSubMenuClose(detailsElement, summaryElement) {
+        summaryElement.setAttribute('aria-expande', false);
+        detailsElement.classList.remove('menu-opening');
+
     }
 
     onKeyUp(e) {
@@ -55,7 +99,8 @@ class MenuDrawer extends HTMLElement {
         setTimeout(() => {
             this.mainDetailsToggle.classList.add('menu-opening')
         });
-        // summaryElement.setAttribute('aria-expanded', true);
+
+        summaryElement.setAttribute('aria-expanded', true);
     }
     
     closeMenuDrawer(event, elementToFocus = false) {
@@ -63,6 +108,7 @@ class MenuDrawer extends HTMLElement {
             this.mainDetailsToggle.classList.remove('menu-opening');
             this.mainDetailsToggle.querySelectorAll('details').forEach(details => {
                 details.removeAttribute('open');
+                console.log(details);
                 details.classList.remove('menu-opening');
             })
         } 
@@ -72,8 +118,12 @@ class MenuDrawer extends HTMLElement {
     }
 
     onCloseButtonClick(e) {
+        e.preventDefault();
+
         const detailsElement = e.target.closest('details');
         this.closeSubMenu(detailsElement);
+        
+    
     }
 
     closeSubMenu(detailsElement) {

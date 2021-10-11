@@ -66,13 +66,19 @@
         },
         "sale_badge_color_scheme": {
           "options__1": {
-            "label": "Background 2"
+            "label": "Background 1"
           },
           "options__2": {
             "label": "Accent 1"
           },
           "options__3": {
             "label": "Accent 2"
+          },
+          "options__4": {
+            "label": "Transparent"
+          },
+          "options__5": {
+            "label": "Background 3"
           },
           "label": "Sale badge color scheme"
         },

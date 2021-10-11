@@ -67,7 +67,7 @@
     font-size: 10rem;
     text-transform: uppercase;
     font-style: italic;
-    font-weight: 600;
+    font-weight: bold;
 }
 
 .image-with-text__content p {
@@ -85,6 +85,7 @@
 @media only screen and (max-width: 56.25em) {
     .image-with-text__container {
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     .image-with-text__col-1 {

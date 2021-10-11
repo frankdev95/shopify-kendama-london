@@ -3,6 +3,11 @@
   font-size: 3.5rem;
 }
 
+.customer a {
+  color: currentColor;
+  text-decoration: none;
+}
+
 .customer:not(.account, .order) {
   margin: 6rem auto 9rem;
   max-width: 33.4rem;
@@ -68,7 +73,8 @@
   margin-bottom: 1.5rem;
 }
 
-.customer-field input {
+.customer-field input,
+.customer-field select {
   border: 1px solid #ccc;
   border-radius: 2px;
   width: 100%;
@@ -79,7 +85,10 @@
 .customer-field label {
   margin-bottom: .5rem;
 }
-
+.customer-field select:hover,
+.customer-field select:active,
+.customer-field select:focus,
+.customer-field select:focus-visible,
 .customer-field input:hover,
 .customer-field input:active,
 .customer-field input:focus,
@@ -90,7 +99,8 @@
   outline-offset: 0;
 }
 
-.customer-field input:focus-visible {
+.customer-field input:focus-visible,
+.customer-field select:focus-visible {
   border: 1px solid var(--primary-red);
 }
 
@@ -419,6 +429,17 @@
 }
 
 /* Account/Order */
+
+.account__title-container {
+  text-align: center;
+}
+
+.account .customer__button {
+  color: #fff;
+  font-size: 1.2rem;
+  padding: .8rem 2rem;
+}
+
 :is(.account, .order) {
   margin: 6rem auto 9rem;
   max-width: 120rem;

@@ -13,6 +13,7 @@
 
 .header__icons { 
     display: flex;
+    align-items: center;
 }
 
 .header__icons {
@@ -22,11 +23,17 @@
     padding-right: 5rem;
 }
 
+.search__button .icon-search {
+    width: 1.8rem;
+    height: 1.8rem;
+}
+
 .nav__list {
     list-style: none;
     margin: 0;
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .nav__item:not(:last-child) {
@@ -53,6 +60,10 @@
     text-transform: uppercase;
 }
 
+.nav__link .icon-caret {
+    right: -1.5rem;
+}
+
 .header-fixed {
     animation: moveInTop .3s ease-in-out forwards;
     position: fixed;
@@ -75,6 +86,39 @@
     width: 5rem;
     height: 5rem;
 }
+
+.icon {
+    fill: initial;
+}
+
+/* Header Submenu */
+
+.header__submenu-main {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    display: flex;
+    gap: 2rem;
+    position: absolute;
+    top: 120%;
+    height: max-content;
+    z-index: 1000;
+    padding: 2rem 10rem;
+}
+
+.header__submenu-main li {
+    width: max-content;
+}
+
+.header__submenu-main .header__menu-item {
+    padding: 0!important;
+}
+
+.header__link-title {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Header Drawer */
 
 .header-drawer__icon {
     padding-left: 1rem;
@@ -192,6 +236,9 @@ details[open].menu-opening > .header-drawer__submenu {
 
 
 @media screen and (max-width: 990px) {
+    .header__icons {
+        display: none;
+    }
     .nav__list {
         display: none;
     }

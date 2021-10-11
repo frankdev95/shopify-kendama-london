@@ -1,8 +1,8 @@
 {{ 'component-kendama-image-with-text.css' | asset_url | stylesheet_tag}}
 {{ 'component-kendama-product-box-slide.css' | asset_url | stylesheet_tag}}
 
-<section class="image-with-text margin-vertical-lg">
-    <div class="container ">
+<section class="image-with-text margin-vertical-xxl">
+    <div class="container--lg ">
         {%- if section.settings.flow == "half" -%}
             {%- assign layout_class = 'flex-col-2' -%}
         {%- elsif section.settings.flow == 'two_thirds' -%}
@@ -242,7 +242,6 @@
     
         slideClickedAutomationHandler() {
             if(this.dataset.toggleAutomation == "true") {
-                console.log("Restart");
                 if(!this.automationIntervalStopped) this.stopAutomation();
 
                 clearTimeout(this.startAutomationTimeout);
@@ -400,10 +399,10 @@
             "id": "bs_x_position",
             "label": "Horizontal position",
             "info": "Change the horizontal position of the box shadow",
-            "min": 1,
-            "max": 50,
-            "step": 1,
-            "default": 10,
+            "min": 5,
+            "max": 150,
+            "step": 5,
+            "default": 50,
             "unit": "px"
         },
         {
@@ -411,9 +410,9 @@
             "id": "bs_y_position",
             "label": "Vertical position",
             "info": "Change the vertical position of the box shadow",
-            "min": 1,
-            "max": 50,
-            "step": 1,
+            "min": 5,
+            "max": 150,
+            "step": 5,
             "default": 10,
             "unit": "px"
         },

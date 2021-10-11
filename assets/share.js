@@ -1,7 +1,6 @@
 class ShareButton extends DetailsDisclosure {
   constructor() {
     super();
-
     this.elements = {
       shareButton: this.querySelector('button'),
       successMessage: this.querySelector('[id^="ShareMessage"]'),

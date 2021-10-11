@@ -2,9 +2,13 @@
   "sections": {
     "main": {
       "type": "kendama-main-product"
+    },
+    "product-recommendations": {
+      "type": "product-recommendations"
     }
   },
   "order": [
-    "main"
+    "main",
+    "product-recommendations"
   ]
 }

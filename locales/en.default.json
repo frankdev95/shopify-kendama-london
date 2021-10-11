@@ -255,7 +255,7 @@
   },
   "customer": {
     "account": {
-      "title": "Account",
+      "title": "My Account",
       "details": "Account details",
       "view_addresses": "View addresses",
       "return": "Return to Account details"

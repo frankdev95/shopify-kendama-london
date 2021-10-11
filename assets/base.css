@@ -508,8 +508,7 @@ h6:empty {
   display: none;
 }
 
-.link,
-.customer a {
+.link {
   cursor: pointer;
   display: inline-block;
   border: none;
@@ -834,7 +833,7 @@ summary::-webkit-details-marker {
   .grid {
     margin-left: -1rem;
   }
-} */
+}  */
 
 .grid__item {
   padding-left: 0.5rem;
@@ -1216,8 +1215,8 @@ deferred-media {
 /* component-form */
 .field__input,
 .select__select,
-.customer .field input,
-.customer select {
+.customer .field input
+/* .customer select */ {
   -webkit-appearance: none;
   appearance: none;
   background-color: transparent;
@@ -1243,7 +1242,6 @@ deferred-media {
 .field__input:hover,
 .select__select:hover,
 .customer .field input:hover,
-.customer select:hover,
 .localization-form__select:hover {
   box-shadow: 0 0 0 0.2rem rgba(var(--color-foreground), 0.55);
 }
@@ -1813,7 +1811,6 @@ input[type='checkbox'] {
 .header__icon .icon {
   height: 2rem;
   width: 2rem;
-  fill: none;
   vertical-align: middle;
 }
 
@@ -2023,13 +2020,13 @@ details[open] > .header__icon--menu .icon-hamburger {
 }
 
 .header__submenu.list-menu {
-  padding: 2rem 0;
+  /* padding: 2rem 0; */
 }
 
 .header__submenu .header__submenu {
-  background-color: rgba(var(--color-foreground), 0.03);
+  /* background-color: rgba(var(--color-foreground), 0.03);
   padding: 0.5rem 0;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0; */
 }
 
 .header__submenu .header__menu-item:after {

@@ -12,7 +12,10 @@ class ImageSlideshow extends HTMLElement {
         const resizeObserver = new ResizeObserver(entries => this.controlElementHeight());
         resizeObserver.observe(this.slider);
 
-        if(!this.slider || !this.nextButton || !this.sliderItems.length > 1) return;
+        this.sliderItems[0].classList.add('show');
+
+        if(!this.slider || !this.nextButton || !this.sliderItems.length > 1) return
+        
 
         this.prevButton.addEventListener('click', this.onButtonClick.bind(this));
         this.nextButton.addEventListener('click', this.onButtonClick.bind(this));

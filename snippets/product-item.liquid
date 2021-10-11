@@ -1,10 +1,8 @@
 <div class="card__wrapper">
     <a href="{{ product.url | default: '#'}}" class="card__link">
         <div class="card__product {% if product.featured_media == nil%} card--no--media {% endif %}">
-            <div class="card__inner">
-                <div class="card__media">
-                    <img src="{{ product.featured_media | img_url: 'large' }}" alt="{{ product.featured_media.alt | escape }}">
-                </div>
+            <div class="card__media">
+                <img src="{{ product.featured_media | img_url: 'large' }}" alt="{{ product.featured_media.alt | escape }}">
             </div>
         </div>
         <div class="card__bottom">

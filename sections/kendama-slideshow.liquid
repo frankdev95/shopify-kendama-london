@@ -55,6 +55,11 @@ class Slideshow extends HTMLElement {
 
         if (this.slides[0]) {
 
+            this.slideWidth = parseInt(this.slideshow.dataset.slideWidth);
+            this.slideMargin = parseInt(this.slideshow.dataset.marginWidth);
+            this.slideSpeed = parseInt(this.slideshow.dataset.slideSpeed) * 1000;
+            this.isAutomated = this.slideshow.dataset.automation;
+
             this.directions = {
                 right: -1,
                 left: 1
@@ -66,19 +71,16 @@ class Slideshow extends HTMLElement {
             this.moveSlideRight = this.moveSlide.bind(this, this.directions.right);
 
             this.arrowLeft?.addEventListener('click', () => {
-                this.restartAutomation();
+                if(this.isAutomated == "true") this.restartAutomation();
                 this.moveSlideLeft();
             });
+
             this.arrowRight?.addEventListener('click', () => {
-                this.restartAutomation();
+                if(this.isAutomated == "true") this.restartAutomation();
                 this.moveSlideRight();
             });
 
-            this.slideWidth = parseInt(this.slideshow.dataset.slideWidth);
-            this.slideMargin = parseInt(this.slideshow.dataset.marginWidth);
-            this.slideSpeed = parseInt(this.slideshow.dataset.slideSpeed) * 1000;
-
-            this.isAutomated = this.slideshow.dataset.automation;
+            console.log("Something");
 
             for (let i = 0; i < this.slides.length; i++) {
                 this.slides[i].style.width = this.slideWidth + "px";
@@ -90,8 +92,6 @@ class Slideshow extends HTMLElement {
             this.setBounds();
 
             this.totalSlidesWidth = (this.slideWidth * this.slides.length) + this.totalMargin;
-
-            if(!this.totalSlide <= this.containerBounds) this.startAutomation();
 
             this.initialLoad = true;
 
@@ -114,13 +114,13 @@ class Slideshow extends HTMLElement {
             this.slideshowSlides.style.height = this.slideWidth + "px";
 
         } else {
-            if(this.onScreenResize && !this.initialLoad) {
+            if(this.onScreenResize && this.initialLoad) {
                 
                 for (let i = 0; i < this.arrows.length; i++) {
                     this.arrows[i].style.display = "initial";
                 } 
 
-                this.startAutomation();
+                if(this.isAutomated == "true") this.startAutomation();
             }
 
             this.isSingular = false;

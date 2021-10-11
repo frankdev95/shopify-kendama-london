@@ -1,6 +1,19 @@
+/*
+Breakpoints
+400 - 25em
+540px - 33.75em
+600px - 37.5em
+767px - 47.93em
+991px - 61.93em
+1200px - 75em
+1440px - 90em
+1600px - 100em
+*/
+
 :root {
     --primary-red: #ba2b20;
     --primary-green: #4cd3a1;
+    --clr-scheme-background-3: #fa4545;
 }
 
 *,
@@ -10,21 +23,66 @@
     padding: 0;
 }
 
+/* Color Theme Schemes */
+
+.color-transparent {
+    background-color: transparent;
+}
+
+.color-background-3 {
+    background-color: var(--clr-scheme-background-3);
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+
+@media only screen and (max-width: 75em) {
+    html {
+        font-size: 56.25%;
+    }
+    
+}
+
+@media only screen and (max-width: 47.9375em) {
+    html {
+        font-size: 53.125%;
+    }
+    
+}
+
+@media only screen and (max-width: 33.75em) {
+    html {
+        font-size: 50%;
+    }
+    
+}
+
+
 body {
     font-family: 'Poppins', sans-serif;
 }
 
 h1 {
     font-size: 4.5rem;
+    font-weight: bold;
 }
 
 p {
-    font-size: 1.8rem;
+    font-size: 2rem;
 }
 
 .container {
     width: 90%;
     margin: 0 auto;
+}
+
+@media only screen and (max-width: 75em) {
+    .container {
+        width: 94%;
+    }
 }
 
 .container--md {
@@ -76,6 +134,10 @@ p {
     margin: 8rem 0;
 }
 
+.margin-vertical-xxl {
+    margin: 12rem 0;
+}
+
 h1.heading {
     text-transform: uppercase;
     font-weight: 600;
@@ -107,7 +169,7 @@ h1.heading {
 }
 
 .btn-customer {
-    background-color: #1f2f47;
+    background-color: #2e466b;
     border-radius: 2px;
     border: none;
     cursor: pointer;
